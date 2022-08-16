@@ -20,12 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home', [HomeController::class,'index']);
+// Route::get('/home', [HomeController::class,'index']);
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::get('/blog',[HomeController::class,'blog'])->name('blog');
 Route::get('/blog/blog-detail',[HomeController::class,'blogDetail'])->name('blog-detail');
-Route::get('/candidat/candidat-dashboard',[HomeController::class,'candidatDashboard'])->name('candidat-dashboard');
-Route::get('/entreprise/entreprise-dashboard',[HomeController::class,'entrepriseDashboard'])->name('entreprise-dashboard');
+Route::get('/candidat/candidat-dashboard',[HomeController::class,'candidatDashboard'])->name('candidat-dashboard')->middleware('candidat-access');
+Route::get('/entreprise/entreprise-dashboard',[HomeController::class,'entrepriseDashboard'])->name('entreprise-dashboard')->middleware('entreprise-access');
 Route::get('/candidat/half-map-grid',[HomeController::class,'hmg'])->name('hmg');
 Route::get('/candidat/half-map-list',[HomeController::class,'hml'])->name('hml');
 Route::get('/candidat/search-entreprise-grid',[HomeController::class,'seg'])->name('seg');

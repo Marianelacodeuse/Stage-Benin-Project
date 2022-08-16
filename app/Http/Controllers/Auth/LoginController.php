@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
 
 class LoginController extends Controller
 {
@@ -29,6 +31,16 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    public function redirectTo(){
+        if(Auth::user()->role=='candidat'){
+            $this->redirectTo='/candidat/candidat-dashboard';
+            return $this->redirectTo;
+        }
+        if(Auth::user()->role=='recruteur'){
+            $this->redirectTo='/entreprise/entreprise-dashboard';
+            return $this->redirectTo;
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -39,30 +51,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-
-    // public function login(Request $request){
-
-
-
-    //     $input = $request->all();
-    //     $this->validate($request,[
-    //         'email'=>'required|email',
-    //         'password'=>'required'
-    //     ]);
-    //      if(auth()->attempt(array('email'=>$input['email'],'password'=>$input['password']))){
-
-    //         if(auth()->user()->role=='candidat'){
-    //             return redirect()->route('candidat.dashboard');
-    //         }else if(auth()->user()->role=='recruteur'){
-    //             return redirect()->route('recruteur.dashboard');
-    //         }else{
-    //             return redirect()->route('home');
-    //         }
-
-    //      }else{
-    //         return redirect()->route('login')->with('error','Information non dispo');
-    //      }
-
-    // }
 }

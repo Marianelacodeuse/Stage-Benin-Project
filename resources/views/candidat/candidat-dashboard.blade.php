@@ -40,30 +40,21 @@
 				<nav id="navigation" class="navigation navigation-landscape">
 					<div class="nav-header">
 						<a class="nav-brand" href="#">
-							<img src="assets/img/logo.png" class="logo" alt="" />
+							<img src="{{asset('assets/img/logo.png')}}" class="logo" alt="" />
 						</a>
 						<div class="nav-toggle"></div>
 					</div>
 					<div class="nav-menus-wrapper" style="transition-property: none;">
 						<ul class="nav-menu">
 
-							<li class="active"><a href="#">Home<span class="submenu-indicator"></span></a>
-								<ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
-									<li><a href="index-2.html" class="active">Home Style 1</a></li>
-									<li><a href="home-2.html">Home Style 2</a></li>
-									<li><a href="home-3.html">Home Style 3</a></li>
-									<li><a href="home-4.html">Home Style 4</a></li>
-									<li><a href="home-5.html">Home Style 5</a></li>
-									<li><a href="home-6.html">Home Style 6</a></li>
-									<li><a href="home-7.html">Home Style 7</a></li>
-									<li><a href="home-8.html">Home Style 8</a></li>
-								</ul>
+							<li class="active"><a href="{{url('/')}}">Home<span class="submenu-indicator"></span></a>
+
 							</li>
 
 							<li><a href="#">For Candidates<span class="submenu-indicator"></span></a>
 								<ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
-									<li><a href="#">Search job Option<span class="submenu-indicator"></span></a>
-										<ul class="nav-dropdown nav-submenu" style="display: none;">
+									<li><a href="{{route('hmg')}}">Search job Option<span class="submenu-indicator"></span></a>
+										<!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
 											<li><a href="search-full-width.html">Search Job Full Width</a></li>
 											<li><a href="search-with-sidebar.html">Search Job with Sidebar</a></li>
 											<li><a href="search-with-sidebar-2.html">Search job with Sidebar 2</a></li>
@@ -73,44 +64,44 @@
 											<li><a href="search-with-sidebar-list-2.html">Search jobs List 2</a></li>
 											<li><a href="employers-list.html">Search Employers Sidebar</a></li>
 											<li><a href="freelancer-detail.html">Employers Detail</a></li>
-										</ul>
+										</ul> -->
 									</li>
-									<li><a href="#">Map Option<span class="submenu-indicator"></span></a>
-										<ul class="nav-dropdown nav-submenu" style="display: none;">
+									<li><a href="{{route('seg')}}">Find Job On Map<span class="submenu-indicator"></span></a>
+										<!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
 											<li><a href="half-map-grid.html">Find Job On Map</a></li>
 											<li><a href="half-map-list.html">Fins Job On Map List</a></li>
-										</ul>
+										</ul> -->
 									</li>
-									<li><a href="#">Job Detail<span class="submenu-indicator"></span></a>
-										<ul class="nav-dropdown nav-submenu" style="display: none;">
+									<li><a href="#">Find Employer<span class="submenu-indicator"></span></a>
+										<!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
 											<li><a href="job-detail.html">Single Job 1</a></li>
 											<li><a href="job-detail-2.html">Single Job 2</a></li>
 											<li><a href="job-detail-3.html">Single Job 3</a></li>
-										</ul>
+										</ul> -->
 									</li>
-									<li><a href="candidate-dashboard.html">Candidate Dashboard</a></li>
+									<li><a href="{{route('candidat-dashboard')}}">Candidate Dashboard</a></li>
 								</ul>
 							</li>
 
 							<li><a href="#">For Employers<span class="submenu-indicator"></span></a>
 								<ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
 									<li><a href="candidate-grid.html">Browse Candidates Grid</a></li>
-									<li><a href="candidate-list.html">Browse Candidates List</a></li>
+									<!-- <li><a href="candidate-list.html">Browse Candidates List</a></li>
 									<li><a href="search-freelancers.html">Search Freelancers</a></li>
 									<li><a href="search-freelancers-list.html">Search Freelancers List</a></li>
-									<li><a href="freelancer-detail.html">Freelancer Detail</a></li>
+									<li><a href="freelancer-detail.html">Freelancer Detail</a></li> -->
 									<li><a href="#">Search with Map<span class="submenu-indicator"></span></a>
-										<ul class="nav-dropdown nav-submenu" style="display: none;">
+										<!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
 											<li><a href="browse-candidates-with-map-grid.html">Search Candidate Grid</a></li>
 											<li><a href="browse-candidates-with-map.html">Search Candidate List</a></li>
-										</ul>
+										</ul> -->
 									</li>
-									<li><a href="employer-dashboard.html">Employer Dashboard</a></li>
+									<li><a href="{{route('entreprise-dashboard')}}">Employer Dashboard</a></li>
 								</ul>
 							</li>
 
-							<li><a href="#">Pages<span class="submenu-indicator"></span></a>
-								<ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
+							<li><a href="{{route('blog')}}">Blog<span class="submenu-indicator"></span></a>
+								<!-- <ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
 									<li><a href="blog.html">Blogs Page</a></li>
 									<li><a href="blog-detail.html">Blog Detail</a></li>
 									<li><a href="shortcodes.html">Shortcodes</a></li>
@@ -118,17 +109,23 @@
 									<li><a href="employers-full-width.html">Find Employers</a></li>
 									<li><a href="all-jobs.html">Jobs Widgets</a></li>
 									<li><a href="login.html">LogIn</a></li>
-								</ul>
+								</ul> -->
 							</li>
 
-							<li><a href="contact.html">Contacts</a></li>
+							<li><a href="{{route('contact')}}">Contacts</a></li>
 
 						</ul>
 
 						<ul class="nav-menu nav-menu-social align-to-right">
+
+							<li>
+								<a href="#" data-toggle="modal" data-target="#login">
+									<i class="ti-user mr-1"></i><span class="dn-lg">Login/Register</span>
+								</a>
+							</li>
 							<li class="add-listing theme-bg">
 								<a href="#">
-									<i class="ti-plus"></i> Log Out
+									<i class="ti-plus"></i> Post Job
 								</a>
 							</li>
 						</ul>
@@ -206,7 +203,14 @@
 									<a class="nav-link" href="javascript:void(0)"><i class="lni-trash"></i>Delete Account</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="login.html"><i class="lni-exit"></i>Log Out</a>
+									< <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="lni-exit"></i>
+										{{ __('Logout') }}
+										</a>
+
+										<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+											@csrf
+										</form>
 								</li>
 							</ul>
 
