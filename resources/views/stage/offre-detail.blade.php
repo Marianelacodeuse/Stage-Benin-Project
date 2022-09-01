@@ -1,11 +1,11 @@
-@extend('layouts.app')
+@extends('layouts.app')
 @section('offre-detail')
 		<!-- ======================= Start Banner ===================== -->
 		<section class="small-page-title-banner" style="background-image:url(assets/img/des-9.jpg);">
 			<div class="container">
 				<div class="row">
 					<div class="tr-list-center">
-						<h2>Web Designer for Brand</h2>
+						<h2>{{$post->title}}</h2>
 					</div>
 				</div>
 			</div>
@@ -25,11 +25,11 @@
 								<img src="assets/img/google.png" alt="">
 							</div>
 							<div class="single-job-info">
-								<h4 class="single-job-title">Product Designer for Web<span class="job-type full-time">Full Time</span></h4>
+								<h4 class="single-job-title">{{$post->title}}<span class="job-type full-time">Full Time</span></h4>
 								<span class="sj-location"><i class="ti-location-pin"></i>London, United Kingdom</span>
 								<ul class="tags-jobs">
 									<li><i class="ti-file"></i> Applications 1</li>
-									<li><i class="ti-calendar"></i> Post Date: Fab 17, 2020</li>
+									<li><i class="ti-calendar"></i> {{$post->created_at->format('Y/M/D')}}</li>
 									<li><i class="fa fa-eye"></i> Views 7249</li>
 								</ul>
 							</div>
@@ -41,8 +41,7 @@
 								<h4><i class="ti-info"></i>Job Overview</h4>
 							</div>
 							<div class="tr-single-body">
-								<p>We are seeking an experienced Wordpress developer with minimum 2+ years of experiencea WordPress Developer responsible for both back-end and front-end development, including creating WordPress themes and plugins. This position requires a combination of programming skills (namely PHP, HTML5, CSS3, and JavaScript) and aesthetics (understanding element arrangements on the screen, the color and font choices, and so on). The candidate should have a strong understanding of industry trends and content management systems.</p>
-								<p> Experience with the responsive and adaptive design is strongly preferred. Also, an understanding of the entire web development process, including design, development, and deployment is preferred.</p>
+								<p>{!!$post->description!!}</p>
 							</div>
 						</div>
 
@@ -81,9 +80,16 @@
 								</ul>
 							</div>
 						</div>
+					<form action="{{url('/post/posting/'.$post->id)}}" method="post">
+					@csrf
+					
+					@if(Session::has('message'))
+						<div class="alert alert-success">{{Session::get('message')}}</div>
+					@endif
 
-						<a href="javascript:void(0)" data-toggle="modal" data-target="#apply" class="btn btn-info full-width mb-2"> Apply This Job</a>
-
+						<!-- <a href="javascript:void(0)" data-toggle="modal" data-target="#apply" class="btn btn-info full-width mb-2"> Apply This Job</a> -->
+						<input type="submit"  class="btn btn-info full-width mb-2" value="Apply this job">
+					</form>
 					</div>
 
 					<!-- Sidebar Start -->

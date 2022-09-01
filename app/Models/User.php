@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Post;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,8 +22,35 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'age',
+        'genre',
+        'filiere',
+        'specialite',
+        'niveau',
+        'telephone',
+        'adresse',
+        'facebook_url',
+        'linkdin_url',
+        'description',
+        'logo_path',
+        'card_path',
     ];
+
+    public function posts(){
+         
+        if(auth()->user()->role=='candidat'){
+            return $this->belongsToMany(Post::class);
+        }
+
+        
+        return $this->hasMany(Post::class);  
+
+        
+    }
+
+
+
 
     /**
      * The attributes that should be hidden for serialization.

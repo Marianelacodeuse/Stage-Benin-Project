@@ -3,20 +3,31 @@
 	
 <!-- Mirrored from themezhub.net/workstock-2/work-stocks/employer-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 17:43:13 GMT -->
 <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-		
-        <title>Work Stocks - Innovative & Modern Job Board Template</title>
-		
-        <!-- All Plugins Css -->
-        <link href="assets/css/plugins.css" rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Custom CSS -->
-        <link href="assets/css/styles.css" rel="stylesheet">
-		
-		<!-- Custom Color -->
-		<link href="assets/css/skin/default.css" rel="stylesheet">
-    </head>
+	<title>Stage Benin</title>
+
+	<!-- All Plugins Css -->
+	<link href="{{asset('assets/css/plugins.css')}}" rel="stylesheet">
+
+
+	<!-- Custom CSS -->
+	<link href="{{asset('assets/css/styles.css')}}" rel="stylesheet">
+
+	<!-- Custom Color -->
+	<link href="{{asset('assets/css/skin\default.css')}}" rel="stylesheet">
+	<!-- include libraries(jQuery, bootstrap) -->
+	<script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
+	<script type="text/javascript" src="cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- include summernote css/js-->
+	<link href="summernote-bs5.css" rel="stylesheet">
+	<script src="summernote-bs5.js"></script>
+
+	<!-- <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> -->
+</head>
 	
     <body class="green-skin bg-light">
         <!-- ============================================================== -->
@@ -852,23 +863,27 @@
 		<!-- ============================================================== -->
 
 		<!-- ============================================================== -->
-		<!-- All Jquery -->
-		<!-- ============================================================== -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/popper.min.js"></script>
-		<script src="assets/js/bootstrap.min.js"></script>
-		<script src="assets/js/select2.min.js"></script>
-		<script src="assets/js/aos.js"></script>
-		<script src="assets/js/perfect-scrollbar.jquery.min.js"></script>
-		<script src="assets/js/owl.carousel.min.js"></script>
-		<script src="assets/js/jquery.counterup.min.js"></script>
-		<script src="assets/js/slick.js"></script>
-		<script src="assets/js/bootstrap-datepicker.js"></script>
-		<script src="assets/js/isotope.min.js"></script>
-		<script src="assets/js/summernote.js"></script>
-		<script src="assets/js/jQuery.style.switcher.js"></script>
-		<script src="assets/js/counterup.min.js"></script>
-		<script src="assets/js/custom.js"></script>
+	<!-- All Jquery -->
+	<!-- ============================================================== -->
+	<script src="{{asset('assets/js/jquery.min.js')}}"></script>
+	<script src="{{asset('assets/js/popper.min.js')}}"></script>
+	<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('assets/js/select2.min.js')}}"></script>
+	<script src="{{asset('assets/js/aos.js')}}"></script>
+	<script src="{{asset('assets/js/perfect-scrollbar.jquery.min.js')}}"></script>
+	<script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+	<script src="{{asset('assets/js/jquery.counterup.min.js')}}"></script>
+	<script src="{{asset('assets/js/slick.js')}}"></script>
+	<script src="{{asset('assets/js/bootstrap-datepicker.js')}}"></script>
+	<script src="{{asset('assets/js/isotope.min.js')}}"></script>
+	<script src="{{asset('assets/js/summernote.js')}}"></script>
+	<script src="{{asset('assets/js/jQuery.style.switcher.js')}}"></script>
+
+	<script src="{{asset('assets/js/counterup.min.js')}}"></script>
+	<script src="{{asset('assets/js/custom.js')}}"></script>
+
+
+
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->

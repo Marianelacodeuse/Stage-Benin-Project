@@ -17,10 +17,10 @@
 	<link href="{{asset('assets/css/styles.css')}}" rel="stylesheet">
 
 	<!-- Custom Color -->
-	<link href="{{asset('assets/css/skin\default.css')}}" rel="stylesheet">
+	<link href="{{asset('assets/css/skin/default.css')}}" rel="stylesheet">
 </head>
 
-<body class="green-skin bg-light">
+<body class="blue-skin bg-light">
 	<!-- ============================================================== -->
 	<!-- Preloader - style you can find in spinners.css -->
 	<!-- ============================================================== -->
@@ -35,7 +35,7 @@
 		<!-- Top header  -->
 		<!-- ============================================================== -->
 		<!-- Start Navigation -->
-		<div class="header header-light">
+		<div class="header header-dark">
 			<div class="container-fluid">
 				<nav id="navigation" class="navigation navigation-landscape">
 					<div class="nav-header">
@@ -47,13 +47,13 @@
 					<div class="nav-menus-wrapper" style="transition-property: none;">
 						<ul class="nav-menu">
 
-							<li class="active"><a href="{{url('/')}}">Home<span class="submenu-indicator"></span></a>
-							
+							<li class="active"><a href="{{url('/')}}">Accueil<span class="submenu-indicator"></span></a>
+
 							</li>
 
 							<li><a href="#">For Candidates<span class="submenu-indicator"></span></a>
 								<ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
-									<li><a href="{{route('hmg')}}">Search job Option<span class="submenu-indicator"></span></a>
+									<li><a href="{{route('ssg')}}">Trouver un stage<span class="submenu-indicator"></span></a>
 										<!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
 											<li><a href="search-full-width.html">Search Job Full Width</a></li>
 											<li><a href="search-with-sidebar.html">Search Job with Sidebar</a></li>
@@ -66,36 +66,36 @@
 											<li><a href="freelancer-detail.html">Employers Detail</a></li>
 										</ul> -->
 									</li>
-									<li><a href="{{route('seg')}}">Find Job On Map<span class="submenu-indicator"></span></a>
+									<li><a href="{{route('seg')}}">Trouver une entreprise<span class="submenu-indicator"></span></a>
 										<!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
 											<li><a href="half-map-grid.html">Find Job On Map</a></li>
 											<li><a href="half-map-list.html">Fins Job On Map List</a></li>
 										</ul> -->
 									</li>
-									<li><a href="#">Find Employer<span class="submenu-indicator"></span></a>
-										<!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
+									<!-- <li><a href="#">Find Employer<span class="submenu-indicator"></span></a>
+										<ul class="nav-dropdown nav-submenu" style="display: none;">
 											<li><a href="job-detail.html">Single Job 1</a></li>
 											<li><a href="job-detail-2.html">Single Job 2</a></li>
 											<li><a href="job-detail-3.html">Single Job 3</a></li>
-										</ul> -->
-									</li>
+										</ul>
+									</li> -->
 									<li><a href="{{route('candidat-dashboard')}}">Candidate Dashboard</a></li>
 								</ul>
 							</li>
 
 							<li><a href="#">For Employers<span class="submenu-indicator"></span></a>
 								<ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
-									<li><a href="candidate-grid.html">Browse Candidates Grid</a></li>
+									<li><a href="{{route('scg')}}">Trouver un candidat</a></li>
 									<!-- <li><a href="candidate-list.html">Browse Candidates List</a></li>
 									<li><a href="search-freelancers.html">Search Freelancers</a></li>
 									<li><a href="search-freelancers-list.html">Search Freelancers List</a></li>
 									<li><a href="freelancer-detail.html">Freelancer Detail</a></li> -->
-									<li><a href="#">Search with Map<span class="submenu-indicator"></span></a>
-										<!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
+									<!-- <li><a href="#">Search with Map<span class="submenu-indicator"></span></a>
+										<ul class="nav-dropdown nav-submenu" style="display: none;">
 											<li><a href="browse-candidates-with-map-grid.html">Search Candidate Grid</a></li>
 											<li><a href="browse-candidates-with-map.html">Search Candidate List</a></li>
-										</ul> -->
-									</li>
+										</ul>
+									</li> -->
 									<li><a href="{{route('entreprise-dashboard')}}">Employer Dashboard</a></li>
 								</ul>
 							</li>
@@ -117,7 +117,27 @@
 						</ul>
 
 						<ul class="nav-menu nav-menu-social align-to-right">
+							@auth
+							<li class="add-listing theme-bg">
+							 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="ti-plus mr-1"></i>
+									{{ __('Logout') }}
+									</a>
 
+									<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+										@csrf
+									</form>
+							</li>
+							@if(Auth::user()->role=="recruteur")
+							<li class="add-listing theme-bg">
+								<a href="#">
+									<i class="ti-plus"></i> Post Job
+								</a>
+								
+							</li>
+
+							@endif
+							@else
 							<li>
 								<a href="#" data-toggle="modal" data-target="#login">
 									<i class="ti-user mr-1"></i><span class="dn-lg">Login/Register</span>
@@ -128,6 +148,9 @@
 									<i class="ti-plus"></i> Post Job
 								</a>
 							</li>
+							@endauth
+							
+
 						</ul>
 					</div>
 				</nav>
@@ -151,6 +174,9 @@
 		@yield('half-map-grid')
 		@yield('search-entreprise-grid')
 		@yield('search-entreprise-list')
+		@yield('search-candidat-grid')
+		@yield('search-candidat-list')
+		@yield('candidat-detail')
 
 		<!-- ============================ Footer Start ================================== -->
 		<footer class="dark-footer skin-dark-footer">
@@ -406,7 +432,7 @@
 										<div class="form-group">
 											<label>Password</label>
 											<div class="input-with-gray">
-											<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="*******">
+												<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="*******">
 												<i class="ti-unlock theme-cl"></i>
 											</div>
 											@error('password_confirmation')

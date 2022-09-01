@@ -1,93 +1,4 @@
-<!-- @extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="role" type="String" class="form-control @error('role') is-invalid @enderror" name="role" value="{{ old('role') }}" required autocomplete="role">
-
-                                @error('role')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection -->
+@extends('layouts.app')
 @section('register')
 <!-- ============================ Hero Banner  Start================================== -->
 <div class="page-title-wrap pt-img-wrap" style="background:url(assets/img/banner-4.jpg) no-repeat;">
@@ -125,66 +36,99 @@
 
                             <div class="form-group">
                                 <div class="input-with-gray">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Uusername" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Uusername" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                    @enderror
                                     <i class="ti-user"></i>
                                 </div>
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+
                             </div>
 
                             <div class="form-group">
 
                                 <div class="input-with-gray">
-                                    <input type="email" name="email" class="form-control" placeholder="Email">
-                                    <i class="ti-user"></i>
+                                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                    <i class="ti-envelope"></i>
                                 </div>
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+
                             </div>
 
                             <div class="form-group">
                                 <div class="input-with-gray">
+                                    <select id="role" class="form-control @error('role') is-invalid @enderror" id="role" name="role" title="Hey">
+                                        <!-- <option value="">&nbsp;</option> -->
 
-                                    <input id="role" type="String" class="form-control @error('role') is-invalid @enderror" name="role" value="{{ old('role') }}" required autocomplete="role" placeholder="Role">
-                                    <i class="ti-user"></i>
+                                        <option value="" disabled selected hidden>Vous etes un Candidat? Entreprise?</option>
+                                        <option value="candidat">Candidat</option>
+                                        <option value="recruteur">Entreprise</option>
+
+                                    </select>
                                     @error('role')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
+                                    <i class="ti-user"></i>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="input-with-gray">
+                                    <input id="img_carte" type="file" class="form-control @error('img_carte') is-invalid @enderror" placeholder="Photo de la carte Etudiant" name="card" value="{{ old('card') }}" style='display:none'>
+                                    @error('card')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                    @enderror
+                                    <!-- <i class="ti-user"></i> -->
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="input-with-gray">
-                                    <input type="password" name="password" class="form-control" placeholder="*******">
+                                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('name') }}" placeholder="*******">
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                     <i class="ti-unlock"></i>
                                 </div>
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+
                             </div>
                             <div class="form-group">
 
                                 <div class="input-with-gray">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="*******">
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="*******">
                                     <i class="ti-unlock"></i>
                                 </div>
                             </div>
+                            <!-- <input type="checkbox" onClick="afficher_cacher(this)" />
 
+                            <br><br>
+
+                            <input type="text" id='inpt' value="coucou" style='display:none'><br /> -->
+
+                            <!-- <input type="hidden" name="age" id="age" value="Your Age" >
+                            <input type="hidden" name="genre" id="genre" value="Filiere">
+                            <input type="hidden" name="specialite" id="specialite" value="Specialite">
+                            <input type="hidden" name="niveau" id="niveau" value="Niveau">
+                            <input type="hidden" name="telephone" id="telephone" value="telephone">
+                            <input type="hidden" name="adresse" id="adresse" value="adresse"> -->
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-md full-width pop-login">Login</button>
                             </div>
 
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -219,4 +163,26 @@
     </div>
 </section>
 <!-- ============================ Newsletter Start ================================== -->
+<script>
+    var elt = document.getElementById('role');
+    elt.addEventListener('change', function() {
+        console.log('value => ' + this.value);
+        console.log(elt.value);
+        if (elt.value == "candidat") {
+            console.log('true')
+            document.getElementById("img_carte").style.display = 'block';
+        } else {
+            document.getElementById("img_carte").style.display = 'none';
+        }
+    })
+
+    // function afficher_cacher(elem) {
+
+    //     if (elem.checked) {
+
+    //         document.getElementById("inpt").style.display = 'block';
+    //     } else
+    //         document.getElementById("inpt").style.display = 'none';
+    // }
+</script>
 @endsection

@@ -18,6 +18,9 @@
 
 	<!-- Custom Color -->
 	<link href="{{asset('assets/css/skin\default.css')}}" rel="stylesheet">
+	<!-- include summernote css/js-->
+	<link href="summernote-bs5.css" rel="stylesheet">
+	<script src="summernote-bs5.js"></script>
 </head>
 
 <body class="green-skin">
@@ -53,8 +56,8 @@
 
 							<li><a href="#">For Candidates<span class="submenu-indicator"></span></a>
 								<ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
-									<li><a href="{{route('hmg')}}">Search job Option<span class="submenu-indicator"></span></a>
-										<!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
+									<!-- <li><a href="{{route('hmg')}}">Search job Option<span class="submenu-indicator"></span></a>
+										<ul class="nav-dropdown nav-submenu" style="display: none;">
 											<li><a href="search-full-width.html">Search Job Full Width</a></li>
 											<li><a href="search-with-sidebar.html">Search Job with Sidebar</a></li>
 											<li><a href="search-with-sidebar-2.html">Search job with Sidebar 2</a></li>
@@ -64,15 +67,15 @@
 											<li><a href="search-with-sidebar-list-2.html">Search jobs List 2</a></li>
 											<li><a href="employers-list.html">Search Employers Sidebar</a></li>
 											<li><a href="freelancer-detail.html">Employers Detail</a></li>
-										</ul> -->
-									</li>
-									<li><a href="{{route('seg')}}">Find Job On Map<span class="submenu-indicator"></span></a>
+										</ul>
+									</li> -->
+									<li><a href="{{route('ssg')}}">Trouver un stage<span class="submenu-indicator"></span></a>
 										<!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
 											<li><a href="half-map-grid.html">Find Job On Map</a></li>
 											<li><a href="half-map-list.html">Fins Job On Map List</a></li>
 										</ul> -->
 									</li>
-									<li><a href="#">Find Employer<span class="submenu-indicator"></span></a>
+									<li><a href="{{route('seg')}}">Trouver une entreprise<span class="submenu-indicator"></span></a>
 										<!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
 											<li><a href="job-detail.html">Single Job 1</a></li>
 											<li><a href="job-detail-2.html">Single Job 2</a></li>
@@ -85,23 +88,23 @@
 
 							<li><a href="#">For Employers<span class="submenu-indicator"></span></a>
 								<ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
-									<li><a href="candidate-grid.html">Browse Candidates Grid</a></li>
+									<li><a href="{{route('scg')}}">Trouver un candidat</a></li>
 									<!-- <li><a href="candidate-list.html">Browse Candidates List</a></li>
 									<li><a href="search-freelancers.html">Search Freelancers</a></li>
 									<li><a href="search-freelancers-list.html">Search Freelancers List</a></li>
 									<li><a href="freelancer-detail.html">Freelancer Detail</a></li> -->
-									<li><a href="#">Search with Map<span class="submenu-indicator"></span></a>
-										<!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
+									<!-- <li><a href="#">Search with Map<span class="submenu-indicator"></span></a> -->
+									<!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
 											<li><a href="browse-candidates-with-map-grid.html">Search Candidate Grid</a></li>
 											<li><a href="browse-candidates-with-map.html">Search Candidate List</a></li>
 										</ul> -->
-									</li>
-									<li><a href="{{route('entreprise-dashboard')}}">Employer Dashboard</a></li>
-								</ul>
 							</li>
+							<li><a href="{{route('entreprise-dashboard')}}">Employer Dashboard</a></li>
+						</ul>
+						</li>
 
-							<li><a href="{{route('blog')}}">Blog<span class="submenu-indicator"></span></a>
-								<!-- <ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
+						<li><a href="{{route('blog')}}">Blog<span class="submenu-indicator"></span></a>
+							<!-- <ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
 									<li><a href="blog.html">Blogs Page</a></li>
 									<li><a href="blog-detail.html">Blog Detail</a></li>
 									<li><a href="shortcodes.html">Shortcodes</a></li>
@@ -110,24 +113,28 @@
 									<li><a href="all-jobs.html">Jobs Widgets</a></li>
 									<li><a href="login.html">LogIn</a></li>
 								</ul> -->
-							</li>
+						</li>
 
-							<li><a href="{{route('contact')}}">Contacts</a></li>
+						<li><a href="{{route('contact')}}">Contacts</a></li>
 
 						</ul>
 
-						<ul class="nav-menu nav-menu-social align-to-right">
 
-							<li>
-								<a href="#" data-toggle="modal" data-target="#login">
-									<i class="ti-user mr-1"></i><span class="dn-lg">Login/Register</span>
-								</a>
-							</li>
+						<ul class="nav-menu nav-menu-social align-to-right">
+							@auth
 							<li class="add-listing theme-bg">
-								<a href="#">
-									<i class="ti-plus"></i> Post Job
+								<a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="ti-plus mr-1"></i>
+									{{ __('Logout') }}
 								</a>
+
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+									@csrf
+								</form>
 							</li>
+							@endauth
+
+
 						</ul>
 					</div>
 				</nav>
@@ -164,53 +171,58 @@
 
 							<div class="dashboard-thumb">
 								<div class="dashboard-th-pic">
-									<img src="assets/img/user-3.jpg" class="img-fluid mx-auto img-circle" alt="" />
+									<img src="{{asset('uploads/images/' . auth()->user()->logo_path)}}" class="img-fluid mx-auto img-circle" alt="" />
 								</div>
-								<h4 class="mb-1">Adam Muklarial</h4>
-								<span class="text-success">Web Designer</span>
+								<h4 class="mb-1">{{auth()->user()->name}}</h4>
+								<!-- <span class="text-success">Web Designer</span> -->
 							</div>
 
 							<!-- Nav tabs -->
 							<ul class="nav dashboard-verticle-nav">
 								<li class="nav-item">
-									<a class="nav-link active" data-toggle="tab" href="#profile"><i class="ti-user"></i>My Profile</a>
+									<a class="nav-link active" data-toggle="tab" href="#profile"><i class="ti-user"></i>Mon profile</a>
+								</li>
+								<!-- <li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#resume"><i class="ti-file"></i>Mon parcours</a>
+								</li> -->
+								<li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#shortlisted"><i class="lni-heart-filled"></i>Postulations</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#resume"><i class="ti-file"></i>My Resume</a>
+									<a class="nav-link" data-toggle="tab" href="#applied"><i class="lni-briefcase"></i>Demandes de stages</a>
 								</li>
-								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#shortlisted"><i class="lni-heart-filled"></i>Shortlisted Job</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#applied"><i class="lni-briefcase"></i>Applied jobs</a>
-								</li>
-								<li class="nav-item">
+								<!-- <li class="nav-item">
 									<a class="nav-link" data-toggle="tab" href="#alert"><i class="lni-alarm"></i>Alert job</a>
-								</li>
+								</li> -->
 								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#cv"><i class="ti-email"></i>CV & Cover Letter</a>
+									<a class="nav-link" data-toggle="tab" href="#cv"><i class="ti-email"></i>Mon CV </a>
 								</li>
-								<li class="nav-item">
+								<!-- <li class="nav-item">
 									<a class="nav-link" data-toggle="tab" href="#package"><i class="lni-tag"></i>Package</a>
+								</li> -->
+								<li class="nav-item">
+									<a class="nav-link" href="{{url('candidat/candidat-detail/'.auth()->user()->id)}}"><i class="lni-user"></i>Voir Profile</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="candidate-detail.html"><i class="lni-user"></i>View Profile</a>
+									<a class="nav-link" data-toggle="tab" href="#change-password"><i class="lni-lock"></i>Changer mot de passe</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#change-password"><i class="lni-lock"></i>Change Password</a>
+									<!-- <a class="nav-link" href="{{route('delete')}}" onclick=" event.preventDefault();
+									document.getElementById('delete-form').submit();"><i class="lni-trash"></i>Supprimer le compte</a>
+									<form action="{{route('delete')}}" method="post" id="delete-form"> @csrf</form> -->
+									<a href="#" data-toggle="modal" data-target="#confirmDelete" class="nav-link">
+										<i class="lni-trash"></i>Supprimer le compte
+									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="javascript:void(0)"><i class="lni-trash"></i>Delete Account</a>
-								</li>
-								<li class="nav-item">
-									< <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+									<a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="lni-exit"></i>
 										{{ __('Logout') }}
-										</a>
+									</a>
 
-										<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-											@csrf
-										</form>
+									<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+										@csrf
+									</form>
 								</li>
 							</ul>
 
@@ -223,261 +235,204 @@
 						<div class="tab-content">
 
 							<!-- My Profile -->
+
 							<div class="tab-pane active container" id="profile">
+								<form action="{{route('uui')}}" method="post" enctype="multipart/form-data">
+									@csrf
+									<!-- Basic Info -->
+									<div class="tr-single-box">
+										<div class="tr-single-header">
+											<h4><i class="ti-desktop"></i> Informations personnelles</h4>
+										</div>
 
-								<!-- Basic Info -->
-								<div class="tr-single-box">
-									<div class="tr-single-header">
-										<h4><i class="ti-desktop"></i> Basic Info</h4>
-									</div>
+										<div class="tr-single-body">
+											<div class="row">
 
-									<div class="tr-single-body">
-										<div class="row">
-
-											<div class="col-lg-12 col-md-12 col-sm-12">
-												<div class="form-group">
-													<label>Full Name</label>
-													<input class="form-control" type="text" value="Adam Muklarial">
-												</div>
-											</div>
-
-											<div class="col-lg-12 col-md-12 col-sm-12">
-												<div class="form-group">
-													<label>Job Title</label>
-													<input class="form-control" type="text" value="Web Designer & Developer">
-												</div>
-											</div>
-
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label>Specialisms</label>
-													<input class="form-control" type="text" value="Marketing">
-												</div>
-											</div>
-
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label>Min Sallery</label>
-													<input class="form-control" type="text" value="10000">
-												</div>
-											</div>
-
-											<div class="col-lg-12 col-md-12 col-sm-12">
-												<div class="form-group">
-													<label>Overview</label>
-													<div id="summernote">
-														<p>Hello Description</p>
+												<div class="col-lg-12 col-md-12 col-sm-12">
+													<div class="form-group">
+														<label>Nom Complet</label>
+														<input class="form-control" type="text" value="{{auth()->user()->name}}" name="name" id="name">
 													</div>
 												</div>
-											</div>
 
-											<div class="col-lg-12 col-md-12 col-sm-12">
-												<div class="form-group">
-													<label>Candidate Logo</label>
-													<div class="custom-file">
-														<input type="file" class="custom-file-input" id="clogo">
-														<label class="custom-file-label" for="clogo">Choose file</label>
+												<div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="form-group">
+														<label>Age</label>
+														<input class="form-control" type="number" value="{{auth()->user()->age}}" name="age" id="age">
 													</div>
 												</div>
-											</div>
 
-											<div class="col-lg-12 col-md-12 col-sm-12">
-												<div class="form-group">
-													<label>Cover Picture</label>
-													<div class="custom-file">
-														<input type="file" class="custom-file-input" id="ccover">
-														<label class="custom-file-label" for="ccover">Choose file</label>
+												<div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="form-group">
+														<label>Genre</label>
+														<select name="genre" id="genre" class="form-control">
+															<option value="" selected disable hidden>{{auth()->user()->genre}}</option>
+															<option value="masculin">Masculin</option>
+															<option value="feminin">Feminin</option>
+
+														</select>
+														<!-- <input class="form-control" type="text" value="Masculin"> -->
 													</div>
 												</div>
-											</div>
 
-										</div>
-									</div>
-
-								</div>
-								<!-- /Basic Info -->
-
-								<!-- Contact Info -->
-								<div class="tr-single-box">
-									<div class="tr-single-header">
-										<h4><i class="ti-headphone"></i> Contact Info</h4>
-									</div>
-
-									<div class="tr-single-body">
-										<div class="row">
-
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo">Phone Number</label>
-													<input class="form-control" type="text" value="91 254 548 7584">
+												<div class="col-lg-12 col-md-12 col-sm-12">
+													<div class="form-group">
+														<label>Filiere</label>
+														<input class="form-control" type="text" name="filiere" value="{{auth()->user()->filiere}}">
+													</div>
 												</div>
-											</div>
 
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo">Email</label>
-													<input class="form-control" type="text" value="drizvato@gmail.com">
+												<div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="form-group">
+														<label>Spécialité</label>
+														<input class="form-control" type="text" name="specialite" value="{{auth()->user()->specialite}}">
+													</div>
 												</div>
-											</div>
 
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo">Website</label>
-													<input class="form-control" type="text" value="https://drizvato.com/">
-												</div>
-											</div>
+												<div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="form-group">
+														<label>Niveau</label>
+														<!-- <input class="form-control" type="text" name="niveau" value="{{auth()->user()->niveau}}"> -->
+														<select name="niveau" id="niveau" class="form-control">
+															<option value="" selected disable hidden>{{auth()->user()->niveau}}</option>
+															<option value="1ère année">1ère année</option>
+															<option value="2ème année">2ème année</option>
+															<option value="3ème année">3ème année</option>
 
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo">Country</label>
-													<input class="form-control" type="text" value="India">
+														</select>
+													</div>
 												</div>
-											</div>
 
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo">City</label>
-													<input class="form-control" type="text" value="Chandigarh">
+												<div class="col-lg-12 col-md-12 col-sm-12">
+													<div class="form-group">
+														<label>Aperçu du profil</label>
+														<textarea id="summernote" name="description">
+															<p> {{auth()->user()->description}}</p>
+														</textarea>
+													</div>
 												</div>
-											</div>
 
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo">Complete Address</label>
-													<input class="form-control" type="text" value="2850, Near Gurudwara">
+												<div class="col-lg-12 col-md-12 col-sm-12">
+													<div class="form-group">
+														<label>Photo de profil</label>
+														<!-- <div class="custom-file"> -->
+														<input type="file" class="form-control" id="logo" name="logo" value="hey">
+														<!-- <label class="custom-file-label" for="clogo">Choisir une image</label> -->
+														<!-- </div> -->
+													</div>
 												</div>
-											</div>
 
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo">Latitude</label>
-													<input class="form-control" type="text" value="-0.3306495">
-												</div>
-											</div>
+												<!-- <div class="col-lg-12 col-md-12 col-sm-12">
+													<div class="form-group">
+														<label>Image de couverture</label>
+														<div class="custom-file">
+															<input type="file" class="custom-file-input" id="ccover">
+															<label class="custom-file-label" for="ccover">Choisir une image</label>
+														</div>
+													</div>
+												</div> -->
 
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo">Longitude</label>
-													<input class="form-control" type="text" value="51.5353994">
-												</div>
-											</div>
-
-										</div>
-									</div>
-
-								</div>
-								<!-- /Contact Info -->
-
-								<!-- Social Account -->
-								<div class="tr-single-box">
-									<div class="tr-single-header">
-										<h4><i class="ti-new-window"></i> Social Account</h4>
-									</div>
-
-									<div class="tr-single-body">
-										<div class="row">
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo"><i class="lni-facebook"></i>Facebook URL</label>
-													<input class="form-control" type="text" value="https://facebook.com/">
-												</div>
-											</div>
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo"><i class="lni-google-plus"></i>Google+ URL</label>
-													<input class="form-control" type="text" value="https://plus.google.com/">
-												</div>
-											</div>
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo"><i class="lni-linkedin"></i>LinkedIn URL</label>
-													<input class="form-control" type="text" value="https://linkedin.com/">
-												</div>
-											</div>
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo"><i class="lni-twitter"></i>Twitter URL</label>
-													<input class="form-control" type="text" value="htps://twitter.com">
-												</div>
-											</div>
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo"><i class="lni-instagram"></i>Instagram URL</label>
-													<input class="form-control" type="text" value="https://instagram.com/">
-												</div>
-											</div>
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo"><i class="lni-pinterest"></i>Pinterest URL</label>
-													<input class="form-control" type="text" value="https://pinterest.com/">
-												</div>
 											</div>
 										</div>
+
 									</div>
+									<!-- /Basic Info -->
 
-								</div>
-								<!-- /Social Account -->
-
-								<!-- Advance Information -->
-								<div class="tr-single-box">
-									<div class="tr-single-header">
-										<h4><i class="ti-heart"></i> Advance Information</h4>
-									</div>
-
-									<div class="tr-single-body">
-										<div class="row">
-
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo">Experience</label>
-													<input class="form-control" type="text" value="91 254 548 7584">
-												</div>
-											</div>
-
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo">Age</label>
-													<input class="form-control" type="text" value="drizvato@gmail.com">
-												</div>
-											</div>
-
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo">Current Salary($)</label>
-													<input class="form-control" type="text" value="https://drizvato.com/">
-												</div>
-											</div>
-
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo">Expected Salary($)</label>
-													<input class="form-control" type="text" value="India">
-												</div>
-											</div>
-
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo">Languages</label>
-													<input class="form-control" type="text" value="Chandigarh">
-												</div>
-											</div>
-
-											<div class="col-lg-6 col-md-6 col-sm-12">
-												<div class="form-group">
-													<label class="social-nfo">Education Levels</label>
-													<input class="form-control" type="text" value="2850, Near Gurudwara">
-												</div>
-											</div>
-
+									<!-- Contact Info -->
+									<div class="tr-single-box">
+										<div class="tr-single-header">
+											<h4><i class="ti-headphone"></i> Contact Info</h4>
 										</div>
+
+										<div class="tr-single-body">
+											<div class="row">
+
+												<div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="form-group">
+														<label class="social-nfo">Phone Number</label>
+														<input class="form-control" type="text" name="telephone" value="{{auth()->user()->telephone}}">
+													</div>
+												</div>
+
+												<div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="form-group">
+														<label class="social-nfo">Email</label>
+														<input class="form-control" type="text" name="email" value="{{auth()->user()->email}}">
+													</div>
+												</div>
+
+
+												<div class="col-lg-12 col-md-12 col-sm-12">
+													<div class="form-group">
+														<label class="social-nfo">Adresse Complète</label>
+														<input class="form-control" type="text" name="adresse" value="{{auth()->user()->adresse}}">
+													</div>
+												</div>
+
+
+
+											</div>
+										</div>
+
 									</div>
+									<!-- /Contact Info -->
 
-								</div>
-								<!-- /Advance Information -->
+									<!-- Social Account -->
+									<div class="tr-single-box">
+										<div class="tr-single-header">
+											<h4><i class="ti-new-window"></i> Social Account</h4>
+										</div>
 
-								<a href="#" class="btn btn-info btn-md full-width">Save & Update<i class="ml-2 ti-arrow-right"></i></a>
+										<div class="tr-single-body">
+											<div class="row">
+												<div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="form-group">
+														<label class="social-nfo"><i class="lni-facebook"></i>Facebook URL</label>
+														<input class="form-control" type="text" name="facebook_url" value="{{auth()->user()->facebook_url}}">
+													</div>
+												</div>
 
+												<div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="form-group">
+														<label class="social-nfo"><i class="lni-linkdin"></i>LinkedIn URL</label>
+														<input class="form-control" type="text" name="linkdin_url" value="{{auth()->user()->linkdin_url}}">
+													</div>
+												</div>
+												<!-- <div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="form-group">
+														<label class="social-nfo"><i class="lni-twitter"></i>Twitter URL</label>
+														<input class="form-control" type="text" value="htps://twitter.com">
+													</div>
+												</div> -->
+												<!-- <div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="form-group">
+														<label class="social-nfo"><i class="lni-instagram"></i>Instagram URL</label>
+														<input class="form-control" type="text" value="https://instagram.com/">
+													</div>
+												</div> -->
+												<!-- <div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="form-group">
+														<label class="social-nfo"><i class="lni-pinterest"></i>Pinterest URL</label>
+														<input class="form-control" type="text" value="https://pinterest.com/">
+													</div>
+												</div> -->
+											</div>
+										</div>
+
+									</div>
+									<!-- /Social Account -->
+									<input type="hidden" value="{{auth()->user()->id}}" name="id_user" id="id_user">
+
+									<button type="submit" class="btn btn-info btn-md full-width">Save & Update</button>
+									<!-- 
+								<a href="{{route('uui')}}" onclick="event.preventDefault();
+								document.getElementById('update-user-info').submit();" class="btn btn-info btn-md full-width" >Save & Update<i class="ml-2 ti-arrow-right"></i></a>
+								<form action="{{route('uui')}}" id="update-user-info" method="post">
+									@csrf
+								</form> -->
+								</form>
 							</div>
+
 
 							<!-- My Resume -->
 							<div class="tab-pane" id="resume">
@@ -582,101 +537,6 @@
 								</div>
 								<!-- /Education Info -->
 
-								<!-- Add Experience -->
-								<div class="tr-single-box">
-									<div class="tr-single-header">
-										<h4><i class="lni-briefcase"></i> Experience</h4>
-									</div>
-
-									<div class="tr-single-body">
-										<table class="table table-striped mb-5">
-											<thead class="thead-dark">
-												<tr>
-													<th scope="col">Skills @ Company</th>
-													<th scope="col">Dates</th>
-													<th scope="col">Action</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<th scope="row">Wordpress Developer at Gio Tech</th>
-													<td>2002 - 2004</td>
-													<td>
-														<div class="dash-action">
-															<a href="#" class="dg-edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="ti-pencil"></i></a>
-															<a href="#" class="dg-delete" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<th scope="row">PHP Developer at Hint Solution</th>
-													<td>2012 - 2015</td>
-													<td>
-														<div class="dash-action">
-															<a href="#" class="dg-edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="ti-pencil"></i></a>
-															<a href="#" class="dg-delete" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<th scope="row">Web Designer at Indo Soft</th>
-													<td>2014 - 2015</td>
-													<td>
-														<div class="dash-action">
-															<a href="#" class="dg-edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="ti-pencil"></i></a>
-															<a href="#" class="dg-delete" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-
-										<table class="price-list-wrap">
-											<tbody class="ui-sortable">
-												<tr class="pricing-list-item pattern ui-sortable-handle">
-													<td>
-														<div class="box-close"><a class="delete" href="#"><i class="ti-close"></i></a></div>
-														<div class="row">
-
-															<div class="col-lg-12 col-md-12 col-sm-12">
-																<div class="form-group">
-																	<label>Title</label>
-																	<input class="form-control" type="text" value="Skill & Company">
-																</div>
-															</div>
-
-															<div class="col-lg-6 col-md-6 col-sm-6">
-																<div class="form-group">
-																	<label>From</label>
-																	<input placeholder="06.11.2007" type="text" class="form-control datepicker">
-																</div>
-															</div>
-
-															<div class="col-lg-6 col-md-6 col-sm-6">
-																<div class="form-group">
-																	<label>To</label>
-																	<input placeholder="07.17.2010" type="text" class="form-control datepicker">
-																</div>
-															</div>
-
-
-															<div class="col-lg-12 col-md-12 col-sm-12">
-																<div class="form-group">
-																	<label>Company</label>
-																	<input placeholder="Company Name" type="text" class="form-control">
-																</div>
-															</div>
-
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-										<a href="#" class="btn add-pr-item-btn">Add Item</a>
-									</div>
-
-								</div>
-								<!-- /Experience Info -->
 
 								<!-- Add Skills -->
 								<div class="tr-single-box">
@@ -774,6 +634,7 @@
 									<div class="tr-single-body">
 
 										<!-- Single Manage List -->
+										@foreach(auth()->user()->posts as $post)
 										<div class="manage-list">
 
 											<div class="mg-list-wrap">
@@ -781,9 +642,10 @@
 													<img src="assets/img/google.png" class="mx-auto" alt="" />
 												</div>
 												<div class="mg-list-caption">
-													<h4 class="mg-title">Web Designer</h4>
-													<span class="mg-subtitle">Google Info</span>
-													<span><em>Last activity</em> 4 weeks ago. <em>Posted</em> 4 weeks ago</span>
+													<h4 class="mg-title">{{$post->title}}</h4>
+													<h4 class="mg-title">{{$post->user->name}}</h4>
+													<span class="mg-subtitle">{!!Str::limit($post->description,'10','...')!!}</span>
+													<span> <em>Posté le</em> {{$post->created_at}}</span>
 
 												</div>
 											</div>
@@ -795,9 +657,10 @@
 											</div>
 
 										</div>
+										@endforeach
 
 										<!-- Single Manage List -->
-										<div class="manage-list">
+										<!-- <div class="manage-list">
 
 											<div class="mg-list-wrap">
 												<div class="mg-list-thumb">
@@ -817,10 +680,10 @@
 												</div>
 											</div>
 
-										</div>
+										</div> -->
 
 										<!-- Single Manage List -->
-										<div class="manage-list">
+										<!-- <div class="manage-list">
 
 											<div class="mg-list-wrap">
 												<div class="mg-list-thumb">
@@ -840,7 +703,7 @@
 												</div>
 											</div>
 
-										</div>
+										</div> -->
 
 									</div>
 								</div>
@@ -1066,30 +929,61 @@
 
 							<!-- change-password -->
 							<div class="tab-pane" id="change-password">
-								<div class="tr-single-box">
-									<div class="tr-single-header">
-										<h4><i class="lni-lock"></i> Change Password</h4>
+								<form action="{{route('uup')}}" method="post">
+									@csrf
+									<div class="tr-single-box">
+										<div class="tr-single-header">
+											<h4><i class="lni-lock"></i> Change Password</h4>
+										</div>
+
+										@if(Session::has('error'))
+
+										<div class="alert alert-danger">{{Session::get('error')}}</div>
+
+										@endif
+										@if(Session::has('success'))
+
+										<div class="alert alert-success">{{Session::get('success')}}</div>
+
+										@endif
+										<div class="tr-single-body">
+											<div class="form-group">
+												<label>Current Password</label>
+												<div class="input-with-gray">
+													<input type="text" name="password" class="form-control" placeholder="{{(auth()->user()->password)}}">
+													<i class="ti-unlock"></i>
+												</div>
+											</div>
+											<div class="form-group">
+												<label>New Password</label>
+												<div class="input-with-gray">
+													<input type="text" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('name') }}" placeholder="*******">
+													@error('password')
+													<span class="invalid-feedback" role="alert">
+														<strong>{{ $message }}</strong>
+													</span>
+													@enderror
+													<i class="ti-unlock"></i>
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label>Confirm Password</label>
+												<div class="input-with-gray">
+													<input id="password-confirm" type="text" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="*******">
+													<i class="ti-unlock"></i>
+												</div>
+											</div>
+										</div>
+
 									</div>
+									<input type="hidden" value="{{auth()->user()->id}}" name="id_user" id="id_user">
 
-									<div class="tr-single-body">
-										<div class="form-group">
-											<label>Current Password</label>
-											<input class="form-control" type="password">
-										</div>
-										<div class="form-group">
-											<label>New Password</label>
-											<input class="form-control" type="password">
-										</div>
-										<div class="form-group">
-											<label>Confirm Password</label>
-											<input class="form-control" type="password">
-										</div>
-									</div>
+									<button type="submit" class="btn btn-info btn-md full-width">Save & Update</button>
 
-								</div>
 
-								<a href="#" class="btn btn-info btn-md full-width">Save & Update<i class="ml-2 ti-arrow-right"></i></a>
 
+								</form>
 							</div>
 
 						</div>
@@ -1234,7 +1128,31 @@
 			</div>
 		</footer>
 		<!-- ============================ Footer End ================================== -->
-
+		<div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Suppression</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>Voulez-vous vraiment supprimer votre compte? Cette action est definitve</p>
+					</div>
+					<div class="modal-footer">
+						<!-- <a class="nav-link" href="{{route('delete')}}" onclick=" event.preventDefault();
+									document.getElementById('delete-form').submit();"><i class="lni-trash"></i>Supprimer le compte</a>
+									<form action="{{route('delete')}}" method="post" id="delete-form"> @csrf</form> -->
+						<button type="button" class="btn btn-danger"><a href="{{route('delete')}}" onclick=" event.preventDefault();
+									document.getElementById('delete-form').submit();"><i class="lni-trash"></i>Supprimer</a>
+							<form action="{{route('delete')}}" method="post" id="delete-form"> @csrf</form>
+						</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- Log In Modal -->
 		<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="registermodal" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
@@ -1408,6 +1326,13 @@
 			$('.datepicker').datepicker({
 				format: 'mm-dd-yyyy'
 			});
+		});
+	</script>
+	<script>
+		$('#summernote').summernote({
+			placeholder: 'Hello Bootstrap 5',
+			tabsize: 2,
+			height: 100
 		});
 	</script>
 

@@ -38,7 +38,12 @@
 							<div class="form-group">
 								<label>Email</label>
 								<div class="input-with-gray">
-									<input type="email" name="email" class="form-control" placeholder="Username">
+									<input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Username">
+									@error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                    @enderror
 									<i class="ti-user"></i>
 								</div>
 							</div>
@@ -46,7 +51,12 @@
 							<div class="form-group">
 								<label>Password</label>
 								<div class="input-with-gray">
-									<input type="password" name="password" class="form-control" placeholder="*******">
+									<input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="*******">
+									@error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                    @enderror
 									<i class="ti-unlock"></i>
 								</div>
 							</div>
@@ -56,11 +66,17 @@
 							</div>
 
 						</form>
+						<div>
+							<span class="mf-link"><i class="ti-user"></i>Haven't An Account?<a href="{{route('register')}}"> Sign Up</a></span>
+							&nbsp;
+							<span class="mf-forget"><a href="#"><i class="ti-help"></i>Forget Password</a></span>
+						</div>
 					</div>
 				</div>
 			</div>
 
 		</div>
+
 
 	</div>
 </section>
