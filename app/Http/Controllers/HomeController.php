@@ -91,8 +91,12 @@ class HomeController extends Controller
         return view('entreprise.search-candidat-list',['users'=>$users,'nbrUser'=>$nbrUser]);
     }
 
-    public function detailEntreprise(){
-        return view('entreprise.entreprise-detail');
+    public function detailEntreprise($id)
+    {
+
+        $user=User::find($id)->get();
+        $posts=Post::where('user_id','=',$id)->get();
+        return view('entreprise.entreprise-detail',['user'=>$user,'posts'=>$posts]);
     }
     
 }

@@ -305,7 +305,7 @@
 										</div>
 										<div class="employer-detail">
 											<div class="employer-detail-inner">
-												<h4 class="employer-title"><a class="theme-cl" href="#">{{$user->name}}</a></h4>
+												<h4 class="employer-title"><a class="theme-cl" href="{{url('entreprise/entreprise-detail/'.$user->id)}}">{{$user->name}}</a></h4>
 												<div class="employer-locations"><i class="ti-location-pin text-danger"></i><a href="#">London, UK</a></div>
 												<div class="employer-rating">
 													<i class="ti-star filled"></i>
@@ -314,7 +314,7 @@
 													<i class="ti-star filled"></i>
 													<i class="ti-star"></i>
 												</div>
-												<a class="total-vacancy text-success" href="#">Voir les details</a>
+												<a class="total-vacancy text-success" href="{{url('entreprise/entreprise-detail/'.$user->id)}}">Voir les details</a>
 											</div>
 										</div>
 										

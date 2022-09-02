@@ -294,7 +294,7 @@
 									<a href="job-detail.html"><img src="assets/img/asana.png" alt="" /></a>
 								</div>
 								<div class="cljb-emp-detail">
-									<h5><a href="employer-detail.html">{{$post->user->name}}</a></h5>
+									<h5><a href="{{url('/entreprise/entreprise-detail/'.$post->user->id)}}">{{$post->user->name}}</a></h5>
 									<span class="cljb-date">3 days ago</span>
 								</div>
 							</div>

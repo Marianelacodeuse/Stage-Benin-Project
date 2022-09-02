@@ -285,7 +285,7 @@
 								<a href="resume-detail.html"><img src="{{asset('uploads/images/' . $user->logo_path)}}" class="img-responsive img-circle" alt="" /></a>
 							</div>
 							<div class="cll-caption">
-								<h4><a href="resume-detail.html">{{$user->name}}</a><span><i class="ti-briefcase"></i>Wordpress Expert</span></h4>
+								<h4><a href="{{url('entreprise/entreprise-detail/'.$user->id)}}">{{$user->name}}</a><span><i class="ti-briefcase"></i>Wordpress Expert</span></h4>
 								<ul>
 									<li><i class="ti-location-pin text-danger"></i>1081 Wayback Lane, London</li>
 									<li><i class="ti-time text-success"></i>Last Activity 2 days ago</li>
@@ -294,7 +294,7 @@
 						</div>
 
 						<div class="cll-right">
-						<a class="btn btn-primary bn-det" href="freelancer-detail.html">View Profile<i class="ti-arrow-right ml-1"></i></a>
+						<a class="btn btn-primary bn-det" href="{{url('entreprise/entreprise-detail/'.$user->id)}}">View Profile<i class="ti-arrow-right ml-1"></i></a>
 									
 						</div>
 					</div>

@@ -296,11 +296,11 @@
 							<div class="verticle-job-top-capt">
 								<div class="vjt-left-cmp">
 									<div class="vjt-cmp-thumb">
-										<a href="job-detail.html"><img src="assets/img/safari.png" alt="" /></a>
+										<a href="{{url('/post-show/'.$post->id)}}"><img src="assets/img/safari.png" alt="" /></a>
 									</div>
 									<div class="vjt-cmp-title">
-										<h4 class="jmg-title"><a href="job-detail.html">{{$post->title}}</a></h4>
-										<h6 class="vjt-company-title">{{$post->user->name}}<a href="#"></a></h6>
+										<h4 class="jmg-title"><a href="{{url('/post-show/'.$post->id)}}">{{$post->title}}</a></h4>
+										<h6 class="vjt-company-title"><a href="{{url('/entreprise/entreprise-detail/'.$post->user->title)}}">{{$post->user->name}}</a></h6>
 									</div>
 								</div>
 								<div class="vjt-right-cmp">

@@ -270,10 +270,10 @@ html body .db {
   border-radius: 100%; }
 
 .theme-cl{
-	color:#3389ff;
+	color:#0076f6;
 }
 .theme-bg{
-	background:#3389ff;
+	background:#0076f6;
 }
 /*------------ Global Settings: Ul List Style ----------------*/
 ul.list-style {
@@ -1278,7 +1278,7 @@ html body .b-all {
   color: #27b737 !important; }
 
 .text-info {
-  color: #3389ff; }
+  color: #0076f6; }
 
 .text-inverse {
   color: #3e4555 !important; }
@@ -1339,13 +1339,13 @@ html body .text-themecolor {
 }
 /*-------------- GLobal Settings: Background Colors ----------------*/
 .bg-primary {
-  background-color: #3389ff !important; }
+  background-color: #0076f6 !important; }
 
 .bg-success {
   background-color: #27b737 !important; }
 
 .bg-info {
-  background-color:#1ac790 !important; }
+  background-color:#0076f6 !important; }
 
 .bg-warning {
   background-color: #ff9b20 !important; }
@@ -1417,10 +1417,10 @@ html body .bg-green {
   background-color: #4caf50; }
   
 html body .bg-sky {
-  background-color: #20b2c1; }
+  background-color: #0076f6; }
   
 html body .bg-blue {
-  background-color: #03a9f4; }
+  background-color: #0076f6; }
 
 html body .bg-dark-blue{
 	background-color:#192c48;
@@ -1499,7 +1499,7 @@ ul.simple-list li:before {
   background-color: #27b737; }
 
 .label-info {
-  background-color: #3389ff; }
+  background-color: #0076f6; }
 
 .label-warning {
   background-color: #ff9b20; }
@@ -1652,7 +1652,7 @@ ul.list-style-none li a {
 	font-size: 15.5px;
 }
 ul.list-style-none li a:hover {
-	color: #3389ff;
+	color: #0076f6;
 }
 
 /*---------- GLobal Settings: Lits Styles ------------*/
@@ -1775,7 +1775,7 @@ a.btn-trans-video i {
 }
   
 .btn-light:hover {
-    background:#3389ff;
+    background:#0076f6;
     color: #ffffff;
     border-color:#3389ff;
 }
@@ -2005,7 +2005,7 @@ a.btn-trans-video i {
 .btn-info.disabled.active,
 .btn-info.disabled:active,
 .btn-info.disabled:focus {
-    background: #0976ea;
+    background: #0076f6;
 }
 
 .btn-warning,
@@ -4892,12 +4892,12 @@ label {
     color:#00a94f;
 }
 .theme-bg, .theme-bg:hover, .theme-bg:focus {
-    background:#00a94f !important;
-    border-color:#00a94f !important;
+    background:#0076f6 !important;
+    border-color:#0076f6 !important;
 }
 button.btn.ft-search {
-    background: #00a94f;
-    border-color: #00a94f;
+    background: #0076f6;
+    border-color: #0076f6;
     color: #ffffff;
     height: 60px;
 }

@@ -28,8 +28,8 @@
 .blue-skin .featured-category ul li a:hover, .blue-skin .featured-category ul li a:focus,
 .blue-skin .select2-container--default .select2-results__option--highlighted[aria-selected],
 .blue-skin .candidate-grid:hover .btn.download-btn, .blue-skin .candidate-grid:focus .btn.download-btn{
-	background:#3a5bbc !important;
-	background-color:#3a5bbc !important;
+	background:#0076f6 !important;
+	background-color:#0076f6 !important;
 }
 
 .blue-skin .theme-cl,
@@ -44,7 +44,7 @@
 .blue-skin .btn-flit.active,
 .blue-skin .advance-search .search-big-form .form-group i,
 .blue-skin .text-info{
-	color:#3a5bbc;
+	color:#0076f6;
 }
 
 .blue-skin .btn-outline-info:hover, .blue-skin .btn-outline-info:focus, .blue-skin .btn-outline-info.focus,
@@ -59,11 +59,11 @@
 .blue-skin .pagination li:first-child a,
 .blue-skin .btn-primary, .blue-skin .btn-primary.disabled,
 .blue-skin .pagination>.active>a, .blue-skin .pagination>.active>a:focus, .blue-skin .pagination>.active>a:hover, .blue-skin .pagination>.active>span, .blue-skin .pagination>.active>span:focus, .blue-skin .pagination>.active>span:hover, .blue-skin .pagination>li>a:focus, .blue-skin .pagination>li>a:hover{
-	border-color:#3a5bbc !important;
+	border-color:#0076f6 !important;
 }
 
 .blue-skin .header-topbar{
-	background:#3a5bbc !important;
+	background:#0076f6 !important;
 }
 
 /*-------------- Green Skins -----------------*/

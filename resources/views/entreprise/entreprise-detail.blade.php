@@ -237,7 +237,7 @@
 								</div>
 								<div class="tr-single-body">
 									<div  class="owl-carousel" id="rl-list">
-									
+									@foreach($posts as $post)
 										<!-- Single Job -->
 										<div class="item">
 											<div class="job-grid style-1">
@@ -246,23 +246,23 @@
 													<div class="job-grid-thumb">
 														<a href="job-detail.html"><img src="assets/img/adwords.png" class="img-fluid mx-auto" alt="" /></a>
 													</div>
-													<h4 class="job-title"><a href="job-detail.html">Product Manager</a></h4>
+													<h4 class="job-title"><a href="{{url('/post-show/'.$post->id)}}">{{$post->title}}</a></h4>
 													<hr>
 													<div class="job-grid-detail">
-														<h4 class="jbc-name"><a href="employer-detail.html">Alliziance Tech</a></h4>
+														<h4 class="jbc-name"><a href="{{url('/post-show/'.$post->id)}}">Alliziance Tech</a></h4>
 														<p><i class="ti-location-pin"></i>325, New Market, New York </p>
 													</div>
 													<div class="job-grid-footer">
 														<h4 class="job-price">$7,247</h4>
-														<a href="job-detail.html" class="btn btn-outline-info btn-rounded">Apply</a>
+														<a href="{{url('/post-show/'.$post->id)}}" class="btn btn-outline-info btn-rounded">Apply</a>
 													</div>
 													
 												</div>
 											</div>
 										</div>
-										
+									@endforeach	
 										<!-- Single Job -->
-										<div class="item">
+										<!-- <div class="item">
 											<div class="job-grid style-1">
 												<div class="job-grid-wrap">
 													<div class="featured-job"><i class="ti-star filled"></i></div>
@@ -283,10 +283,10 @@
 													
 												</div>
 											</div>
-										</div>
+										</div> -->
 										
 										<!-- Single Job -->
-										<div class="item">
+										<!-- <div class="item">
 											<div class="job-grid style-1">
 												<div class="job-grid-wrap">
 													<span class="job-type j-full-time">Full Time</span>
@@ -306,10 +306,10 @@
 													
 												</div>
 											</div>
-										</div>
+										</div> -->
 										
 										<!-- Single Job -->
-										<div class="item">
+										<!-- <div class="item">
 											<div class="job-grid style-1">
 												<div class="job-grid-wrap">
 													<div class="featured-job"><i class="ti-star filled"></i></div>
@@ -330,7 +330,7 @@
 													
 												</div>
 											</div>
-										</div>
+										</div> -->
 										
 									</div>
 								</div>

@@ -47,7 +47,7 @@ Route::get('/post-delete/{id}',[PostController::class, 'destroy'])->name('delete
 Route::get('/post-show/{id}',[PostController::class,'show'])->name('show-post');
 
 
-Route::get('/entreprise/entreprise-detail',[HomeController::class,'detailEntreprise'])->name('detail-entreprise');
+Route::get('/entreprise/entreprise-detail/{id}',[HomeController::class,'detailEntreprise'])->name('detail-entreprise');
 
 Route::post('/post/posting/{id}',[PostController::class,'posting'])->name('posting');
 

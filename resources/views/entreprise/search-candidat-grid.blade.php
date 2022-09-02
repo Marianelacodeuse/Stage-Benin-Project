@@ -304,14 +304,14 @@
 								<div class="candidate-thumb">
 									<a href="candidate-detail.html"><img src="{{asset('uploads/images/' . $user->logo_path)}}" class="img-fluid mx-auto circle" alt="" /></a>
 								</div>
-								<h4 class="candidate-name"><a href="candidate-detail.html">Joseph B. Houser</a></h4>
-								<p>App Developer</p>
+								<h4 class="candidate-name"><a href="{{url('candidat/candidat-detail/'.$user->id)}}">{{$user->name}}</a></h4>
+								<p>{{$user->specialite}}</p>
 							</div>
 							<div class="candidate-grid-footer">
-								<span class="update-resume">2 days ago</span>
-								<div class="can-footer-info">
+								<span class="update-resume">Mis à jour le {{$user->updated_at->format('D M Y')}}</span>
+								<!-- <div class="can-footer-info">
 									<a href="javascript:void(0)" class="btn" data-toggle="tooltip" data-original-title="Shortlit"><i class="ti-thumb-up"></i></a>
-								</div>
+								</div> -->
 							</div>
 
 						</div>

@@ -286,7 +286,7 @@
 											<!-- <div class="overall-rate" data-rating="4.7">4.7</div> -->
 										</div>
 										<div class="vc-content">
-											<h5 class="title"><a href="freelancer-detail.html">{{$user->name}}</a></h5>
+											<h5 class="title"><a href="{{url('candidat/candidat-detail/'.$user->id)}}">{{$user->name}}</a></h5>
 											<p>{{$user->filiere}}</p>
 											<div class="rating-review">
 												<i class="ti-star filled"></i>
@@ -301,7 +301,7 @@
 												<!-- <li class="list-inline-item"><a href="#"><h5>Job Success</h5> 95%</a></li> -->
 											</ul>
 										</div>
-										<a class="btn btn-primary bn-det" href="freelancer-detail.html">View Profile<i class="ti-arrow-right ml-1"></i></a>
+										<a class="btn btn-primary bn-det" href="{{url('candidat/candidat-detail/'.$user->id)}}">View Profile<i class="ti-arrow-right ml-1"></i></a>
 									</div>
 						@endforeach
 
