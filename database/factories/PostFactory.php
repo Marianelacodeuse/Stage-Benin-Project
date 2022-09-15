@@ -19,9 +19,9 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-           'title'=>fake()->title(),
+           'title'=>fake()->lexify('????????????????????????????????'),
            'description'=>fake()->paragraph(),
-           'user_id'=>'26'
+           'user_id'=>'4'
         ];
     }
 }

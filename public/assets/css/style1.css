@@ -1,0 +1,763 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,600&family=Dancing+Script&display=swap');
+
+body{
+    font-family: 'Barlow', sans-serif;
+    line-height: 1.7;
+    color: black;
+}
+ h1,h2,h3,h4,h5,h6{
+    font-weight: 700 ;
+    color: #0e1111;
+    font-family: 'Barlow', sans-serif;
+} 
+a{
+    /* color: red; */
+    color: white;
+    text-decoration: none !important;
+    transition: all 0.4s ease;
+    font-weight: 500 !important;
+} 
+img{
+     width: 100%; 
+}
+/* =============Navbar================ */
+.cc-navbar{
+    background-color: #eaeeff;
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+    width: 100%;
+}
+.cc-navbar .navbar-toggler{
+    outline: none;
+    border: none;
+}
+.top-nav{
+    background-color: #6610f2;
+    width: 100%;
+}
+.top p{
+    color:white ;
+    font-weight: 700;
+    font-size: 10px;
+    margin: 0px auto;
+    text-align: center;
+}
+.navbar-brand{
+    font-size: 2rem;
+    /* color: #dd2f6e; */
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+}
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active{
+    color: #6610f2 !important;
+}
+
+.stage{
+    color: #6610f2;
+}
+.stage2{
+    color: black;
+}
+.cc-navbar .nav-link{
+	border-bottom: 1px solid transparent; /* border-bottom = bordure inférieure */
+	transition: padding-bottom 0.6s ease-in-out, border-color 0.5s ease;
+    color: black;
+
+}
+/* .cc-navbar .nav-link:hover{
+    padding-bottom: 15px;
+    border-bottom-color: #6610f2;
+  } */
+.nav-item{
+    /* color: green; */
+    font-weight: 500;
+    padding-left: 35px;
+}
+/* .nav-link .active{
+    color: #dd2f6e;
+} */
+.btn:focus{
+    box-shadow: none !important;
+}
+.btn0{
+    height: 52px;
+    width: 170px;
+    outline: none;
+    border: none;
+    color: white;
+    /* cursor: pointer; */
+    transition: all 0.4s;
+    background-color: #6610f2;
+    border-radius: 50px;
+}
+.btn0:hover{
+    background: #696cff;
+    transition: all 0.4s;
+}
+/* a .btn0{
+    color: white;
+    text-decoration: none;
+}
+a .btn0:hover{
+    color: white;
+} */
+.btn1{
+    height: 52px;
+    width: 170px;
+    background-color: transparent;
+    color:#6610f2 ;
+    outline: none;
+    border: 2px solid #6610f2 ;
+    border-radius: 50px;
+}
+.btn1:hover{
+    background: #696cff;
+    transition: all 0.4s;
+    color: white;
+    border-color: #696cff;
+}
+.btn0 a{
+    color: white;
+}
+.btn0 a:hover{
+    color: white;
+}
+.btn{
+    padding: 10px 10px !important;
+    font-weight: 500 !important;
+    line-height: 1.45 !important;
+}
+.btn-brand{
+    
+    outline: none !important;
+    border: none !important;
+    color: white !important;
+    cursor: pointer !important;
+    transition: all 0.4s !important;
+    background-color: #6610f2 !important;
+    border-radius: 25px !important;
+}
+.btn-brand:hover{
+    background: #696cff !important;
+    transition: all 0.4s !important;
+    color: white !important;
+}
+.btn-outline-light{
+    border-radius: 25px !important;
+    border-color: white !important;
+    transition: all 0.4s !important;
+}
+.btn-outline-light:hover{
+    background: #696cff !important;
+    transition: all 0.4s !important;
+    color: white !important;
+    border-color: #696cff !important;
+}
+
+/* =============================Hero 1================================ */
+.slide1{
+     background: linear-gradient(rgba(9, 32, 50, 0.4), rgba(9, 32, 50, 0.4)), url('../asset/img/entreprise.jpg');
+     background-position: center;
+	background-attachment: fixed; /* le background-attachment oblige l'image à rester fixe */
+	background-size: cover; /* cover pour dire qu'on veut que ça prenne toute la page */
+      height: 80vh;  
+    /* margin-top: 75px; */
+    animation: slide 20s infinite;
+    
+} 
+@keyframes slide{
+    25%{
+        background: linear-gradient(rgba(9, 32, 50, 0.4), rgba(9, 32, 50, 0.4)), url('../asset/img/etudiante2.jpg');
+        background-position: center;
+	background-attachment: fixed; background-size: cover; /* cover pour dire qu'on veut que ça prenne toute la page */
+    height: 80vh;  
+    }
+    50%{
+        background: linear-gradient(rgba(9, 32, 50, 0.4), rgba(9, 32, 50, 0.4)), url('../asset/img/banner-4.jpg');
+        background-position: center;
+	background-attachment: fixed; background-size: cover; /* cover pour dire qu'on veut que ça prenne toute la page */
+    height: 80vh;  
+    }
+    100%{
+        background: linear-gradient(rgba(9, 32, 50, 0.4), rgba(9, 32, 50, 0.4)), url('../asset/img/etudiant1.jpg');
+        background-position: center;
+	background-attachment: fixed; background-size: cover; /* cover pour dire qu'on veut que ça prenne toute la page */
+    height: 80vh;  
+    }
+}
+
+
+/* ====================Owl carousel================================== */
+.owl-prev,
+.owl-next{
+    position: absolute;
+    top: 50%;
+    width: 60px !important;
+    height: 60px !important;
+    display: grid;
+    place-items: center;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    margin-top: -30px !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    border-radius: 100px !important;
+    
+}
+.owl-prev{
+    left: 0;
+}
+.owl-next{
+    right: 0;
+}
+.owl-prev:hover,
+.owl-next:hover{
+    background-color: #696cff !important;
+}
+
+
+
+.display-2{
+    font-weight: 700 !important;
+    font-size: 80px !important;
+}
+/* .slide2{
+    background: linear-gradient(rgba(9, 32, 50, 0.4), rgba(9, 32, 50, 0.4)), url('../img/etudiante2.jpg');
+    background-position: center;
+   background-attachment: fixed; /* le background-attachment oblige l'image à rester fixe */
+   /* background-size: cover; cover pour dire qu'on veut que ça prenne toute la page */
+    /* height: 500px;  */
+   /* margin-top: 75px; */
+
+.form-group input{
+     height: 51px;
+     border: none;
+     outline: none;
+     padding: 15px;
+     border-radius: 25px;
+}
+.form-group select{
+    height: 52px;
+    border: none;
+    outline: none;
+    padding: 15px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.form-group .btn2{
+    height: 52px;
+    border: none;
+    color: white;
+    outline: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.4s;
+    background-color: #6610f2;
+  
+}
+.form-group .btn2:hover{
+    background: #696cff;
+    transition: all 0.4s;
+}
+
+/* =================================Stage populaire============================== */
+section{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.intro-section{
+    margin-bottom: 35px;
+    text-align: center;
+}
+.intro-section p{
+    max-width: 500px;
+    font-weight: 400;
+    font-size: 22px;
+    color: #5f6d79;
+    margin: auto;
+    font-style: italic;
+    font-family: 'Crimson Text', cursive;
+
+}
+.intro-section h2{
+    font-size: 40px;
+}
+.custom-card{
+    transition: all 0.4s ease;
+    background-color: white;
+    border-radius: 4px;
+
+}
+.custom-card:hover{
+    box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.14) ;
+    transform: translateY(-5px);
+}
+.stage-populaire{
+    /* #19282F, 4px, 0px 4px 60px rgba(0, 0, 0, 0.14) */
+    padding: 44px 15px;
+    text-align: center;
+}
+.icon-box{
+    width: 50px;
+    height: 50px;
+    background-color: #6610f2;
+    color: white;
+    border-radius: 4px;
+    font-size: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+.stage-populaire a{
+    color: #0e1111;
+    font-size: 15px;
+    font-weight: 700;
+}
+.stage-populaire a:hover{
+    color: #6610f2;
+}
+.stage-populaire h5{
+    margin-top: 15px;
+    margin-bottom: 3px;
+}
+.stage-populaire span{
+    color: #5f6d79;
+}
+
+/* ================================Totales offres===================================== */
+#totales{
+    background: linear-gradient(rgba(103, 16, 242, 0.9), rgba(103, 16, 242, 0.9)), url('../asset/img/entreprise.jpg');
+}
+#totales .display-4,
+#totales p{
+    color: white;
+}
+#totales .display-4{
+    font-weight: 700;
+}
+#totales p{
+    font-weight: 400 !important;
+}
+
+/* =============================Entreprises pop=================================== */
+#entreprise-slider .owl-next,
+#entreprise-slider .owl-prev{
+    background-color: rgba(255, 255, 255, 0.5) !important;
+}
+#entreprise-slider .owl-next:hover,
+#entreprise-slider .owl-prev:hover{
+    background-color: #6610f2!important;
+}
+.owl-dot.active span{
+    background-color: #6610f2 !important;
+}
+.entreprise{
+    position: relative;
+    height: 400px;
+}
+.entreprise .overlay{
+    background:linear-gradient(to bottom, rgba(9, 32, 50, 0.0), rgba(9, 32, 50, 0.8) );
+    position: absolute;
+    width: 100%;
+    height: 220px;
+    bottom: 0;
+    left: 0;
+}
+.entreprise .content{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 32px;
+}
+.entreprise h1,
+.entreprise h6{
+    color: white;
+}
+.entreprise h6{
+    font-size: 14px;
+}
+.entreprise h6::before{
+    content: "";
+    height: 2px;
+    width: 24px;
+    background-color: #6610f2;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 12px;
+}
+
+.entreprise .content .btn{
+    padding: 3px 10px;
+    font-weight: 500;
+}
+.entreprise .content .btn-brand{
+    
+    outline: none;
+    border: 1px solid #dd2f6e ;
+    color: white;
+    cursor: pointer;
+    transition: all 0.4s;
+    background-color: transparent;
+    border-radius: 5px !important;
+    font-size: 10px !important;
+}
+.entreprise .content .btn-brand:hover{
+    background: #d00650;
+    transition: all 0.4s;
+    color: white;
+}
+.entreprise a{
+    color: white !important;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    font-weight: 500;
+}
+.entreprise .content button.btn-brand{
+    
+    outline: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: all 0.4s;
+    background-color: #dd2f6e;
+    border-radius: 5px;
+    font-size: 10px;
+}
+/* @media screen and (max-width: 1000px){
+    .entreprise h1,
+    .entreprise h6{
+        color: black;
+    }
+} */
+
+/* ==================================Stage récent====================================== */
+.stage-récent{
+    box-shadow: 0 2pc 70px rgba(0, 0, 0, 0.14);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.stage-récent p,
+.stage-récent small,
+.stage-récent span{
+    color: #0e1111;
+}
+.stage-récent h4{
+    font-weight: 700;
+}
+.stage-récent p{
+    font-weight: 600;
+}
+.stage-informations{
+    background: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+.stage-informations .fa-solid{
+    margin-top: 5px;
+    margin-right: 10px;
+    color: #dd2f6e;
+}
+.stage-informations .fa-angle-right{
+    margin-left: 10px;
+    font-size: 10px;
+}
+.stage-informations small{
+    background: #efefef;
+    padding: 1px 5px;
+    margin: 0 5px;
+    font-weight: 400;
+}
+.stage-informations p{
+    margin-bottom: 0 !important;
+}
+.postuler{
+    height: 40px;
+    background-color: #eaeeff;
+    padding: 7px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.postuler .btn-primary{
+    padding: 0 30px !important;
+    float: right;
+    border-radius: 0;
+    box-shadow: none !important;
+    background: transparent;
+    border: 1px solid #6610f2;
+    color: #6610f2;
+    transition: all 0.4s ease;
+}
+.postuler .btn-primary:hover{
+    color: white;
+    background-color: #6610f2;
+    transition: all 0.6s ease;
+}
+.pagelink li{
+    height: 25px;
+    width: 25px;
+    list-style: none;
+    display: inline-block;
+    cursor: pointer;
+}
+.pagelink li:hover,
+.pagelink li.active{
+    color: white;
+    background: #dd2f6e;
+}
+
+/* ==========================================Avis internaute======================================= */
+#avis{
+    background-color: #f8f9fa;
+}
+.avis .stars{
+    color: orange;
+}
+.avis{
+    padding: 54px;
+    border: 1px solid #dd2f6e;
+    border-radius: 5px;
+    max-width: 900px;
+}
+.avis img{
+    width: 75px !important;
+    border-radius: 100px;
+}
+.avis h4{
+    color: #2D3954;
+}
+.avis small{
+    color: #5f6d79;
+}
+.avis p{
+    color: #5f6d79;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+/* ===========================================Footer================================= */
+footer{
+    padding-top: 80px;
+    padding-bottom: 20px;
+    color: white;
+    text-align: center;
+    background: linear-gradient(rgba(9, 32, 50, 0.868), rgba(9, 32, 50, 0.868)), url('../asset/img/entreprise.jpg'); 
+}
+footer .navbar-brand{
+    color: white;
+}
+.footer-top{
+    margin-bottom: 40px;
+}
+.footer-bottom{
+    border-top: 1px solid rgba(255, 255, 255, 0.319);
+    padding-top: 20px;
+   
+}
+
+/* ===========================================Dashboard etudiant================================================ */
+.main-wrapper img{
+    vertical-align: middle;
+    height: auto;
+    width: 35px !important;
+    border-radius: 100px;
+}
+.main-wrapper a{
+    text-decoration: none;
+    display: inline-block;
+}
+.main-wrapper a:hover{
+    text-decoration: none;
+    /* color: #fff; */
+}
+.main-wrapper ul,ol{
+    list-style: none;
+}
+.main-wrapper button:focus{
+    outline: none;
+}
+.main-wrapper h1,
+.main-wrapper h2,
+.main-wrapper h3,
+.main-wrapper h4,
+.main-wrapper h5,
+.main-wrapper h6,
+.main-wrapper p,
+.main-wrapper ul,
+.main-wrapper li,
+.main-wrapper span,
+.main-wrapper label{
+    margin: 0;
+}
+.main-wrapper ul{
+    padding: 0;
+    list-style: none;
+}
+.logo{
+    font-size: 2rem;
+    /* color: #dd2f6e; */
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    width: 240px;
+    text-align: center;
+    font-size: 25px;
+}
+.logo .stage{
+    color: white;
+}
+.logo .stage2{
+    color: black;
+}
+.header-container{
+    background: #eaeeff;
+    /* box-shadow: -1px 4px 20px 1px #f1f1f185; */
+    box-shadow: 3px -1px 19px #efeeee;
+
+}
+header .header{
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+.profile p{
+    display: block;
+    margin-block-start: 1rem;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px
+}
+.profile small{
+    font-size: 0.75rem;
+}
+
+/* ==========================inscription étudiant============================== */
+.form-control:focus{
+    box-shadow: none !important;
+    border-color: #6610f2 !important;
+}
+#sexe:focus{
+    box-shadow: none !important;
+    border-color: #6610f2 !important;
+    cursor: pointer !important;
+}
+.stagebenin h1{
+    font-family: 'Dancing Script', cursive !important;
+    margin: auto !important;
+}
+.form-control-sm{
+    padding: 8px !important;
+}
+.btn-lg{
+    padding: 8px 24px;
+    border-radius: 5px;
+}
+.btn-lg:focus{
+    box-shadow: none;
+}
+.connexion{
+    /* visibility: hidden; */
+    display: none;
+}
+.connecter{
+    border: none;
+    background: transparent;
+    color: #6610f2;
+}
+/* #inscription{
+    display: none;
+} */
+
+/* ================================template_voir_mon_profil_étudiant================ */
+.btn-outline-secondary:focus{
+    box-shadow: none;
+}
+.btn-outline-secondary {
+    color: white;
+    border-color: #696cff;
+    background: transparent;
+  }
+.btn-outline-secondary:hover{
+    color: white;
+    border-color: #696cff;
+    background: #696cff;
+}
+.btn-primary{
+    color: white;
+    border-color: #696cff;
+    background: #696cff;
+}
+.btn-primary:hover{
+    color: white;
+    border-color: #696cff;
+    background: transparent;
+}
+.btn-primary:focus{
+    box-shadow: none;
+}
+strong{
+    color: #6610f2;
+}
+.icon-box-icon-block a{
+    color: black;
+}
+.icon-box-icon-block a:hover{
+    color: #696cff;
+}
+/* .page-title-banner{
+    color: #6610f2;
+} */
+
+/* ================================template rechercher un stage========================================== */
+.bg-color{
+    background: linear-gradient(rgba(9, 32, 50, 0.788), rgba(9, 32, 50, 0.788)), url('../asset/img/étudiante4.jpg');
+    background-position: center;
+   background-attachment: fixed; /* le background-attachment oblige l'image à rester fixe */
+   background-size: cover; /* cover pour dire qu'on veut que ça prenne toute la page */
+     height: 20vh; 
+}
+.page-title-banner{
+    /* background: #6610f2; */
+}
+
+.modal-header-title{
+    font-family: 'Dancing Script', cursive !important;
+}
+
+.form-select{
+    background-color: #f3f4f5 !important;
+    border-radius: 4px !important;
+}
+
+/* =======================offres .stage================== */
+.row-stage{
+    background: white;
+    border-radius: 15px;
+    box-shadow: 3px -1px 19px rgba(0, 0, 0, 0.14);
+    /* padding-top: 2px;
+    margin-bottom: 100px; */
+}
+.col-12 .text{
+    /* border-color: black;
+    background: #f3f4f5; */
+    border: 1px solid #656d6d6a;
+}
+select .text{
+    border: 1px solid #656d6d6a;
+}
+select .text1{
+    border: 1px solid #656d6d6a;
+    background: black;
+    padding: 15px;
+    border-radius: 55px !important;
+}
+select.text1 {
+    border-radius: 15px;
+    padding: 8px;
+    border: 1px solid #656d6d6a;
+    cursor: pointer;
+    width: 225px;
+}
+select.text1:hover{
+    border-color: #6610f2;
+}

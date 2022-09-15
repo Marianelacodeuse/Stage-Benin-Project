@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -34,70 +35,110 @@ class UserController extends Controller
     // }
 
 
-    public function candidatDetail($id){
-$user=User::find($id);
+    public function candidatDetail($id)
+    {
+        $user = User::find($id);
 
 
-        return view('candidat.candidat-detail',compact('user'));
+        return view('candidat.candidat-detail', compact('user'));
     }
 
     public function uui(Request $request)
     {
 
-       $user= User::find($request->id_user);
+        $user = User::find($request->id_user);
 
-       if($request->logo != ''){        
-        $path = public_path().'/uploads/images/';
-        // dd($path);
+        if ($request->logo != '') {
+            $path = public_path() . '/uploads/images/';
+            // dd($path);
 
-        //code for remove old file
-        if($user->logo_path != ''  && $user->logo_path != null){
-             $file_old = $path.$user->logo_path;
-             unlink($file_old);
+            //code for remove old file
+            if ($user->logo_path != ''  && $user->logo_path != null) {
+                $file_old = $path . $user->logo_path;
+                unlink($file_old);
+            }
+            //upload new file
+            $logo = $request->logo;
+            // dd($logo);
+            $logoname = $logo->getClientOriginalName();
+            // dd($logoname);
+            $logo->move($path, $logoname);
+
+            //for update in table
+            $user->logo_path = $logoname;
+            $user->save();
+            // $user->update(['logo_path' => $logoname]);
         }
+        //    dd( $request->cv);
+        if ($request->cv != '') {
+            $path = public_path() . '/uploads/pdf/';
+            // dd($path);
 
-        //upload new file
-        $logo = $request->logo;
-        // dd($logo);
-        $logoname = $logo->getClientOriginalName();
-        // dd($logoname);
-        $logo->move($path, $logoname);
+            //code for remove old file
+            if ($user->cv_path != ''  && $user->cv_path != null) {
+                $file_old = $path . $user->cv_path;
+                unlink($file_old);
+            }
+            //upload new file
+            $cv = $request->cv;
+            // dd($cv);
+            $cvname = $cv->getClientOriginalName();
+            // dd($cvname);
+            $cv->move($path, $cvname);
 
-        //for update in table
-        $user->update(['logo_path' => $logoname]);
-   }
-       $user->update(
+            //for update in table
+            $user->cv_path = $cvname;
+            // $user->update(['cv_path' => $cvname]);
+            $user->save();
+            // return 'Cool';
+        }
+        // dd($request->filiere_secteur);
+        // dd($request);
+
+        $user->filiere_secteur = $request->filiere_secteur;
+        $user->niveau_taille = $request->niveau_taille;
+        $user->facebook_url = $request->facebook_url;
+        $user->linkedin_url = $request->linkedin_url;
+        $user->twitter_url = $request->twitter_url;
+        $user->instagrame_url = $request->instagrame_url;
+        $user->site_url = $request->site_url;
+        $user->ville = $request->ville;
+        $user->save();
+
+        $user->update(
             [
                 'name' => $request->name,
                 'age' => $request->age,
                 'genre' => $request->genre,
-                'filiere' => $request->filiere,
+                // 'filiere_secteur' => $request->filiere_secteur,
                 'specialite' => $request->specialite,
-                'niveau' => $request->niveau,
+                // 'niveau_taille' => $request->niveau_taille,
                 'telephone' => $request->telephone,
                 'email' => $request->email,
                 'adresse' => $request->adresse,
+                
                 'description' => $request->description,
-                'facebook_url' => $request->facebook_url,
-                'linkdin_url' => $request->linkdin_url,
+                // 'facebook_url' => $request->facebook_url,
+                // 'linkedin_url' => $request->linkedin_url,
+                // 'twitter_url' => $request->twitter_url,
+                // 'instagrame_url' => $request->instagrame_url,
+                // 'site_url' => $request->site_url,
 
             ]
         );
-        return back();
+        return back()->with('success', 'Informations Modifiées avec succès');
     }
-    
-
 
     public function uup(Request $request)
     {
 
-         User::find($request->id_user)->update(
+        User::find($request->id_user)->update(
             [
-                'password' => Hash::make($request->password),
+                'password' => Crypt::encrypt($request->password),
 
             ]
         );
-         return back()->with('success', 'Mot de passe modifier avec succes');
+        return back()->with('success', 'Mot de passe modifier avec succes');
 
 
         // $password = Hash::make($request->password);
@@ -114,11 +155,15 @@ $user=User::find($id);
         // }
     }
 
-
-
-    public function delete(){
-        $user=User::find(auth()->user()->id);
+    public function delete()
+    {
+        $user = User::find(auth()->user()->id);
         $user->delete();
-        return view('welcome')->with('message','Compte Supprimer');
+        return view('welcome')->with('message', 'Compte Supprimer');
+    }
+
+    public function download($file)
+    {
+        return response()->download(public_path('uploads/pdf/' . $file));
     }
 }

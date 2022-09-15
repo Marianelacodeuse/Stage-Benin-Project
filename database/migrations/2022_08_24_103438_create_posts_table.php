@@ -16,8 +16,14 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('nbr_place')->nullable();
+            $table->string('niveau_recqui')->nullable();
+            $table->string('adresse_stage')->nullable();
+            $table->string('gratification')->nullable();
+            $table->string('duree')->nullable();
+            $table->string('expiration')->nullable();
             $table->longText('description');
-            // $table->foreignId('users_id')->constrained();
+            $table->foreignId('category_id')->constrained();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('posts');
             $table->timestamps();

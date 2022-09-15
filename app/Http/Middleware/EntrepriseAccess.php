@@ -23,7 +23,8 @@ class EntrepriseAccess
         if(Auth::user()->role=='recruteur'){
             return $next($request);
         }else{
-            return response()->json(["You don't have permission to acces this page as candidate"]);
+            $message="You don't have permission to acces this page as candidate";
+            return response()->view('pages.accessDinied',['message'=>$message]);
         }
         // if(Auth::user()->role=='recruteur'){
         //     return redirect()->route('entreprise-dashboard');

@@ -1106,30 +1106,61 @@
 
 							<!-- change-password -->
 							<div class="tab-pane" id="change-password">
-								<div class="tr-single-box">
-									<div class="tr-single-header">
-										<h4><i class="lni-lock"></i> Change Password</h4>
+								<form action="{{route('uup')}}" method="post">
+									@csrf
+									<div class="tr-single-box">
+										<div class="tr-single-header">
+											<h4><i class="lni-lock"></i> Change Password</h4>
+										</div>
+
+										@if(Session::has('error'))
+
+										<div class="alert alert-danger">{{Session::get('error')}}</div>
+
+										@endif
+										@if(Session::has('success'))
+
+										<div class="alert alert-success">{{Session::get('success')}}</div>
+
+										@endif
+										<div class="tr-single-body">
+											<div class="form-group">
+												<label>Current Password</label>
+												<div class="input-with-gray">
+													<input type="text" name="password" class="form-control" placeholder="{{(auth()->user()->password)}}">
+													<i class="ti-unlock"></i>
+												</div>
+											</div>
+											<div class="form-group">
+												<label>New Password</label>
+												<div class="input-with-gray">
+													<input type="text" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('name') }}" placeholder="*******">
+													@error('password')
+													<span class="invalid-feedback" role="alert">
+														<strong>{{ $message }}</strong>
+													</span>
+													@enderror
+													<i class="ti-unlock"></i>
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label>Confirm Password</label>
+												<div class="input-with-gray">
+													<input id="password-confirm" type="text" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="*******">
+													<i class="ti-unlock"></i>
+												</div>
+											</div>
+										</div>
+
 									</div>
+									<input type="hidden" value="{{auth()->user()->id}}" name="id_user" id="id_user">
 
-									<div class="tr-single-body">
-										<div class="form-group">
-											<label>Current Password</label>
-											<input class="form-control" type="password">
-										</div>
-										<div class="form-group">
-											<label>New Password</label>
-											<input class="form-control" type="password">
-										</div>
-										<div class="form-group">
-											<label>Confirm Password</label>
-											<input class="form-control" type="password">
-										</div>
-									</div>
+									<button type="submit" class="btn btn-info btn-md full-width">Save & Update</button>
 
-								</div>
 
-								<a href="#" class="btn btn-info btn-md full-width">Save & Update<i class="ml-2 ti-arrow-right"></i></a>
 
+								</form>
 							</div>
 
 						</div>

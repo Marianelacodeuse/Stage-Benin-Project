@@ -1,7 +1,8 @@
 @extends('layouts.app')
-@section('search-entreprise-grid')
-<!-- ============================ Search Form Start================================== -->
-<section class="light-search banncer-cent bg-theme" data-overlay="0">
+@section('ssg')
+<!-- ============================ Search Form Start==================================
+ -->
+<!-- <section class="light-search banncer-cent bg-theme" data-overlay="0">
 	<div class="container">
 
 		<form class="search-big-form no-border search-shadow">
@@ -41,6 +42,74 @@
 		</form>
 
 	</div>
+</section> -->
+<section class="light-search banncer-cent bg-theme" data-overlay="0">
+	<div class="container">
+
+		<!-- <form class="search-big-form no-border search-shadow">
+			<div class="row m-0">
+				<div class="col-lg-4 col-md-4 col-sm-12 p-0">
+					<div class="form-group">
+						<i class="ti-search"></i>
+						<input type="text" class="form-control b-r" placeholder="Job Title or Keywords">
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-3 col-sm-12 p-0">
+					<div class="form-group">
+						<i class="ti-location-pin"></i>
+						<input type="text" class="form-control b-r" placeholder="Location">
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-3 col-sm-12 p-0">
+					<div class="form-group">
+						<select id="category" class="js-states form-control">
+							<option value="">&nbsp;</option>
+							<option value="1">SEO & Web Design</option>
+							<option value="2">Wealth & Healthcare</option>
+							<option value="3">Account / Finance</option>
+							<option value="4">Education</option>
+							<option value="5">Banking Jobs</option>
+						</select>
+						<i class="ti-layers"></i>
+					</div>
+				</div>
+
+				<div class="col-lg-2 col-md-2 col-sm-12 p-0">
+					<button type="button" class="btn btn-black black full-width">Find Jobs</button>
+				</div>
+			</div>
+		</form> -->
+		<form action="{{url('/candidat/search-stage')}}" method="POST">
+			@csrf
+			<div class="col-12 text-center form-group pt-5">
+				<input type="text" name="motcle" size="30" placeholder="Mots-clé/Compétences" />
+				<select name="localite">
+					<option value="null" selected disable hidden>Region</option>
+					<option value="Calavi">Abomey-Calavi</option>
+					<option value="Cotonou">Cotonou</option>
+					<option value="Porto-Novo">Porto-Novo</option>
+					<option value="Parakou">Parakou</option>
+					<option value="Allada">Allada</option>
+					<option value="Dassa">Dassa</option>
+				</select>
+				<select name="categorie">
+					<option value="null" selected disable hidden>Domaines</option>
+					<option value="1">Informatique</option>
+					<option value="2">Transport</option>
+					<option value="Reseau">Administration de base de données</option>
+					<option value="Informatique">Sécurité de système d'information</option>
+					<option value="Medecine">Médecine</option>
+					<option value="Pharmacie">Auxilliaire de pharmacie</option>
+					<option value="Graphisme">Graphisme</option>
+				</select>
+
+				<button type="submit" class="btn2 my-3">Rechercher un stage</button>
+			</div>
+		</form>
+
+	</div>
 </section>
 <!-- ============================ Search Form End ================================== -->
 <!-- ============================ Breadcrums Start================================== -->
@@ -70,202 +139,9 @@
 
 		<div class="row">
 
-			<div class="col-xl-3 col-lg-4">
-
-				<div class="d-block d-none d-sm-block d-md-none mb-3">
-					<a href="javascript:void(0)" onclick="openNav()" class="btn btn-info full-width btn-md"><i class="ti-filter mrg-r-5"></i>Filter Search</a>
-				</div>
-
-				<div class="sidebar-container d-sm-none d-md-block d-none">
-
-					<!-- Category -->
-					<div class="sidebar-widget">
-						<div class="form-group">
-							<h5 class="mb-2">Job Category</h5>
-							<div class="side-imbo">
-								<ul class="no-ul-list">
-									<li>
-										<input id="checkbox-ei1" class="checkbox-custom" name="checkbox-ei1" type="checkbox">
-										<label for="checkbox-ei1" class="checkbox-custom-label">IT Computers</label>
-									</li>
-
-									<li>
-										<input id="checkbox-ei2" class="checkbox-custom" name="checkbox-ei2" type="checkbox">
-										<label for="checkbox-ei2" class="checkbox-custom-label">Financial Service</label>
-									</li>
-
-									<li>
-										<input id="checkbox-ei3" class="checkbox-custom" name="checkbox-ei3" type="checkbox">
-										<label for="checkbox-ei3" class="checkbox-custom-label">Art, Design, Media</label>
-									</li>
-
-									<li>
-										<input id="checkbox-ei4" class="checkbox-custom" name="checkbox-ei4" type="checkbox">
-										<label for="checkbox-ei4" class="checkbox-custom-label">Coach & Education</label>
-									</li>
-									<li>
-										<input id="checkbox-ei5" class="checkbox-custom" name="checkbox-ei5" type="checkbox">
-										<label for="checkbox-ei5" class="checkbox-custom-label">Banking</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<!-- Experince -->
-					<div class="sidebar-widget">
-						<div class="form-group">
-							<h5 class="mb-2">Skills</h5>
-							<div class="side-imbo">
-								<ul class="no-ul-list">
-									<li>
-										<input id="checkbox-ep1" class="checkbox-custom" name="checkbox-ep1" type="checkbox">
-										<label for="checkbox-ep1" class="checkbox-custom-label">Administrative</label>
-									</li>
-
-									<li>
-										<input id="checkbox-ep2" class="checkbox-custom" name="checkbox-ep2" type="checkbox">
-										<label for="checkbox-ep2" class="checkbox-custom-label">iPhone & Android</label>
-									</li>
-
-									<li>
-										<input id="checkbox-ep3" class="checkbox-custom" name="checkbox-ep3" type="checkbox">
-										<label for="checkbox-ep3" class="checkbox-custom-label">Java & AJAX</label>
-									</li>
-
-									<li>
-										<input id="checkbox-ep4" class="checkbox-custom" name="checkbox-ep4" type="checkbox">
-										<label for="checkbox-ep4" class="checkbox-custom-label">Account Manager</label>
-									</li>
-									<li>
-										<input id="checkbox-ep5" class="checkbox-custom" name="checkbox-ep5" type="checkbox">
-										<label for="checkbox-ep5" class="checkbox-custom-label">WordPress</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<!-- Experince -->
-					<div class="sidebar-widget">
-						<div class="form-group">
-							<h5 class="mb-2">Experince</h5>
-							<div class="side-imbo">
-								<ul class="no-ul-list">
-									<li>
-										<input id="checkbox-e1" class="checkbox-custom" name="checkbox-e1" type="checkbox">
-										<label for="checkbox-e1" class="checkbox-custom-label">1 Year</label>
-									</li>
-
-									<li>
-										<input id="checkbox-e2" class="checkbox-custom" name="checkbox-e2" type="checkbox">
-										<label for="checkbox-e2" class="checkbox-custom-label">2 Year</label>
-									</li>
-
-									<li>
-										<input id="checkbox-e3" class="checkbox-custom" name="checkbox-e3" type="checkbox">
-										<label for="checkbox-e3" class="checkbox-custom-label">3 Year</label>
-									</li>
-
-									<li>
-										<input id="checkbox-e4" class="checkbox-custom" name="checkbox-e4" type="checkbox">
-										<label for="checkbox-e4" class="checkbox-custom-label">4+ Year</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<!-- Job Type -->
-					<div class="sidebar-widget">
-						<div class="form-group">
-							<h5 class="mb-2">Job Type</h5>
-							<div class="side-imbo">
-								<ul class="no-ul-list">
-									<li>
-										<input id="checkbox-j1" class="checkbox-custom" name="checkbox-j1" type="checkbox">
-										<label for="checkbox-j1" class="checkbox-custom-label">Full Time</label>
-									</li>
-
-									<li>
-										<input id="checkbox-j2" class="checkbox-custom" name="checkbox-j2" type="checkbox">
-										<label for="checkbox-j2" class="checkbox-custom-label">Part Time</label>
-									</li>
-
-									<li>
-										<input id="checkbox-j3" class="checkbox-custom" name="checkbox-j3" type="checkbox">
-										<label for="checkbox-j3" class="checkbox-custom-label">Construction Base</label>
-									</li>
-
-									<li>
-										<input id="checkbox-j4" class="checkbox-custom" name="checkbox-j4" type="checkbox">
-										<label for="checkbox-j4" class="checkbox-custom-label">Internship</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<!-- Job Type -->
-					<div class="sidebar-widget">
-						<div class="form-group">
-							<h5 class="mb-2">Job Level</h5>
-							<div class="side-imbo">
-								<ul class="no-ul-list">
-									<li>
-										<input id="checkbox-jf1" class="checkbox-custom" name="checkbox-jf1" type="checkbox">
-										<label for="checkbox-jf1" class="checkbox-custom-label">Manager</label>
-									</li>
-
-									<li>
-										<input id="checkbox-jf2" class="checkbox-custom" name="checkbox-jf2" type="checkbox">
-										<label for="checkbox-jf2" class="checkbox-custom-label">Junior</label>
-									</li>
-
-									<li>
-										<input id="checkbox-jf3" class="checkbox-custom" name="checkbox-jf3" type="checkbox">
-										<label for="checkbox-jf3" class="checkbox-custom-label">Senior</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<!-- Compensation -->
-					<div class="sidebar-widget">
-						<div class="form-group">
-							<h5 class="mb-2">Expected Sallery</h5>
-							<div class="side-imbo">
-								<ul class="no-ul-list">
-									<li>
-										<input id="checkbox-c1" class="checkbox-custom" name="checkbox-c1" type="checkbox">
-										<label for="checkbox-c1" class="checkbox-custom-label">$500 - $1000</label>
-									</li>
-
-									<li>
-										<input id="checkbox-c2" class="checkbox-custom" name="checkbox-c2" type="checkbox">
-										<label for="checkbox-c2" class="checkbox-custom-label">$1000 - $2000</label>
-									</li>
-
-									<li>
-										<input id="checkbox-c03" class="checkbox-custom" name="checkbox-c03" type="checkbox">
-										<label for="checkbox-c03" class="checkbox-custom-label">$2000 - $5000</label>
-									</li>
-
-									<li>
-										<input id="checkbox-c4" class="checkbox-custom" name="checkbox-c4" type="checkbox">
-										<label for="checkbox-c4" class="checkbox-custom-label">$5000 - $10000</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
 
 
-				</div>
-			</div>
-
-			<div class="col-xl-9 col-lg-8">
+			<div class="col-xl-12 col-lg-12">
 
 				<div class="row">
 					<!-- layout Wrapper -->
@@ -286,38 +162,41 @@
 
 					<!-- Single Job -->
 					@foreach($posts as $post)
-					<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-						<div class="classic-joblist ultimate small">
+
+					<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+						<div class="classic-joblist ultimate small" style="background-color: #5e87eb;">
 
 							<div class="cl-job-employer">
 								<div class="cljb-emp-thumg">
-									<a href="job-detail.html"><img src="assets/img/asana.png" alt="" /></a>
+									<a href="job-detail.html"><img src="{{asset('uploads/images/'.$post->logo_path)}}" alt="" /></a>
 								</div>
-								<div class="cljb-emp-detail">
-									<h5><a href="{{url('/entreprise/entreprise-detail/'.$post->user->id)}}">{{$post->user->name}}</a></h5>
-									<span class="cljb-date">3 days ago</span>
-								</div>
+								<span class="cljb-emp-detail">
+									<h4><a href="{{url('/entreprise/entreprise-detail/'.$post->id)}}" style="color:blue">{!!Str::limit($post->name,'10','...')!!}</a></h4>
+									<!-- <span class="cljb-date">Posté le {{$post->created_at}}</span> -->
+								</span>
 							</div>
 
-							<h4 class="job-title"><a href="{{url('/post-show/'.$post->id)}}">{{Str::limit($post->title,'20','...')}}</a></h4>
+							<h4 class="job-title"><a href="{{url('/post-show/'.$post->id)}}">{!!Str::limit($post->title,'20','...')!!}</a></h4>
+							<h4 class="job-title">{{$post->duree}} mois</h4>
 
 							<div class="cl-job-intro">
-								<span class="cl-jb-loaction"><i class="ti-location-pin"></i>Isva, Canada</span>
-								<span class="cl-jb-type full-time">Full Time</span>
+								<span class="cl-jb-loaction"><i class="ti-location-pin"></i>{{$post->adresse_stage}}</span>
+
+								{{-- <span class="cl-jb-type full-time">Full Time</span> --}}
 							</div>
 
 						</div>
 					</div>
 					@endforeach
 
-				
 
-				
+
+
 
 				</div>
 
 				<!-- Pagination -->
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<ul class="pagination mt-0">
 							<li class="page-item">
@@ -339,7 +218,7 @@
 							</li>
 						</ul>
 					</div>
-				</div>
+				</div> -->
 				<!-- Pagination -->
 
 			</div>
@@ -360,8 +239,16 @@
 			<div class="form-group">
 				<h5 class="mb-3">Keyword</h5>
 				<div class="input-with-icon">
-					<input type="text" class="form-control" placeholder="Keyword...">
-					<i class="ti-key"></i>
+					<select id="category-side" class="js-states form-control">
+						<option selected>Région</option>
+						<option value="Calavi">Abomey-Calavi</option>
+						<option value="Cotonou">Cotonou</option>
+						<option value="Porto-Novo">Porto-Novo</option>
+						<option value="Parakou">Parakou</option>
+						<option value="Allada">Allada</option>
+						<option value="Dassa">Dassa</option>
+					</select>
+					<i class="ti-layers"></i>
 				</div>
 			</div>
 		</div>
@@ -383,12 +270,13 @@
 				<h5 class="mb-3">Category</h5>
 				<div class="input-with-shadow">
 					<select id="category-side" class="js-states form-control">
-						<option value="">&nbsp;</option>
-						<option value="1">SEO & Web Design</option>
-						<option value="2">Wealth & Healthcare</option>
-						<option value="3">Account / Finance</option>
-						<option value="4">Education</option>
-						<option value="5">Banking Jobs</option>
+						<option selected disable>Categorie</option>
+						<option value="1">Informatique,Telecom,Internet</option>
+						<option value="2">Finance</option>
+						<option value="3">Banking</option>
+						<option value="4">SEO/SMO</option>
+						<option value="5">Designing</option>
+						<option value="6">Management</option>
 					</select>
 					<i class="ti-layers"></i>
 				</div>
@@ -398,7 +286,7 @@
 		<!-- Experince -->
 		<div class="sidebar-widget">
 			<div class="form-group">
-				<h5 class="mb-2">Experince</h5>
+				<h5 class="mb-2">Experience</h5>
 				<div class="side-imbo">
 					<ul class="no-ul-list">
 						<li>
@@ -488,9 +376,7 @@
 	</div>
 </div>
 <!-- Filter Job Option -->
-
 </div>
-
 <!-- ============================================================== -->
 <!-- This page plugins -->
 <!-- ============================================================== -->

@@ -24,7 +24,8 @@ class CandidatAccess
         if(auth()->user()->role=='candidat'){
             return $next($request);
         }else{
-            return response()->json("You don't have permission as entreprise");
+            $message="You don't have permission to acces this page as enterprise";
+            return response()->view('pages.accessDinied',['message'=>$message]);
         }
         
     }

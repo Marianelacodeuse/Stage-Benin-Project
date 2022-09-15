@@ -28,201 +28,9 @@
 
 		<div class="row">
 
-			<div class="col-xl-3 col-lg-4">
+			
 
-				<div class="d-block d-none d-sm-block d-md-none mb-3">
-					<a href="javascript:void(0)" onclick="openNav()" class="btn btn-info full-width btn-md"><i class="ti-filter mrg-r-5"></i>Filter Search</a>
-				</div>
-
-				<div class="sidebar-container d-sm-none d-md-block d-none">
-
-					<!-- Category -->
-					<div class="sidebar-widget">
-						<div class="form-group">
-							<h5 class="mb-2">Job Category</h5>
-							<div class="side-imbo">
-								<ul class="no-ul-list">
-									<li>
-										<input id="checkbox-ei1" class="checkbox-custom" name="checkbox-ei1" type="checkbox">
-										<label for="checkbox-ei1" class="checkbox-custom-label">IT Computers</label>
-									</li>
-
-									<li>
-										<input id="checkbox-ei2" class="checkbox-custom" name="checkbox-ei2" type="checkbox">
-										<label for="checkbox-ei2" class="checkbox-custom-label">Financial Service</label>
-									</li>
-
-									<li>
-										<input id="checkbox-ei3" class="checkbox-custom" name="checkbox-ei3" type="checkbox">
-										<label for="checkbox-ei3" class="checkbox-custom-label">Art, Design, Media</label>
-									</li>
-
-									<li>
-										<input id="checkbox-ei4" class="checkbox-custom" name="checkbox-ei4" type="checkbox">
-										<label for="checkbox-ei4" class="checkbox-custom-label">Coach & Education</label>
-									</li>
-									<li>
-										<input id="checkbox-ei5" class="checkbox-custom" name="checkbox-ei5" type="checkbox">
-										<label for="checkbox-ei5" class="checkbox-custom-label">Banking</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<!-- Experince -->
-					<div class="sidebar-widget">
-						<div class="form-group">
-							<h5 class="mb-2">Skills</h5>
-							<div class="side-imbo">
-								<ul class="no-ul-list">
-									<li>
-										<input id="checkbox-ep1" class="checkbox-custom" name="checkbox-ep1" type="checkbox">
-										<label for="checkbox-ep1" class="checkbox-custom-label">Administrative</label>
-									</li>
-
-									<li>
-										<input id="checkbox-ep2" class="checkbox-custom" name="checkbox-ep2" type="checkbox">
-										<label for="checkbox-ep2" class="checkbox-custom-label">iPhone & Android</label>
-									</li>
-
-									<li>
-										<input id="checkbox-ep3" class="checkbox-custom" name="checkbox-ep3" type="checkbox">
-										<label for="checkbox-ep3" class="checkbox-custom-label">Java & AJAX</label>
-									</li>
-
-									<li>
-										<input id="checkbox-ep4" class="checkbox-custom" name="checkbox-ep4" type="checkbox">
-										<label for="checkbox-ep4" class="checkbox-custom-label">Account Manager</label>
-									</li>
-									<li>
-										<input id="checkbox-ep5" class="checkbox-custom" name="checkbox-ep5" type="checkbox">
-										<label for="checkbox-ep5" class="checkbox-custom-label">WordPress</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<!-- Experince -->
-					<div class="sidebar-widget">
-						<div class="form-group">
-							<h5 class="mb-2">Experince</h5>
-							<div class="side-imbo">
-								<ul class="no-ul-list">
-									<li>
-										<input id="checkbox-e1" class="checkbox-custom" name="checkbox-e1" type="checkbox">
-										<label for="checkbox-e1" class="checkbox-custom-label">1 Year</label>
-									</li>
-
-									<li>
-										<input id="checkbox-e2" class="checkbox-custom" name="checkbox-e2" type="checkbox">
-										<label for="checkbox-e2" class="checkbox-custom-label">2 Year</label>
-									</li>
-
-									<li>
-										<input id="checkbox-e3" class="checkbox-custom" name="checkbox-e3" type="checkbox">
-										<label for="checkbox-e3" class="checkbox-custom-label">3 Year</label>
-									</li>
-
-									<li>
-										<input id="checkbox-e4" class="checkbox-custom" name="checkbox-e4" type="checkbox">
-										<label for="checkbox-e4" class="checkbox-custom-label">4+ Year</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<!-- Job Type -->
-					<div class="sidebar-widget">
-						<div class="form-group">
-							<h5 class="mb-2">Job Type</h5>
-							<div class="side-imbo">
-								<ul class="no-ul-list">
-									<li>
-										<input id="checkbox-j1" class="checkbox-custom" name="checkbox-j1" type="checkbox">
-										<label for="checkbox-j1" class="checkbox-custom-label">Full Time</label>
-									</li>
-
-									<li>
-										<input id="checkbox-j2" class="checkbox-custom" name="checkbox-j2" type="checkbox">
-										<label for="checkbox-j2" class="checkbox-custom-label">Part Time</label>
-									</li>
-
-									<li>
-										<input id="checkbox-j3" class="checkbox-custom" name="checkbox-j3" type="checkbox">
-										<label for="checkbox-j3" class="checkbox-custom-label">Construction Base</label>
-									</li>
-
-									<li>
-										<input id="checkbox-j4" class="checkbox-custom" name="checkbox-j4" type="checkbox">
-										<label for="checkbox-j4" class="checkbox-custom-label">Internship</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<!-- Job Type -->
-					<div class="sidebar-widget">
-						<div class="form-group">
-							<h5 class="mb-2">Job Level</h5>
-							<div class="side-imbo">
-								<ul class="no-ul-list">
-									<li>
-										<input id="checkbox-jf1" class="checkbox-custom" name="checkbox-jf1" type="checkbox">
-										<label for="checkbox-jf1" class="checkbox-custom-label">Manager</label>
-									</li>
-
-									<li>
-										<input id="checkbox-jf2" class="checkbox-custom" name="checkbox-jf2" type="checkbox">
-										<label for="checkbox-jf2" class="checkbox-custom-label">Junior</label>
-									</li>
-
-									<li>
-										<input id="checkbox-jf3" class="checkbox-custom" name="checkbox-jf3" type="checkbox">
-										<label for="checkbox-jf3" class="checkbox-custom-label">Senior</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<!-- Compensation -->
-					<div class="sidebar-widget">
-						<div class="form-group">
-							<h5 class="mb-2">Compensation</h5>
-							<div class="side-imbo">
-								<ul class="no-ul-list">
-									<li>
-										<input id="checkbox-c1" class="checkbox-custom" name="checkbox-c1" type="checkbox">
-										<label for="checkbox-c1" class="checkbox-custom-label">$500 - $1000</label>
-									</li>
-
-									<li>
-										<input id="checkbox-c2" class="checkbox-custom" name="checkbox-c2" type="checkbox">
-										<label for="checkbox-c2" class="checkbox-custom-label">$1000 - $2000</label>
-									</li>
-
-									<li>
-										<input id="checkbox-c03" class="checkbox-custom" name="checkbox-c03" type="checkbox">
-										<label for="checkbox-c03" class="checkbox-custom-label">$2000 - $5000</label>
-									</li>
-
-									<li>
-										<input id="checkbox-c4" class="checkbox-custom" name="checkbox-c4" type="checkbox">
-										<label for="checkbox-c4" class="checkbox-custom-label">$5000 - $10000</label>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
-
-			<div class="col-xl-9 col-lg-8">
+			<div class="col-xl-12 col-lg-12">
 
 				<!-- Row -->
 				<div class="row">
@@ -277,7 +85,7 @@
 
 				<!-- Row -->
 				<div class="row">
-@foreach($users as $user)
+					@foreach($users as $user)
 
 					<div class="candidate-list-layout">
 						<div class="cll-wrap">
@@ -294,13 +102,13 @@
 						</div>
 
 						<div class="cll-right">
-						<a class="btn btn-primary bn-det" href="{{url('entreprise/entreprise-detail/'.$user->id)}}">View Profile<i class="ti-arrow-right ml-1"></i></a>
-									
+							<a class="btn btn-primary bn-det" href="{{url('entreprise/entreprise-detail/'.$user->id)}}">View Profile<i class="ti-arrow-right ml-1"></i></a>
+
 						</div>
 					</div>
 
 
-@endforeach
+					@endforeach
 
 
 

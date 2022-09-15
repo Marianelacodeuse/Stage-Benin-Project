@@ -103,17 +103,8 @@
 						</ul>
 						</li>
 
-						<li><a href="{{route('blog')}}">Blog<span class="submenu-indicator"></span></a>
-							<!-- <ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
-									<li><a href="blog.html">Blogs Page</a></li>
-									<li><a href="blog-detail.html">Blog Detail</a></li>
-									<li><a href="shortcodes.html">Shortcodes</a></li>
-									<li><a href="pricing.html">Pricing</a></li>
-									<li><a href="employers-full-width.html">Find Employers</a></li>
-									<li><a href="all-jobs.html">Jobs Widgets</a></li>
-									<li><a href="login.html">LogIn</a></li>
-								</ul> -->
-						</li>
+						<!-- <li><a href="{{route('blog')}}">Blog<span class="submenu-indicator"></span></a>
+						</li> -->
 
 						<li><a href="{{route('contact')}}">Contacts</a></li>
 
@@ -151,7 +142,7 @@
 			<div class="container">
 				<div class="col-lg-12 col-md-12">
 					<div class="pt-caption">
-						<h1>Hello! Adam</h1>
+						<h1>Hello! {{auth()->user()->namei}}</h1>
 					</div>
 				</div>
 			</div>
@@ -189,7 +180,7 @@
 									<a class="nav-link" data-toggle="tab" href="#shortlisted"><i class="lni-heart-filled"></i>Postulations</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#applied"><i class="lni-briefcase"></i>Demandes de stages</a>
+									<a class="nav-link" data-toggle="tab" href="#shortlistedDemandes"><i class="lni-briefcase"></i>Demandes de stages</a>
 								</li>
 								<!-- <li class="nav-item">
 									<a class="nav-link" data-toggle="tab" href="#alert"><i class="lni-alarm"></i>Alert job</a>
@@ -278,7 +269,7 @@
 												<div class="col-lg-12 col-md-12 col-sm-12">
 													<div class="form-group">
 														<label>Filiere</label>
-														<input class="form-control" type="text" name="filiere" value="{{auth()->user()->filiere}}">
+														<input class="form-control" type="text" name="filiere_secteur" value="{{auth()->user()->filiere}}">
 													</div>
 												</div>
 
@@ -315,23 +306,10 @@
 												<div class="col-lg-12 col-md-12 col-sm-12">
 													<div class="form-group">
 														<label>Photo de profil</label>
-														<!-- <div class="custom-file"> -->
-														<input type="file" class="form-control" id="logo" name="logo" value="hey">
-														<!-- <label class="custom-file-label" for="clogo">Choisir une image</label> -->
-														<!-- </div> -->
+														<input type="file" class="form-control" accept="image/*" id="logo" name="logo" value="hey">
+
 													</div>
 												</div>
-
-												<!-- <div class="col-lg-12 col-md-12 col-sm-12">
-													<div class="form-group">
-														<label>Image de couverture</label>
-														<div class="custom-file">
-															<input type="file" class="custom-file-input" id="ccover">
-															<label class="custom-file-label" for="ccover">Choisir une image</label>
-														</div>
-													</div>
-												</div> -->
-
 											</div>
 										</div>
 
@@ -395,27 +373,10 @@
 												<div class="col-lg-6 col-md-6 col-sm-12">
 													<div class="form-group">
 														<label class="social-nfo"><i class="lni-linkdin"></i>LinkedIn URL</label>
-														<input class="form-control" type="text" name="linkdin_url" value="{{auth()->user()->linkdin_url}}">
+														<input class="form-control" type="text" name="linkedin_url" value="{{auth()->user()->linkdin_url}}">
 													</div>
 												</div>
-												<!-- <div class="col-lg-6 col-md-6 col-sm-12">
-													<div class="form-group">
-														<label class="social-nfo"><i class="lni-twitter"></i>Twitter URL</label>
-														<input class="form-control" type="text" value="htps://twitter.com">
-													</div>
-												</div> -->
-												<!-- <div class="col-lg-6 col-md-6 col-sm-12">
-													<div class="form-group">
-														<label class="social-nfo"><i class="lni-instagram"></i>Instagram URL</label>
-														<input class="form-control" type="text" value="https://instagram.com/">
-													</div>
-												</div> -->
-												<!-- <div class="col-lg-6 col-md-6 col-sm-12">
-													<div class="form-group">
-														<label class="social-nfo"><i class="lni-pinterest"></i>Pinterest URL</label>
-														<input class="form-control" type="text" value="https://pinterest.com/">
-													</div>
-												</div> -->
+
 											</div>
 										</div>
 
@@ -623,7 +584,7 @@
 
 							</div>
 
-							<!-- shortlisted -->
+							<!-- Préselctionnés -->
 							<div class="tab-pane" id="shortlisted">
 
 								<div class="tr-single-box">
@@ -639,13 +600,14 @@
 
 											<div class="mg-list-wrap">
 												<div class="mg-list-thumb">
-													<img src="assets/img/google.png" class="mx-auto" alt="" />
+													<img src="{{asset('uploads/images/'.$post->user->logo_path)}}" class="mx-auto" alt="" />
 												</div>
+
 												<div class="mg-list-caption">
 													<h4 class="mg-title">{{$post->title}}</h4>
 													<h4 class="mg-title">{{$post->user->name}}</h4>
 													<span class="mg-subtitle">{!!Str::limit($post->description,'10','...')!!}</span>
-													<span> <em>Posté le</em> {{$post->created_at}}</span>
+													<div> <em>Posté le</em> {{$post->created_at->format('D M Y')}}</div>
 
 												</div>
 											</div>
@@ -658,6 +620,68 @@
 
 										</div>
 										@endforeach
+									</div>
+								</div>
+
+							</div>
+
+							<!-- Demandes -->
+							<div class="tab-pane" id="shortlistedDemandes">
+
+								<div class="tr-single-box">
+									<div class="tr-single-header">
+										<h4><i class="ti-check"></i> Mes demandes</h4>
+									</div>
+
+									<div class="tr-single-body">
+
+										<!-- Single Manage List -->
+										@forelse($demandes as $demande)
+										<div class="manage-list">
+
+											<div class="mg-list-wrap">
+												<div class="mg-list-thumb">
+													<img src="{{asset('uploads/images/logo_default4.png')}}" class="mx-auto" alt="" />
+												</div>
+												<div class="mg-list-caption">
+													<h4 class="mg-title">Demande n°{{$demande->id}}</h4>
+													<h4 class="mg-title">{{$demande->entreprises->name}}</h4>
+
+													<span> <em>Fait le</em> {{$demande->created_at->format('D M Y')}}</span>
+
+												</div>
+											</div>
+
+											<!-- <div class="mg-action">
+												<div class="btn-group ml-2">
+													<a href="{{url('/entreprise/entreprise-dashboard/'.$demande->entreprises->id)}}" class="btn btn-view" data-toggle="tooltip" data-placement="top" title="View Job"><i class="ti-eye"></i></a>
+												</div>
+											</div> -->
+											<div class="mg-action">
+												<div class="btn-group custom-drop">
+													<button type="button" class="btn btn-more" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														<i class="ti-more"></i>
+													</button>
+													<div class="dropdown-menu pull-right animated flipInX">
+														<!-- <a href="#">Send Message</a> -->
+														<a href="{{url('/entreprise/entreprise-dashboard/'.$demande->entreprises->id)}}">View Profile</a>
+														<!-- <a href="#">Download</a> -->
+													</div>
+												</div>
+												<div class="btn-group ml-2">
+													<a href="#" class="mg-valider"><span>Annuler</span> </a>
+												</div>
+												<div class="btn-group ml-2">
+													<div>Status
+														<span href="#" class="mg-delete"><span>Refuser</span> </span>
+													</div>
+												</div>
+											</div>
+
+										</div>
+										@empty
+										<div class="alert alert-success">Aucune demandes enregistrées</div>
+										@endforelse
 
 										<!-- Single Manage List -->
 										<!-- <div class="manage-list">
@@ -709,7 +733,6 @@
 								</div>
 
 							</div>
-
 							<!-- applied job -->
 							<div class="tab-pane" id="applied">
 
@@ -773,158 +796,40 @@
 									<div class="tr-single-header">
 										<h4><i class="ti-desktop"></i> CV & Cover letter</h4>
 									</div>
+									<form action="{{route('uui')}}" method="post" enctype="multipart/form-data">
+									
+									
+									@csrf
+										<div class="tr-single-body">
+											<div class="row">
 
-									<div class="tr-single-body">
-										<div class="row">
-
-											<div class="col-lg-12 col-md-12 col-sm-12">
-												<div class="form-group">
-													<label>Full Name</label>
-													<input class="form-control" type="text" value="Adam Muklarial">
-												</div>
-											</div>
-
-											<div class="col-lg-12 col-md-12 col-sm-12">
-												<div class="form-group">
-													<label>Job Title</label>
-													<input class="form-control" type="text" value="Web Designer & Developer">
-												</div>
-											</div>
-
-											<div class="col-lg-12 col-md-12 col-sm-12">
-												<div class="form-group">
-													<label>Overview</label>
-													<div id="cv-cover">
-														<p>Hello Description</p>
+												<div class="col-lg-12 col-md-12 col-sm-12">
+													<div class="form-group">
+														<label>Nom Complet</label>
+														<input class="form-control" type="text" name="name" value="{{auth()->user()->name}}">
 													</div>
 												</div>
-											</div>
+												<div class="col-lg-12 col-md-12 col-sm-12">
 
-											<div class="col-lg-12 col-md-12 col-sm-12">
-												<form>
-													<div class="custom-file">
-														<input type="file" class="custom-file-input" id="customFile">
-														<label class="custom-file-label" for="customFile">Choose file</label>
+													<div class="form-group">
+														<label>Mon Cv</label>
+														<label for="cv">{{auth()->user()->cv_path}}</label>
+														<input type="file" class="form-control" id="cv" name="cv" accept="application/pdf" placeholder="{{auth()->user()->cv_path}}" value="{{auth()->user()->cv_path}}">
+
 													</div>
-												</form>
-											</div>
 
+												</div>
+
+											</div>
 										</div>
-									</div>
-
+										<input type="hidden" value="{{auth()->user()->id}}" name="id_user" id="id_user">
+										<input type="hidden" value="{{auth()->user()->email}}" name="email" id="email">
+<!-- <input type="submit" value="Envoyer"> -->
+										<button type="submit" class="btn btn-info btn-md full-width">Save & Update</button>
+									
+									</form>
 								</div>
 								<!-- /CV -->
-
-								<a href="#" class="btn btn-info btn-md full-width">Save & Update<i class="ml-2 ti-arrow-right"></i></a>
-
-							</div>
-
-							<!-- package -->
-							<div class="tab-pane" id="package">
-								<table class="table table-striped tbl-big center mb-5">
-									<thead class="bg-primary text-light">
-										<tr>
-											<th scope="col">Select</th>
-											<th scope="col">Title</th>
-											<th scope="col">Jobs Remaining</th>
-											<th scope="col">Features Remaining</th>
-											<th scope="col">Renew Remaining</th>
-											<th scope="col">Duration</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<th>
-												<input type="radio" class="radio-custom" id="basic" name="cm-r" checked>
-												<label for="basic" class="radio-custom-label"></label>
-											</th>
-											<td>Basic</td>
-											<td>15</td>
-											<td>07</td>
-											<td>5</td>
-											<td>30 Days</td>
-										</tr>
-										<tr>
-											<th>
-												<input type="radio" class="radio-custom" id="premium" name="cm-r">
-												<label for="premium" class="radio-custom-label"></label>
-											</th>
-											<td>Premium</td>
-											<td>18</td>
-											<td>12</td>
-											<td>2</td>
-											<td>60 Days</td>
-										</tr>
-
-									</tbody>
-								</table>
-
-								<table class="table table-striped tbl-big center mb-5">
-									<thead class="bg-primary text-light">
-										<tr>
-											<th scope="col">Select</th>
-											<th scope="col">Title</th>
-											<th scope="col">Price</th>
-											<th scope="col">Jobs Posting</th>
-											<th scope="col">Feature Jobs</th>
-											<th scope="col">Renew Jobs</th>
-											<th scope="col">Duration</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<th>
-												<input type="radio" class="radio-custom" id="basic-p" name="nm-r" checked>
-												<label for="basic-p" class="radio-custom-label"></label>
-											</th>
-											<td>Basic</td>
-											<td>$49</td>
-											<td>50</td>
-											<td>50</td>
-											<td>30</td>
-											<td>30 Days</td>
-										</tr>
-										<tr>
-											<th>
-												<input type="radio" class="radio-custom" id="premium-p" name="nm-r">
-												<label for="premium-p" class="radio-custom-label"></label>
-											</th>
-											<td>Premium</td>
-											<td>$99</td>
-											<td>99</td>
-											<td>50</td>
-											<td>30</td>
-											<td>30 Days</td>
-										</tr>
-										<tr>
-											<th>
-												<input type="radio" class="radio-custom" id="standard-p" name="nm-r">
-												<label for="standard-p" class="radio-custom-label"></label>
-											</th>
-											<td>Standard</td>
-											<td>$149</td>
-											<td>170</td>
-											<td>10</td>
-											<td>50</td>
-											<td>60 Days</td>
-										</tr>
-										<tr>
-											<th>
-												<input type="radio" class="radio-custom" id="platinum-p" name="nm-r">
-												<label for="platinum-p" class="radio-custom-label"></label>
-											</th>
-											<td>Platinum</td>
-											<td>$499</td>
-											<td>250</td>
-											<td>100</td>
-											<td>70</td>
-											<td>60 Days</td>
-										</tr>
-
-									</tbody>
-								</table>
-
-								<button class="btn btn-md btn-info" type="submit">Continue<i class="ti-arrow-right ml-2"></i></button>
 							</div>
 
 							<!-- change-password -->
@@ -950,7 +855,7 @@
 											<div class="form-group">
 												<label>Current Password</label>
 												<div class="input-with-gray">
-													<input type="text" name="password" class="form-control" placeholder="{{(auth()->user()->password)}}">
+													<input type="text" name="password" class="form-control">
 													<i class="ti-unlock"></i>
 												</div>
 											</div>

@@ -4,7 +4,7 @@
 <!-- ============================================================== -->
 
 <!-- ======================= Start Banner ===================== -->
-<section class="page-title-banner" style="background-image:url(assets/img/des-6.jpg);">
+<section class="page-title-banner" style="background-image:url(public/assets/img/des-6.jpg);">
 	<div class="container">
 		<div class="row m-0 align-items-end detail-swap">
 			<div class="tr-list-wrap">
