@@ -205,11 +205,11 @@
 
 							<li><a href="#">Etudiants<span class="submenu-indicator"></span></a>
 								<ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
-									<li><a href="{{route('ssg')}}">Trouver un stage<span class="submenu-indicator"></span></a>
+									<li><a href="{{route('ssl')}}">Trouver un stage<span class="submenu-indicator"></span></a>
 									</li>
-									<li><a href="{{route('seg')}}">Trouver une entreprise<span class="submenu-indicator"></span></a>
+									<li><a href="{{route('sel')}}">Trouver une entreprise<span class="submenu-indicator"></span></a>
 									</li>
-									<li><a href="{{route('candidat-dashboard')}}">Dashboard Etudiant<span class="submenu-indicator"></span></a>
+									<li><a href="{{route('candidat-dashboard')}}">Espace Etudiant<span class="submenu-indicator"></span></a>
 									</li>
 								</ul>
 							</li>
@@ -217,7 +217,7 @@
 							<li><a href="#">Entreprise<span class="submenu-indicator"></span></a>
 								<ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
 									<li><a href="{{route('scg')}}">Trouver un étudiant</a></li>
-									<li><a href="{{route('entreprise-dashboard')}}">Employer Dashboard</a></li>
+									<li><a href="{{route('entreprise-dashboard')}}">Espace Entreprise</a></li>
 								</ul>
 							</li>
 
@@ -233,7 +233,7 @@
 							<li class="add-listing theme-bg">
 								<a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="ti-plus mr-1"></i>
-									{{ __('Logout') }}
+									{{ __('Deconnexion') }}
 								</a>
 
 								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -893,8 +893,8 @@
 			</div>
 		</div>
 		<!-- ENTREPRISE MODALE -->
-		<!-- Sign Up Modal -->
-
+		<!-- POSTULATION Modal -->
+		
 		<!-- End Modal -->
 
 	</div>
@@ -930,7 +930,26 @@
 	<!-- This page plugins -->
 	<!-- ============================================================== -->
 
-
+	<script>
+        $(function() {
+            $('.datepicker').datepicker({
+                format: 'mm-dd-yyyy'
+            });
+        });
+    </script>
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'Hello Bootstrap 5',
+            tabsize: 2,
+            height: 100
+        });
+    </script>
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+    </script>
 </body>
 
 <!-- Mirrored from themezhub.net/workstock-2/work-stocks/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 17:43:13 GMT -->

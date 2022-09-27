@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('adresse_stage')->nullable();
             $table->string('gratification')->nullable();
             $table->string('duree')->nullable();
-            $table->string('expiration')->nullable();
+            $table->string('categorie')->nullable();
+            $table->date('expiration')->nullable();
             $table->longText('description');
-            $table->foreignId('category_id')->constrained();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('posts');
             $table->timestamps();

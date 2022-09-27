@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('matricule')->unique();
             $table->string('role');
             $table->string('age')->nullable();
             $table->string('genre')->nullable();
@@ -34,6 +35,7 @@ return new class extends Migration
             $table->string('twitter_url')->nullable();
             $table->longText('description')->nullable();
             $table->string('logo_path')->nullable();
+            $table->string('banner_path')->nullable();
             $table->string('carte_etudiant_path')->nullable();
             $table->string('cv_path')->nullable();
             $table->string('motivation_path')->nullable();

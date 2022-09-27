@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('cv_path')->nullable();
             $table->string('carte_etudiant_path')->nullable();
             $table->string('motivation_path')->nullable();
+            $table->boolean('statut')->nullable();
             $table->foreignId('post_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

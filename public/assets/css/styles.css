@@ -2899,6 +2899,7 @@ outline:none;
 }
 select.form-control:not([size]):not([multiple]) {
     height: 56px;
+    cursor: pointer;
 }
 select.form-control.fc-lg:not([size]):not([multiple]) {
     height:62px;
@@ -7439,6 +7440,7 @@ h5.side-detail-title {
     -webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,.09);
     -moz-box-shadow: 0 1px 4px 0 rgba(0,0,0,.09);
     box-shadow: 0 1px 4px 0 rgba(0,0,0,.09);
+    display: flex;
 }
 .verticle-candidate-list .vc-thumb {
     float: left;
@@ -7454,8 +7456,10 @@ h5.side-detail-title {
     box-shadow:0px 0px 0px 5px rgba(25,25,25,0.05);
 }
 .verticle-candidate-list .vc-content {
+    
     display: inline-block;
     text-align: left;
+    margin-right: 40px;
 }
 .vc-info-list{
 	margin:0;
@@ -7467,6 +7471,7 @@ h5.side-detail-title {
 .verticle-candidate-list .vc-content .vc-info-list li {
     margin-right: 30px;
 }
+
 .vc-thumb .overall-rate {
     right:-4px;
     bottom: 12px;
@@ -7478,6 +7483,11 @@ h5.side-detail-title {
 .verticle-candidate-list .vc-content p{
 	font-size:14px;
 	margin-bottom:2px;
+    /* background-color:red; */
+}
+.verticle-candidate-list .vc-right {
+	font-size:14px;
+	margin-left:200px;
 }
 .rating-review{
     margin-bottom:7px;
@@ -9145,9 +9155,9 @@ a.btn.btn-cta:hover, a.btn.btn-cta:focus{
     min-height: 300px;
 }
 /*------------ Element Start: Tab --------------*/
-.fade.in {
+/* .fade.in {
     opacity: 1;
-}
+} */
 .nav-tabs .nav-link, .nav-pills .nav-link {
     border: none;
     border-top-left-radius: .25rem;
@@ -9603,14 +9613,36 @@ span.current-page:before {
     left: -3px;
 }
 .page-title-banner{
+    background-image: url('../img/Stu_cover2.jpg');
 	background-position:center;
 	background-size:cover;
 	position:relative;
 	padding:0;
-	min-height:380px;
+	/* min-height:380px; */
+}
+.page-title-banner-ent{
+    background-image: url('../img/Ent_cover3.jpg');
+	background-position:center;
+	background-size:cover;
+	position:relative;
+	padding:0;
+	/* min-height:380px; */
 }
 
 .page-title-banner:before{
+	content:"";
+	position:absolute;
+	display:block;
+	width:100%;
+	/* height:100%; */
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	background:#222e4c;
+	opacity:0.6;
+}
+.page-title-banner-ent:before{
 	content:"";
 	position:absolute;
 	display:block;
@@ -9624,6 +9656,9 @@ span.current-page:before {
 	opacity:0.6;
 }
 .page-title-banner>*{
+	position:relative;
+}
+.page-title-banner-ent>*{
 	position:relative;
 }
 .tr-list-detail{
@@ -9922,6 +9957,7 @@ a.btn.add-review-btn {
 }
 /*------- Small Title Banner ----------*/
 .small-page-title-banner {
+    background-image: url('../img/Ent_cover3.jpg');
     background-position: center;
     background-size: cover;
     position: relative;

@@ -39,7 +39,7 @@
 		<!-- ============================================================== -->
 		<!-- Start Navigation -->
 		<div class="header header-light">
-			<div class="container-fluid">
+			<div class="container">
 				<nav id="navigation" class="navigation navigation-landscape">
 					<div class="nav-header">
 						<a class="nav-brand" href="#">
@@ -50,11 +50,11 @@
 					<div class="nav-menus-wrapper" style="transition-property: none;">
 						<ul class="nav-menu">
 
-							<li class="active"><a href="{{url('/')}}">Home<span class="submenu-indicator"></span></a>
+							<li class="active"><a href="{{url('/')}}">Accueil<span class="submenu-indicator"></span></a>
 
 							</li>
 
-							<li><a href="#">For Candidates<span class="submenu-indicator"></span></a>
+							<li><a href="#">Etudiants<span class="submenu-indicator"></span></a>
 								<ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
 									<!-- <li><a href="{{route('hmg')}}">Search job Option<span class="submenu-indicator"></span></a>
 										<ul class="nav-dropdown nav-submenu" style="display: none;">
@@ -82,11 +82,11 @@
 											<li><a href="job-detail-3.html">Single Job 3</a></li>
 										</ul> -->
 									</li>
-									<li><a href="{{route('candidat-dashboard')}}">Candidate Dashboard</a></li>
+									<li><a href="{{route('candidat-dashboard')}}">Espace Etudiant</a></li>
 								</ul>
 							</li>
 
-							<li><a href="#">For Employers<span class="submenu-indicator"></span></a>
+							<li><a href="#">Entreprise<span class="submenu-indicator"></span></a>
 								<ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
 									<li><a href="{{route('scg')}}">Trouver un candidat</a></li>
 									<!-- <li><a href="candidate-list.html">Browse Candidates List</a></li>
@@ -99,7 +99,7 @@
 											<li><a href="browse-candidates-with-map.html">Search Candidate List</a></li>
 										</ul> -->
 							</li>
-							<li><a href="{{route('entreprise-dashboard')}}">Employer Dashboard</a></li>
+							<li><a href="{{route('entreprise-dashboard')}}">Espace Entreprise</a></li>
 						</ul>
 						</li>
 
@@ -116,7 +116,7 @@
 							<li class="add-listing theme-bg">
 								<a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="ti-plus mr-1"></i>
-									{{ __('Logout') }}
+									{{ __('Deconnexion') }}
 								</a>
 
 								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -142,7 +142,7 @@
 			<div class="container">
 				<div class="col-lg-12 col-md-12">
 					<div class="pt-caption">
-						<h1>Hello! {{auth()->user()->namei}}</h1>
+						<h1>Bienvenu! {{auth()->user()->namei}}</h1>
 					</div>
 				</div>
 			</div>
@@ -208,7 +208,7 @@
 								<li class="nav-item">
 									<a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="lni-exit"></i>
-										{{ __('Logout') }}
+										{{ __('Deconnexion') }}
 									</a>
 
 									<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -223,6 +223,23 @@
 
 					<div class="col-md-8 col-sm-12">
 						<!-- Tab panes -->
+						@if(Session::has('error'))
+
+						<div class="alert alert-danger">{{Session::get('error')}}</div>
+
+						@endif
+						@if(Session::has('success'))
+
+						<!-- <div class="alert alert-success">{{Session::get('success')}}</div> -->
+						<div class="alert alert-success alert-white rounded">
+                            <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+                            <!-- <div class="icon">
+                                <i class="fa fa-check"></i>
+                            </div> -->
+                            <strong>Success!</strong>
+                            {{Session::get('success')}}
+                        </div>
+						@endif
 						<div class="tab-content">
 
 							<!-- My Profile -->
@@ -257,7 +274,7 @@
 													<div class="form-group">
 														<label>Genre</label>
 														<select name="genre" id="genre" class="form-control">
-															<option value="" selected disable hidden>{{auth()->user()->genre}}</option>
+															<option value="{{auth()->user()->genre}}" selected disable hidden>{{auth()->user()->genre}}</option>
 															<option value="masculin">Masculin</option>
 															<option value="feminin">Feminin</option>
 
@@ -268,8 +285,18 @@
 
 												<div class="col-lg-12 col-md-12 col-sm-12">
 													<div class="form-group">
-														<label>Filiere</label>
-														<input class="form-control" type="text" name="filiere_secteur" value="{{auth()->user()->filiere}}">
+														<label>Filière</label>
+														<!-- <input class="form-control" type="text" name="filiere_secteur" value="{{auth()->user()->filiere_secteur}}"> -->
+														<select name="filiere_secteur" id="genre" class="form-control">
+															<option value="{{auth()->user()->filiere_secteur}}" selected disable hidden>{{auth()->user()->filiere_secteur}}</option>
+															<option value="Finance et Comptabilité (FC)">Finance et Comptabilité (FC)</option>
+															<option value="Banque et assurance (BA)">Banque et assurance (BA)</option>
+															<option value="Technique Commerciale et Marketing (TCM)">Technique Commerciale et Marketing (TCM)</option>
+															<option value="Gestion des Ressources Humaines et Communication (GRHC)">Gestion des Ressources Humaines et Communication (GRHC)</option>
+															<option value="Transport et Logistique (TL)">Transport et Logistique (TL)</option>
+															<option value="Informatique de Gestion (IG)">Informatique de Gestion (IG)</option>
+
+														</select>
 													</div>
 												</div>
 
@@ -284,8 +311,8 @@
 													<div class="form-group">
 														<label>Niveau</label>
 														<!-- <input class="form-control" type="text" name="niveau" value="{{auth()->user()->niveau}}"> -->
-														<select name="niveau" id="niveau" class="form-control">
-															<option value="" selected disable hidden>{{auth()->user()->niveau}}</option>
+														<select name="niveau_taille" id="niveau_taille" class="form-control">
+															<option value="{{auth()->user()->niveau_taille}}" selected disable hidden>{{auth()->user()->niveau_taille}}</option>
 															<option value="1ère année">1ère année</option>
 															<option value="2ème année">2ème année</option>
 															<option value="3ème année">3ème année</option>
@@ -297,7 +324,7 @@
 												<div class="col-lg-12 col-md-12 col-sm-12">
 													<div class="form-group">
 														<label>Aperçu du profil</label>
-														<textarea id="summernote" name="description">
+														<textarea class="ckeditor" name="description">
 															<p> {{auth()->user()->description}}</p>
 														</textarea>
 													</div>
@@ -319,7 +346,7 @@
 									<!-- Contact Info -->
 									<div class="tr-single-box">
 										<div class="tr-single-header">
-											<h4><i class="ti-headphone"></i> Contact Info</h4>
+											<h4><i class="ti-headphone"></i> Informations de Contact</h4>
 										</div>
 
 										<div class="tr-single-body">
@@ -327,7 +354,7 @@
 
 												<div class="col-lg-6 col-md-6 col-sm-12">
 													<div class="form-group">
-														<label class="social-nfo">Phone Number</label>
+														<label class="social-nfo">Téléphone</label>
 														<input class="form-control" type="text" name="telephone" value="{{auth()->user()->telephone}}">
 													</div>
 												</div>
@@ -358,7 +385,7 @@
 									<!-- Social Account -->
 									<div class="tr-single-box">
 										<div class="tr-single-header">
-											<h4><i class="ti-new-window"></i> Social Account</h4>
+											<h4><i class="ti-new-window"></i> Comptes sociaux</h4>
 										</div>
 
 										<div class="tr-single-body">
@@ -373,7 +400,7 @@
 												<div class="col-lg-6 col-md-6 col-sm-12">
 													<div class="form-group">
 														<label class="social-nfo"><i class="lni-linkdin"></i>LinkedIn URL</label>
-														<input class="form-control" type="text" name="linkedin_url" value="{{auth()->user()->linkdin_url}}">
+														<input class="form-control" type="text" name="linkedin_url" value="{{auth()->user()->linkedin_url}}">
 													</div>
 												</div>
 
@@ -384,7 +411,7 @@
 									<!-- /Social Account -->
 									<input type="hidden" value="{{auth()->user()->id}}" name="id_user" id="id_user">
 
-									<button type="submit" class="btn btn-info btn-md full-width">Save & Update</button>
+									<button type="submit" class="btn btn-info btn-md full-width">Sauvegarder & Mettre à jour </button>
 									<!-- 
 								<a href="{{route('uui')}}" onclick="event.preventDefault();
 								document.getElementById('update-user-info').submit();" class="btn btn-info btn-md full-width" >Save & Update<i class="ml-2 ti-arrow-right"></i></a>
@@ -395,207 +422,20 @@
 							</div>
 
 
-							<!-- My Resume -->
-							<div class="tab-pane" id="resume">
 
-								<!-- Add Educations -->
-								<div class="tr-single-box">
-									<div class="tr-single-header">
-										<h4><i class="lni-graduation"></i> Add Education</h4>
-									</div>
-
-									<div class="tr-single-body">
-										<table class="table table-striped mb-5">
-											<thead class="thead-dark">
-												<tr>
-													<th scope="col">Qualification</th>
-													<th scope="col">Dates</th>
-													<th scope="col">School / Colleges</th>
-													<th scope="col">Action</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<th scope="row">Masters In Fine Arts</th>
-													<td>2002 - 2004</td>
-													<td>Virazia University</td>
-													<td>
-														<div class="dash-action">
-															<a href="#" class="dg-edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="ti-pencil"></i></a>
-															<a href="#" class="dg-delete" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<th scope="row">Tommers College</th>
-													<td>2012 - 2015</td>
-													<td>Bachlors in Fine Arts</td>
-													<td>
-														<div class="dash-action">
-															<a href="#" class="dg-edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="ti-pencil"></i></a>
-															<a href="#" class="dg-delete" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<th scope="row">Diploma In Fine Arts</th>
-													<td>2014 - 2015</td>
-													<td>Imperieal of Art Direction</td>
-													<td>
-														<div class="dash-action">
-															<a href="#" class="dg-edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="ti-pencil"></i></a>
-															<a href="#" class="dg-delete" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-
-										<table class="price-list-wrap">
-											<tbody class="ui-sortable">
-												<tr class="pricing-list-item pattern ui-sortable-handle">
-													<td>
-														<div class="box-close"><a class="delete" href="#"><i class="ti-close"></i></a></div>
-														<div class="row">
-
-															<div class="col-lg-12 col-md-12 col-sm-12">
-																<div class="form-group">
-																	<label>Title</label>
-																	<input class="form-control" type="text" value="Adam Muklarial">
-																</div>
-															</div>
-
-															<div class="col-lg-6 col-md-6 col-sm-6">
-																<div class="form-group">
-																	<label>From</label>
-																	<input placeholder="06.11.2007" type="text" class="form-control datepicker">
-																</div>
-															</div>
-
-															<div class="col-lg-6 col-md-6 col-sm-6">
-																<div class="form-group">
-																	<label>To</label>
-																	<input placeholder="07.17.2010" type="text" class="form-control datepicker">
-																</div>
-															</div>
-
-
-															<div class="col-lg-12 col-md-12 col-sm-12">
-																<div class="form-group">
-																	<label>University</label>
-																	<input placeholder="University Name" type="text" class="form-control">
-																</div>
-															</div>
-
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-										<a href="#" class="btn add-pr-item-btn">Add Item</a>
-									</div>
-
-								</div>
-								<!-- /Education Info -->
-
-
-								<!-- Add Skills -->
-								<div class="tr-single-box">
-									<div class="tr-single-header">
-										<h4><i class="lni-briefcase"></i> Skill Or Expertise</h4>
-									</div>
-
-									<div class="tr-single-body">
-										<table class="table table-striped mb-5">
-											<thead class="thead-dark">
-												<tr>
-													<th scope="col">Skills @ Company</th>
-													<th scope="col">Lavel</th>
-													<th scope="col">Action</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<th scope="row">Graphic Design</th>
-													<td>65</td>
-													<td>
-														<div class="dash-action">
-															<a href="#" class="dg-edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="ti-pencil"></i></a>
-															<a href="#" class="dg-delete" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<th scope="row">PHP Developer</th>
-													<td>75</td>
-													<td>
-														<div class="dash-action">
-															<a href="#" class="dg-edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="ti-pencil"></i></a>
-															<a href="#" class="dg-delete" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<th scope="row">Web Designer</th>
-													<td>88</td>
-													<td>
-														<div class="dash-action">
-															<a href="#" class="dg-edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="ti-pencil"></i></a>
-															<a href="#" class="dg-delete" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-
-										<table class="price-list-wrap">
-											<tbody class="ui-sortable">
-												<tr class="pricing-list-item pattern ui-sortable-handle">
-													<td>
-														<div class="box-close"><a class="delete" href="#"><i class="ti-close"></i></a></div>
-														<div class="row">
-
-															<div class="col-lg-9 col-md-9 col-sm-8">
-																<div class="form-group">
-																	<label>Skills</label>
-																	<input class="form-control" type="text" value="Skills">
-																</div>
-															</div>
-
-															<div class="col-lg-3 col-md-3 col-sm-4">
-																<div class="form-group">
-																	<label>Lavel</label>
-																	<input placeholder="68" type="text" class="form-control">
-																</div>
-															</div>
-
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-										<a href="#" class="btn add-pr-item-btn">Add Item</a>
-									</div>
-
-								</div>
-								<!-- /Skills Info -->
-
-								<a href="#" class="btn btn-info btn-md full-width">Save & Update<i class="ml-2 ti-arrow-right"></i></a>
-
-							</div>
 
 							<!-- Préselctionnés -->
 							<div class="tab-pane" id="shortlisted">
 
 								<div class="tr-single-box">
 									<div class="tr-single-header">
-										<h4><i class="ti-check"></i> Shortlisted Jobs</h4>
+										<h4><i class="ti-check"></i> Postulations</h4>
 									</div>
 
 									<div class="tr-single-body">
 
 										<!-- Single Manage List -->
-										@foreach(auth()->user()->posts as $post)
+										@forelse(auth()->user()->posts as $post)
 										<div class="manage-list">
 
 											<div class="mg-list-wrap">
@@ -614,12 +454,30 @@
 
 											<div class="mg-action">
 												<div class="btn-group ml-2">
-													<a href="job-detail.html" class="btn btn-view" data-toggle="tooltip" data-placement="top" title="View Job"><i class="ti-eye"></i></a>
+													<a href="{{url('post-show/'.$post->id)}}" class="btn btn-view" data-toggle="tooltip" data-placement="top" title="Consulter l'offre de stage"><i class="ti-eye"></i></a>
 												</div>
+												@if($post->status==-1)
+												<div class="btn-group ml-2">
+													<div>En cours</div>
+												</div>
+												@endif
+												@if($post->status==1)
+												<div class="btn-group ml-2">
+													<span class="mg-valider">Accepter</span>
+												</div>
+												@endif
+												@if($post->status==0)
+												<div class="btn-group ml-2">
+													<span class="mg-delete">Refuser</span>
+												</div>
+												@endif
 											</div>
 
 										</div>
-										@endforeach
+
+										@empty
+										<div class="alert alert-success">Aucune candidatures éffectuées</div>
+										@endforelse
 									</div>
 								</div>
 
@@ -658,24 +516,40 @@
 												</div>
 											</div> -->
 											<div class="mg-action">
-												<div class="btn-group custom-drop">
+												<!-- <div class="btn-group custom-drop">
 													<button type="button" class="btn btn-more" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 														<i class="ti-more"></i>
 													</button>
 													<div class="dropdown-menu pull-right animated flipInX">
-														<!-- <a href="#">Send Message</a> -->
+														<a href="#">Send Message</a>
 														<a href="{{url('/entreprise/entreprise-dashboard/'.$demande->entreprises->id)}}">View Profile</a>
-														<!-- <a href="#">Download</a> -->
+														<a href="#">Download</a>
 													</div>
+												</div> -->
+												<div class="btn-group ml-2">
+													<a href="#" class="mg-delete"><span>Annuler</span> </a>
 												</div>
 												<div class="btn-group ml-2">
-													<a href="#" class="mg-valider"><span>Annuler</span> </a>
+													<a href="{{url('/entreprise/entreprise-detail/'.$demande->entreprises->id)}}" class="btn btn-view" data-toggle="tooltip" data-placement="top" title="Consulter le profil de l'entreprise"><i class="ti-eye"></i></a>
 												</div>
+
+
+
+												@if($demande->status==-1)
 												<div class="btn-group ml-2">
-													<div>Status
-														<span href="#" class="mg-delete"><span>Refuser</span> </span>
-													</div>
+													<div>En cours</div>
 												</div>
+												@endif
+												@if($demande->status==1)
+												<div class="btn-group ml-2">
+													<span class="mg-valider">Accepter</span>
+												</div>
+												@endif
+												@if($demande->status==0)
+												<div class="btn-group ml-2">
+													<span class="mg-delete">Refuser</span>
+												</div>
+												@endif
 											</div>
 
 										</div>
@@ -683,107 +557,6 @@
 										<div class="alert alert-success">Aucune demandes enregistrées</div>
 										@endforelse
 
-										<!-- Single Manage List -->
-										<!-- <div class="manage-list">
-
-											<div class="mg-list-wrap">
-												<div class="mg-list-thumb">
-													<img src="assets/img/google.png" class="mx-auto" alt="" />
-												</div>
-												<div class="mg-list-caption">
-													<h4 class="mg-title">Web Designer</h4>
-													<span class="mg-subtitle">Google Info</span>
-													<span><em>Last activity</em> 4 weeks ago. <em>Posted</em> 4 weeks ago</span>
-
-												</div>
-											</div>
-
-											<div class="mg-action">
-												<div class="btn-group ml-2">
-													<a href="job-detail.html" class="btn btn-view" data-toggle="tooltip" data-placement="top" title="View Job"><i class="ti-eye"></i></a>
-												</div>
-											</div>
-
-										</div> -->
-
-										<!-- Single Manage List -->
-										<!-- <div class="manage-list">
-
-											<div class="mg-list-wrap">
-												<div class="mg-list-thumb">
-													<img src="assets/img/google.png" class="mx-auto" alt="" />
-												</div>
-												<div class="mg-list-caption">
-													<h4 class="mg-title">Web Designer</h4>
-													<span class="mg-subtitle">Google Info</span>
-													<span><em>Last activity</em> 4 weeks ago. <em>Posted</em> 4 weeks ago</span>
-
-												</div>
-											</div>
-
-											<div class="mg-action">
-												<div class="btn-group ml-2">
-													<a href="job-detail.html" class="btn btn-view" data-toggle="tooltip" data-placement="top" title="View Job"><i class="ti-eye"></i></a>
-												</div>
-											</div>
-
-										</div> -->
-
-									</div>
-								</div>
-
-							</div>
-							<!-- applied job -->
-							<div class="tab-pane" id="applied">
-
-								<div class="tr-single-box">
-									<div class="tr-single-header">
-										<h4><i class="ti-briefcase"></i> Applied job</h4>
-									</div>
-
-									<div class="tr-single-body">
-
-										<!-- Single Manage List -->
-										<div class="manage-list">
-
-											<div class="mg-list-wrap">
-												<div class="mg-list-thumb">
-													<img src="assets/img/google.png" class="mx-auto" alt="" />
-												</div>
-												<div class="mg-list-caption">
-													<h4 class="mg-title">Web Designer</h4>
-													<span class="mg-subtitle">Google Info</span>
-													<span><em>Last activity</em> 4 weeks ago. <em>Posted</em> 4 weeks ago</span>
-
-												</div>
-											</div>
-
-											<div class="mg-action">
-												<div class="btn-group ml-2">
-													<a href="job-detail.html" class="btn btn-view" data-toggle="tooltip" data-placement="top" title="View Job"><i class="ti-eye"></i></a>
-													<a href="#" class="mg-delete ml-2" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-								</div>
-
-							</div>
-
-							<!-- alert job -->
-							<div class="tab-pane" id="alert">
-
-								<div class="tr-single-box">
-									<div class="tr-single-header">
-										<h4><i class="ti-bell"></i> Alert Jobs</h4>
-									</div>
-
-									<div class="tr-single-body">
-										<div class="alert alert-success">
-											<strong>Hi Dear!</strong> There is no any job alert.
-										</div>
 									</div>
 								</div>
 
@@ -796,10 +569,10 @@
 									<div class="tr-single-header">
 										<h4><i class="ti-desktop"></i> CV & Cover letter</h4>
 									</div>
-									<form action="{{route('uui')}}" method="post" enctype="multipart/form-data">
-									
-									
-									@csrf
+									<form action="{{route('ucv')}}" method="post" enctype="multipart/form-data">
+
+
+										@csrf
 										<div class="tr-single-body">
 											<div class="row">
 
@@ -824,9 +597,10 @@
 										</div>
 										<input type="hidden" value="{{auth()->user()->id}}" name="id_user" id="id_user">
 										<input type="hidden" value="{{auth()->user()->email}}" name="email" id="email">
-<!-- <input type="submit" value="Envoyer"> -->
+										<!-- <input type="submit" value="Envoyer"> -->
 										<button type="submit" class="btn btn-info btn-md full-width">Save & Update</button>
-									
+										<a href="{{url('candidat/candidat-cv-display')}}" class="mt-5 btn btn-info btn-md full-width" target="_blank" rel="noopener noreferrer"> Voir le CV</a>
+
 									</form>
 								</div>
 								<!-- /CV -->
@@ -841,7 +615,7 @@
 											<h4><i class="lni-lock"></i> Change Password</h4>
 										</div>
 
-										@if(Session::has('error'))
+										<!-- @if(Session::has('error'))
 
 										<div class="alert alert-danger">{{Session::get('error')}}</div>
 
@@ -850,19 +624,19 @@
 
 										<div class="alert alert-success">{{Session::get('success')}}</div>
 
-										@endif
+										@endif -->
 										<div class="tr-single-body">
 											<div class="form-group">
-												<label>Current Password</label>
+												<label>Mot de passe actuel</label>
 												<div class="input-with-gray">
-													<input type="text" name="password" class="form-control">
+													<input type="password" name="password" class="form-control">
 													<i class="ti-unlock"></i>
 												</div>
 											</div>
 											<div class="form-group">
-												<label>New Password</label>
+												<label>Nouveau mot de passe</label>
 												<div class="input-with-gray">
-													<input type="text" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('name') }}" placeholder="*******">
+													<input type="password" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('name') }}" placeholder="*******">
 													@error('password')
 													<span class="invalid-feedback" role="alert">
 														<strong>{{ $message }}</strong>
@@ -873,9 +647,9 @@
 
 											</div>
 											<div class="form-group">
-												<label>Confirm Password</label>
+												<label>CConfimer mot de passe</label>
 												<div class="input-with-gray">
-													<input id="password-confirm" type="text" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="*******">
+													<input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="*******">
 													<i class="ti-unlock"></i>
 												</div>
 											</div>
@@ -884,7 +658,7 @@
 									</div>
 									<input type="hidden" value="{{auth()->user()->id}}" name="id_user" id="id_user">
 
-									<button type="submit" class="btn btn-info btn-md full-width">Save & Update</button>
+									<button type="submit" class="btn btn-info btn-md full-width">Sauvegarder et mettre à jour</button>
 
 
 
@@ -943,6 +717,13 @@
 			height: 100
 		});
 	</script>
+	<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.ckeditor').ckeditor();
+		});
+	</script>
+
 
 </body>
 

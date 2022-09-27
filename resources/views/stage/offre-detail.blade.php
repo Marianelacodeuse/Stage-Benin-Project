@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('offre-detail')
 <!-- ======================= Start Banner ===================== -->
-<section class="small-page-title-banner" style="background-image:url(assets/img/des-9.jpg);">
+<section class="small-page-title-banner">
 	<div class="container">
 		<div class="row">
 			<div class="tr-list-center">
@@ -18,17 +18,19 @@
 		<div class="row">
 
 			<div class="col-lg-8 col-md-12 col-sm-12">
-
+				@if(Session::has('message'))
+				<div class="alert alert-success">{{Session::get('message')}}</div>
+				@endif
 				<!-- Default Style -->
 				<div class="single-job-head head-light">
 					<div class="single-job-thumb">
-						<img src="{{asset('uploads/images/logo_default.png')}}" alt="">
+						<img src="{{asset('uploads/images/'.$post->user->logo_path)}}" alt="">
 					</div>
 					<div class="single-job-info">
 						<h4 class="single-job-title">{{$post->title}}<span class="job-type full-time">{{$post->duree}} mois</span></h4>
 						<span class="sj-location"><i class="ti-location-pin"></i>{{$post->user->adresse}}</span>
 						<ul class="tags-jobs">
-							<li><i class="ti-file"></i> Applications 1</li>
+							<!-- <li><i class="ti-file"></i> Applications 1</li> -->
 							<li><i class="ti-calendar"></i> {{$post->created_at->format('D M Y')}}</li>
 							<!-- <li><i class="fa fa-eye"></i> Views 7249</li> -->
 						</ul>
@@ -80,6 +82,15 @@
 						</ul>
 					</div>
 				</div> -->
+				@if(Auth::check() && Auth::user()->role == "candidat")
+
+
+				<button type="submit" class="btn btn-info full-width mb-2" data-toggle="modal" data-target="#postulation">
+					Postuler à ce stage
+				</button>
+				@else
+
+
 				<form action="{{url('/post/posting/'.$post->id)}}" method="post">
 					@csrf
 
@@ -87,9 +98,10 @@
 					<div class="alert alert-success">{{Session::get('message')}}</div>
 					@endif
 
-					<!-- <a href="javascript:void(0)" data-toggle="modal" data-target="#apply" class="btn btn-info full-width mb-2"> Apply This Job</a> -->
+
 					<input type="submit" class="btn btn-info full-width mb-2" value="Postuler à ce stage">
 				</form>
+				@endauth
 			</div>
 
 			<!-- Sidebar Start -->
@@ -101,6 +113,25 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12">
 
+							<!-- <form action="{{url('/post/posting/'.$post->id)}}" method="post">
+								@csrf
+
+								@if(Session::has('message'))
+								<div class="alert alert-success">{{Session::get('message')}}</div>
+								@endif
+
+								
+								<input type="submit" class="btn btn-info full-width mb-2" value="Postuler à ce stage">
+							</form> -->
+							@if(Auth::check() && Auth::user()->role == "candidat")
+
+
+							<button type="button" class="btn btn-info full-width mb-2" data-toggle="modal" data-target="#postulation">
+								Postuler à cet offre
+							</button>
+							@else
+
+
 							<form action="{{url('/post/posting/'.$post->id)}}" method="post">
 								@csrf
 
@@ -108,21 +139,22 @@
 								<div class="alert alert-success">{{Session::get('message')}}</div>
 								@endif
 
-								<!-- <a href="javascript:void(0)" data-toggle="modal" data-target="#apply" class="btn btn-info full-width mb-2"> Apply This Job</a> -->
-								<input type="submit" class="btn btn-info full-width mb-2" value="Postuler à ce stage">
-							</form>
 
+								<input type="submit" class="btn btn-info full-width mb-2" value="Postuler à cet offre de stage">
+							</form>
+							@endauth
+							
 						</div>
 					</div>
 
-					<div class="row">
+					<!-- <div class="row">
 
 						<div class="col-lg-12 col-md-12 col-sm-12">
 							<div class="input-group">
 								<a href="#" class="btn btn-color save-job"><i class="ti-heart"></i>Save Job</a>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 				</div>
 
@@ -361,6 +393,111 @@
 			<!-- /col-md-4 -->
 		</div>
 	</div>
+	@auth
+	<div class="modal fade" id="postulation" tabindex="-1" role="dialog" aria-labelledby="postulation" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+			<div class="modal-content" id="postulation">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="ti-close"></i></span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h4 class="modal-header-title"><span class="stage2">Stage</span><span class="stage">Benin</span></h4>
+					<div class="login-form">
+						<form action="{{url('/post/posting/'.$post->id)}}" method="post">
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-sm-6">
+									<div class="form-group">
+										<label>Nom</label>
+										<div class="input-with-gray">
+											<input type="text" name="name" class="form-control" placeholder="{{auth()->user()->name}}" disabled>
+											<i class="ti-user theme-cl"></i>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-lg-6 col-md-6 col-sm-6">
+									<div class="form-group">
+										<label>Email</label>
+										<div class="input-with-gray">
+											<input type="text" name="email" class="form-control" placeholder="{{auth()->user()->email}}" disabled>
+											<i class="ti-email theme-cl"></i>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-lg-6 col-md-6 col-sm-6">
+									<div class="form-group">
+										<label class="form-label" for="sexe">Filière</label>
+										<div class="input-with-gray">
+											<input type="text" name="filiere_secteur" class="form-control" placeholder="{{auth()->user()->filiere_secteur}}" disabled>
+											<i class="ti-user theme-cl"></i>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-lg-6 col-md-6 col-sm-6">
+									<div class="form-group">
+										<label class="form-label" for="filière">Adresse</label>
+										<div class="input-with-gray">
+											<input type="text" name="adresse" class="form-control" placeholder="{{auth()->user()->adresse}}" disabled>
+											<i class="ti-user theme-cl"></i>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-lg-6 col-md-6 col-sm-6">
+									<div class="form-group">
+										<!-- <button type="submit" class="btn btn-primary btn-md full-width pop-login">Mettre à jour mes informations</button> -->
+										<a href="{{route('candidat-dashboard')}}" class="mt-5 btn btn-info btn-md full-width" target="_blank" rel="noopener noreferrer">Mettre à jour mes informations</a>
+									</div>
+								</div>
+
+								<div class="col-lg-6 col-md-6 col-sm-6">
+									<div class="form-group">
+										<!-- <button type="submit" class="btn btn-primary btn-md full-width pop-login">Voir mon CV</button> -->
+										<a href="{{url('candidat/candidat-cv-display')}}" class="mt-5 btn btn-info btn-md full-width" target="_blank" rel="noopener noreferrer">Revoir mon CV</a>
+										
+									</div>
+								</div>
+
+								<!-- <div class="col-lg-12 col-md-12 col-sm-12">
+										<div class="form-group">
+											<label>Carte étudiant</label>
+											<div class="input-with-gray">
+												<input type="file" class="form-control">
+												<i class="ti-user theme-cl"></i>
+											</div>
+										</div>
+									</div> -->
+
+								<div class="col-lg-12 col-md-12 col-sm-12">
+
+
+
+									@csrf
+
+									@if(Session::has('message'))
+									<div class="alert alert-success">{{Session::get('message')}}</div>
+									@endif
+
+									<!-- <a href="javascript:void(0)" data-toggle="modal" data-target="#apply" class="btn btn-info full-width mb-2"> Apply This Job</a> -->
+									<input type="submit" class="btn btn-info full-width mb-2" value="Postuler à ce stage">
+
+								</div>
+
+						</form>
+					</div>
+				</div>
+				<!-- <div class="modal-footer">
+						<div class="mf-link"><i class="ti-user"></i>Vous avez déjà un compte?<a href="javascript:void(0)" data-toggle="modal" data-target="#modalEtudiant" data-dismiss="modal"> Se connecter</a></div>
+						<div class="mf-forget"><a href="#" data-target="#modalEtudiant"><i class="ti-help"></i>Need Help</a></div>
+					</div> -->
+			</div>
+		</div>
+	</div>
+	@endauth
 </section>
 <!-- ============== Job Detail ====================== -->
 @endsection

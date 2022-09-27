@@ -1,7 +1,88 @@
 @extends('layouts.app')
 @section('search-entreprise-list')
+
+
+<!-- SEARCH STARTING  -->
+
+<!-- <section class="light-search banncer-cent bg-theme" data-overlay="0">
+	<div class="container">
+
+		<form class="search-big-form no-border search-shadow">
+			<div class="row m-0">
+				<div class="col-lg-4 col-md-4 col-sm-12 p-0">
+					<div class="form-group">
+						<i class="ti-search"></i>
+						<input type="text" class="form-control b-r" placeholder="Job Title or Keywords">
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-3 col-sm-12 p-0">
+					<div class="form-group">
+						<i class="ti-location-pin"></i>
+						<input type="text" class="form-control b-r" placeholder="Location">
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-3 col-sm-12 p-0">
+					<div class="form-group">
+						<select id="category" class="js-states form-control">
+							<option value="">&nbsp;</option>
+							<option value="1">SEO & Web Design</option>
+							<option value="2">Wealth & Healthcare</option>
+							<option value="3">Account / Finance</option>
+							<option value="4">Education</option>
+							<option value="5">Banking Jobs</option>
+						</select>
+						<i class="ti-layers"></i>
+					</div>
+				</div>
+
+				<div class="col-lg-2 col-md-2 col-sm-12 p-0">
+					<button type="button" class="btn btn-black black full-width">Find Jobs</button>
+				</div>
+			</div>
+		</form>
+
+	</div>
+</section> -->
+
+<section>
+	<div class="container">
+		<div class="row row-stage">
+		<form action="{{url('/candidat/search-entreprise')}}" method="POST">
+			@csrf
+			<div class="col-12 text-center form-group pt-3">
+				<input type="text" name="motcle" size="30" placeholder="Mots-clé" class="text" />
+				<select name="localite" class="text">
+					<option value="null" selected disable hidden>Region</option>
+					<option value="Calavi">Abomey-Calavi</option>
+					<option value="Cotonou">Cotonou</option>
+					<option value="Porto-Novo">Porto-Novo</option>
+					<option value="Parakou">Parakou</option>
+					<option value="Allada">Allada</option>
+					<option value="Dassa">Dassa</option>
+				</select>
+				<select name="categorie" class="text">
+					<option value="null" selected disable hidden>Secteur</option>
+					<option value="Informatique">Informatique </option>
+					<option value="Transport">Transport & Logistique</option>
+					<option value="Informatique">Devellopement web</option>
+					<option value="Informatique">Réseaux</option>
+					<option value="Marketing">Marketing</option>
+					<option value="Banque">Assurance </option>
+					<option value="Graphisme">Graphisme</option>
+				</select>
+
+				<button type="submit" class="btn2 my-3">Rechercher une entreprise</button>
+			</div>
+		</form>
+
+		</div>
+	</div>
+
+</section>
 <!-- ============================ Breadcrums Start================================== -->
-<div class="container-fluid breadcrumbs breadcrumbs-light">
+<!-- <div class="container-fluid breadcrumbs breadcrumbs-light">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -17,7 +98,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 <div class="clearfix"></div>
 <!-- ============================ Breadcrums End ================================== -->
 
@@ -28,9 +109,97 @@
 
 		<div class="row">
 
-			
 
-			<div class="col-xl-12 col-lg-12">
+
+			<div class="col-xl-3 col-lg-4">
+
+				<div class="d-block d-none d-sm-block d-md-none mb-3">
+					<a href="javascript:void(0)" onclick="openNav()" class="btn btn-info full-width btn-md"><i class="ti-filter mrg-r-5"></i>Filter Search</a>
+				</div>
+
+				<div class="sidebar-container d-sm-none d-md-block d-none">
+
+					<!-- Category -->
+					<div class="sidebar-widget">
+						<div>
+							<h5 class="mb-2">Catégories</h5>
+							<div class="side-imbo">
+								<select class="text1">
+									<option selected>Domaines</option>
+									<option value="Données">Analysse de données</option>
+									<option value="Veb">Développement web</option>
+									<option value="Reseau">Administration de base de données</option>
+									<option value="Informatique">Sécurité de système d'information</option>
+									<option value="Medecine">Médecine</option>
+									<option value="Pharmacie">Auxilliaire de pharmacie</option>
+									<option value="Graphisme">Graphisme</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- Experince -->
+					<div class="sidebar-widget">
+						<div>
+							<h5 class="mb-2">Skills</h5>
+							<div class="side-imbo">
+								<select class="text1">
+									<option selected>Domaines</option>
+									<option value="Données">Analysse de données</option>
+									<option value="Veb">Développement web</option>
+									<option value="Reseau">Administration de base de données</option>
+									<option value="Informatique">Sécurité de système d'information</option>
+									<option value="Medecine">Médecine</option>
+									<option value="Pharmacie">Auxilliaire de pharmacie</option>
+									<option value="Graphisme">Graphisme</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- Experince -->
+					<div class="sidebar-widget">
+						<div>
+							<h5 class="mb-2">Experience</h5>
+							<div class="side-imbo">
+								<select class="text1">
+									<option selected>Domaines</option>
+									<option value="Données">Analysse de données</option>
+									<option value="Veb">Développement web</option>
+									<option value="Reseau">Administration de base de données</option>
+									<option value="Informatique">Sécurité de système d'information</option>
+									<option value="Medecine">Médecine</option>
+									<option value="Pharmacie">Auxilliaire de pharmacie</option>
+									<option value="Graphisme">Graphisme</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- Job Type -->
+					<div class="sidebar-widget">
+						<div>
+							<h5 class="mb-2">Job Type</h5>
+							<div class="side-imbo">
+								<select class="text1">
+									<option selected>Domaines</option>
+									<option value="Données">Analysse de données</option>
+									<option value="Veb">Développement web</option>
+									<option value="Reseau">Administration de base de données</option>
+									<option value="Informatique">Sécurité de système d'information</option>
+									<option value="Medecine">Médecine</option>
+									<option value="Pharmacie">Auxilliaire de pharmacie</option>
+									<option value="Graphisme">Graphisme</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<input type="submit" class="btn btn-info btn-md full-width" value="Envoyer">
+				</div>
+			</div>
+
+			<div class="col-xl-9 col-lg-8">
 
 				<!-- Row -->
 				<div class="row">
@@ -50,7 +219,7 @@
 
 				</div>
 
-				<!-- Row -->
+				<!-- Row
 				<div class="row">
 					<div class="col-md-12">
 						<div class="filter-alphabetical">
@@ -81,7 +250,7 @@
 							</ul>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<!-- Row -->
 				<div class="row">
@@ -93,16 +262,16 @@
 								<a href="resume-detail.html"><img src="{{asset('uploads/images/' . $user->logo_path)}}" class="img-responsive img-circle" alt="" /></a>
 							</div>
 							<div class="cll-caption">
-								<h4><a href="{{url('entreprise/entreprise-detail/'.$user->id)}}">{{$user->name}}</a><span><i class="ti-briefcase"></i>Wordpress Expert</span></h4>
+								<h4><a href="{{url('entreprise/entreprise-detail/'.$user->id)}}">{{$user->name}}</a><span><i class="ti-briefcase"></i>{{$user->filiere_secteur}}</span></h4>
 								<ul>
-									<li><i class="ti-location-pin text-danger"></i>1081 Wayback Lane, London</li>
-									<li><i class="ti-time text-success"></i>Last Activity 2 days ago</li>
+									<li><i class="ti-location-pin text-danger"></i>{{$user->adresse}}</li>
+									<!-- <li><i class="ti-time text-success"></i>Last Activity 2 days ago</li> -->
 								</ul>
 							</div>
 						</div>
 
 						<div class="cll-right">
-							<a class="btn btn-primary bn-det" href="{{url('entreprise/entreprise-detail/'.$user->id)}}">View Profile<i class="ti-arrow-right ml-1"></i></a>
+							<a class="btn btn-primary" href="{{url('entreprise/entreprise-detail/'.$user->id)}}">Consulter le Profile<i class="ti-arrow-right ml-1"></i></a>
 
 						</div>
 					</div>

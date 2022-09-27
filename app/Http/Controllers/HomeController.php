@@ -26,21 +26,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $entreprises=DB::table('users')->where('role','recruteur')->skip(0)->take(5)->get();
+        $entreprises = DB::table('users')->where('role', 'recruteur')->limit(5)->get();
         // dd($entreprises);
-        $allPosts=Post::all();
-        $totalPosts=$allPosts->count();
-        $allEntreprises=User::where('role','recruteur');
-        $totalEntreprises=$allEntreprises->count();
-        $allEtudiants=User::where('role','candidat');
-        $totalEtudiants=$allEtudiants->count();
-        $posts=DB::table('posts')->select('*')
-        ->join('users', 'users.id', '=', 'user_id')
-        ->inRandomOrder()->limit(3)->get();
+        $allPosts = Post::all();
+        // dd($allPosts);
+        $totalPosts = $allPosts->count();
+        $allEntreprises = User::where('role', 'recruteur');
+        $totalEntreprises = $allEntreprises->count();
+        $allEtudiants = User::where('role', 'candidat');
+        $totalEtudiants = $allEtudiants->count();
+        $posts = DB::table('posts')->select('*')
+            ->join('users', 'users.id', '=', 'user_id')
+            ->inRandomOrder()->limit(3)->get();
         // dd($posts);
-        return view('welcome',['entreprises'=>$entreprises, 'posts'=>$posts,'totalPosts'=>$totalPosts,'totalEntreprises'=>$totalEntreprises,'totalEtudiants'=>$totalEtudiants,]);
+        return view('welcome', ['entreprises' => $entreprises, 'posts' => $posts, 'totalPosts' => $totalPosts, 'totalEntreprises' => $totalEntreprises, 'totalEtudiants' => $totalEtudiants,]);
     }
-   
+
     public function contact()
     {
         return view('contact.index');
@@ -66,66 +67,56 @@ class HomeController extends Controller
     }
     public function ssg(Request $request)
     {
-// dd($request);
+        // dd($request);
         // $posts = POST::all();
         $posts = DB::table('posts')
-        ->select('*')
-        ->join('users','posts.user_id','users.id')
-        ->get();
+            ->select('*')
+            ->join('users', 'posts.user_id', 'users.id')
+            ->get();
         // dd($posts);
         // foreach($posts as $post){
         //     dd($post->user->logo_path);
         // }
         $nbrPosts = $posts->count();
+        // dd($request->categorie);
         // if ($request->categorie) {
-        //     // dd($request->categorie);
+            
         //     // $posts = DB::table('posts')->where('category_id',$request->categorie)->get();
         //     $posts = DB::table('posts')->select('*')
-        //     ->join('users','posts.user_id','users.id')
-        //     ->where('category_id',$request->categorie)
+        //     ->join('users', 'posts.user_id', 'users.id')
+        //     ->where('categorie','LIKE', '%' .$request->categorie.'%')
         //     ->get();
         //     $nbrPosts = $posts->count();
         //     // dd($posts);
         //     return view('candidat.search-stage-grid', ['posts' => $posts,'nbrPosts'=>$nbrPosts]);
+        
         // }
         if ($request->motcle) {
             // dd($request->motcle);
             // $posts = DB::table('posts')->where('title', 'LIKE', '%' . $request->motcle . '%')->get();
             $posts = DB::table('posts')->select('*')
-            ->join('users','posts.user_id','users.id')
-            ->where('title', 'LIKE', '%' . $request->motcle . '%')
-            ->get();
+                ->join('users', 'posts.user_id', 'users.id')
+                ->where('title', 'LIKE', '%' . $request->motcle . '%')
+                ->get();
             $nbrPosts = $posts->count();
             // dd($posts);
-            return view('candidat.search-stage-grid', ['posts' => $posts,'nbrPosts'=>$nbrPosts]);
+            return view('candidat.search-stage-grid', ['posts' => $posts, 'nbrPosts' => $nbrPosts]);
         }
         //  dd($request->adresse_stage);
+
         
-        if ($request->localite && $request->motcle) {
-            // dd($request->adresse_stage);
-            // $posts = DB::table('posts')->where('adresse_stage', 'LIKE', '%' . $request->localite . '%')
-            //                             ->where('title', 'LIKE', '%' . $request->motcle . '%')->get();
-            $posts = DB::table('posts')->select('*') 
-            ->join('users','posts.user_id','users.id')
-            ->where('adresse_stage', 'LIKE', '%' . $request->localite . '%')
-            ->where('title', 'LIKE', '%' . $request->motcle . '%')
-            ->get();
-            $nbrPosts = $posts->count();
-            // dd($posts);
-            return view('candidat.search-stage-grid', ['posts' => $posts,'nbrPosts'=>$nbrPosts]);
-        }
         if ($request->localite) {
             // dd($request->adresse_stage);
             // $posts = DB::table('posts')->where('adresse_stage', 'LIKE', '%' . $request->localite . '%')->get();
             $posts = DB::table('posts')->select('*')
-            
-            ->join('users','posts.user_id','users.id')
-            ->where('adresse_stage', 'LIKE', '%' . $request->localite . '%')
-            ->get();
+                ->join('users', 'posts.user_id', 'users.id')
+                ->where('adresse_stage', 'LIKE', '%' . $request->localite . '%')
+                ->get();
             $nbrPosts = $posts->count();
             // dd($posts);
-            return view('candidat.search-stage-grid', ['posts' => $posts,'nbrPosts'=>$nbrPosts]);
+            return view('candidat.search-stage-grid', ['posts' => $posts, 'nbrPosts' => $nbrPosts]);
         }
+       
         // dd($request);
         // if ($request->categorie) {
         //     dd($request->categorie);
@@ -138,10 +129,71 @@ class HomeController extends Controller
         // dd($posts->count());
         return view('candidat.search-stage-grid', ['posts' => $posts, 'nbrPosts' => $nbrPosts]);
     }
-    public function ssl()
+    public function ssl(Request $request)
     {
-        $posts = POST::all();
+        // $posts = POST::all();
+        // $nbrPosts = $posts->count();
+        // return view('candidat.search-stage-list', ['posts' => $posts, 'nbrPosts' => $nbrPosts]);
+           // dd($request);
+        // $posts = POST::all();
+        $posts = DB::table('posts')
+            ->select('posts.id','posts.title','posts.duree','users.name','users.logo_path','posts.adresse_stage')
+            ->join('users', 'posts.user_id', 'users.id')
+            ->get();
+        // dd($posts);
+        // foreach($posts as $post){
+        //     dd($post->user->logo_path);
+        // }
         $nbrPosts = $posts->count();
+        // dd($request->categorie);
+        // if ($request->categorie) {
+            
+        //     // $posts = DB::table('posts')->where('category_id',$request->categorie)->get();
+        //     $posts = DB::table('posts')->select('*')
+        //     ->join('users', 'posts.user_id', 'users.id')
+        //     ->where('categorie','LIKE', '%' .$request->categorie.'%')
+        //     ->get();
+        //     $nbrPosts = $posts->count();
+        //     // dd($posts);
+        //     return view('candidat.search-stage-grid', ['posts' => $posts,'nbrPosts'=>$nbrPosts]);
+        
+        // }
+        if ($request->motcle) {
+            // dd($request->motcle);
+            // $posts = DB::table('posts')->where('title', 'LIKE', '%' . $request->motcle . '%')->get();
+            $posts = DB::table('posts')->select('*')
+                ->join('users', 'posts.user_id', 'users.id')
+                ->where('title', 'LIKE', '%' . $request->motcle . '%')
+                ->get();
+            $nbrPosts = $posts->count();
+            // dd($posts);
+            return view('candidat.search-stage-list', ['posts' => $posts, 'nbrPosts' => $nbrPosts]);
+        }
+        //  dd($request->adresse_stage);
+
+        
+        if ($request->localite) {
+            // dd($request->adresse_stage);
+            // $posts = DB::table('posts')->where('adresse_stage', 'LIKE', '%' . $request->localite . '%')->get();
+            $posts = DB::table('posts')->select('*')
+                ->join('users', 'posts.user_id', 'users.id')
+                ->where('adresse_stage', 'LIKE', '%' . $request->localite . '%')
+                ->get();
+            $nbrPosts = $posts->count();
+            // dd($posts);
+            return view('candidat.search-stage-list', ['posts' => $posts, 'nbrPosts' => $nbrPosts]);
+        }
+       
+        // dd($request);
+        // if ($request->categorie) {
+        //     dd($request->categorie);
+        //     $posts = DB::table('posts')->where('category_id','LIKE', '%' .$request->categorie. '%')->get();
+        //     $nbrPosts = $posts->count();
+        //     // dd($posts);
+        //     return view('candidat.search-stage-grid', ['posts' => $posts,'nbrPosts'=>$nbrPosts]);
+        // }
+        // dd($request->motcle);
+        // dd($posts->count());
         return view('candidat.search-stage-list', ['posts' => $posts, 'nbrPosts' => $nbrPosts]);
     }
     public function seg()

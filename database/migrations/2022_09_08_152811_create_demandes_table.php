@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('motivation_path')->nullable();
             $table->string('recommendation_path')->nullable();
             $table->string('carte_etudiant_path')->nullable();
+            $table->boolean('statut')->nullable();
             $table->unsignedBigInteger('etudiant_id');
             $table->foreign('etudiant_id')->references('id')->on('users');
             $table->unsignedBigInteger('entreprise_id');

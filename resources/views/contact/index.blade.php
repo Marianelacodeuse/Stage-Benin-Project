@@ -1,103 +1,128 @@
+@extends('layouts.app')
+@section('contact')
+<!-- ============================ Hero Banner  Start================================== -->
+<div class="page-title-wrap pt-img-wrap" style="background:url(assets/img/bn-4.jpg) no-repeat;">
+	<div class="container">
+		<div class="col-lg-12 col-md-12">
+			<div class="pt-caption text-center">
+				<h1>
+					Conatctez-nous</h1>
 
-			@extends('layouts.app')
-			@section('contact')
-			<!-- ============================ Hero Banner  Start================================== -->
-			<div class="page-title-wrap pt-img-wrap" style="background:url(assets/img/bn-4.jpg) no-repeat;">
-				<div class="container">
-					<div class="col-lg-12 col-md-12">
-						<div class="pt-caption text-center">
-							<h1>Get in Touch</h1>
-							<p><a href="index-2.html">Home</a><span class="current-page">Contact Us</span></p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+<!-- ============================ Hero Banner End ================================== -->
+
+<!-- ============================ Who We Are Start ================================== -->
+<section class="gray">
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-lg-5 col-md-5 bg-white">
+				<div class="contact-address">
+					<div class="add-box">
+						<div class="add-icon-box">
+							<i class="ti-home theme-cl"></i>
+						</div>
+						<div class="add-text-box">
+							<h4>Administrateurs</h4>
+							CEO: MOUTALABI Habib<br>
+							CEO: HOUNSOU Mariane<br>
+						</div>
+					</div>
+
+					<div class="add-box">
+						<div class="add-icon-box">
+							<i class="ti-map-alt theme-cl"></i>
+						</div>
+						<div class="add-text-box">
+							<h4>Localisation</h4>
+							Cotonou (Littoral - Bénin)<br>
+							Gbégamey, au bord du pavé avant le marché
+						</div>
+					</div>
+
+					<div class="add-box">
+						<div class="add-icon-box">
+							<i class="ti-email theme-cl"></i>
+						</div>
+						<div class="add-text-box">
+							<h4>Emails</h4>
+							moutalabihabib2002@gmail.com<br>
+							hounsounorma@gmail.com<br>
+						</div>
+					</div>
+					<div class="add-box">
+						<div class="add-icon-box">
+							<i class="ti-headphone theme-cl"></i>
+						</div>
+						<div class="add-text-box">
+							<h4>Téléphones</h4>
+							+229 94 43 98 34<br>
+							+229 62 40 49 07<br>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="clearfix"></div>
-			<!-- ============================ Hero Banner End ================================== -->
-			
-			<!-- ============================ Who We Are Start ================================== -->
-			<section class="gray">
-				<div class="container">
-					
-					<div class="row">
-						
-						<div class="col-lg-5 col-md-5 bg-white">
-							<div class="contact-address">
-								<div class="add-box">
-									<div class="add-icon-box">
-										<i class="ti-home theme-cl"></i>
-									</div>
-									<div class="add-text-box">
-										<h4>Workio Limited</h4>
-										CEO: Sagar Singh<br>
-										CFO: Shaurya Singh<br>
-									</div>
-								</div>
-								
-								<div class="add-box">
-									<div class="add-icon-box">
-										<i class="ti-map-alt theme-cl"></i>
-									</div>
-									<div class="add-text-box">
-										<h4>Head Offices</h4>
-										810 Clis Road,<br>
-										Indraprash NW11 0PU, India
-									</div>
-								</div>
-								
-								<div class="add-box">
-									<div class="add-icon-box">
-										<i class="ti-email theme-cl"></i>
-									</div>
-									<div class="add-text-box">
-										<h4>Emails</h4>
-										Workio@gmail.com<br>
-										my.Workio@gmail.com<br>
-									</div>
-								</div>
-								<div class="add-box">
-									<div class="add-icon-box">
-										<i class="ti-headphone theme-cl"></i>
-									</div>
-									<div class="add-text-box">
-										<h4>Calls</h4>
-										91+ 123 456 9857<br>
-										91+ 258 548 5426<br>
-									</div>
-								</div>
+			<div class="col-lg-7 col-md-7">
+				<div class="contact-form">
+					@if(Session::has('message'))
+					<div class="alert alert-success">{{Session::get('message')}}</div>
+					@endif
+
+					<form action="{{url('/contact/sendMail')}}" method="post">
+						@csrf
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label>Nom Complet</label>
+								<input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Entrez votre nom ">
+
+								@error('name')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+							<div class="form-group col-md-6">
+								<label>Email</label>
+								<input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Entrez votre adresse mail">
+								@error('email')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
 							</div>
 						</div>
-						<div class="col-lg-7 col-md-7">
-							<div class="contact-form">
-								<form>
-									<div class="form-row">
-										<div class="form-group col-md-6">
-										  <label>Name</label>
-										  <input type="email" class="form-control" placeholder="Name">
-										</div>
-										<div class="form-group col-md-6">
-										  <label>Email</label>
-										  <input type="email" class="form-control" placeholder="Email">
-										</div>
-									</div>
-									<div class="form-group">
-										<label>Subject</label>
-										<input type="text" class="form-control" placeholder="Subject">
-									</div>
-									<div class="form-group">
-										<label>Message</label>
-										<textarea class="form-control" placeholder="Type Here..."></textarea>
-									</div>
-									<button type="submit" class="btn btn-primary">Send Request</button>
-								</form>
-							</div>
+						<div class="form-group">
+							<label>Objet</label>
+							<input type="text" name="subject" class="form-control @error('subject') is-invalid @enderror" placeholder="Ecrivez l'objet du mail">
+							@error('subject')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
 						</div>
-						
-					</div>
-					
+						<div class="form-group">
+							<label>Message</label>
+							<textarea class="form-control @error('msg') is-invalid @enderror" name="msg" placeholder="Ecvrivez votre message ici..."></textarea>
+							@error('msg')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+						<button type="submit" class="btn btn-primary full-width">Envoyer</button>
+					</form>
 				</div>
-			</section>
-			<div class="clearfix"></div>
-			<!-- ============================ Who We Are End ================================== -->
-			@endsection
-			
+			</div>
+
+		</div>
+
+	</div>
+</section>
+<div class="clearfix"></div>
+<!-- ============================ Who We Are End ================================== -->
+@endsection

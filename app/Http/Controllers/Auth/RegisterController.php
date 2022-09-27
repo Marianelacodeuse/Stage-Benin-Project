@@ -52,8 +52,13 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required','string','max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'matricule' => ['required', 'string','email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role' => ['required', 'string'],
+        ],
+        [
+            'required' => 'Le champs :attribute ne doit pas etre vide.',
+            'password.confirmed' => 'Soit gentil et entre un bon mot de passe',
         ]);
     }
 
@@ -63,11 +68,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data, Request $request)
+    protected function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'matricule' => $data['matricule'],
             'role' => $data['role'], 
             'password' => Hash::make($data['password']),
         ]);

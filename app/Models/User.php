@@ -22,6 +22,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'matricule',
         'password',
         'role',
         'age',
@@ -32,10 +33,15 @@ class User extends Authenticatable
         'telephone',
         'adresse',
         'facebook_url',
-        'linkdin_url',
+        'linkedin_url',
+        'instagrame_url',
+        'twitter_url',
         'description',
         'logo_path',
         'card_path',
+        'site_url',
+        'ville',
+        'cv_path'
     ];
 
     public function posts()

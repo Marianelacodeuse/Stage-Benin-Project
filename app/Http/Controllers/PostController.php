@@ -20,32 +20,14 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderByDesc('id')->get();
-        // $users=User::all();
         foreach ($posts as $post) {
-            // dd($post->created_at);
             $date = $post->created_at;
-            // dd($date);
             $dateCreate = new Carbon($date);
             $now = Carbon::now();
-            // dd($now);
             $diff = $dateCreate->diffAsCarbonInterval($now);
-            // dd($diff);
             return view('entreprise.entreprise-dashboard', compact('diff'));
-
-            // return dd($diff);
         };
-        // dd($posts);
-        // foreach($posts as $post){
-        //    return $diff;
-        // }
         return view('entreprise.entreprise-dashboard', ['posts' => $posts]);
-
-        // dd($dateCreate);
-        // $now=Carbon::now();
-
-        // $diff=$dateCreate->diffInSeconds($now);
-        // dd($diff);
-
     }
 
     /**
@@ -54,41 +36,98 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-
     {
-        // dd($request);
+        
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'duree' => 'required',
+            'niveau_reqcui' => 'required',
+            'categorie' => 'required',
+            'adresse_stage' => 'required',
+
+        ]);
+
+        // dd($request->all());
         $post = new Post();
-        // dd($post);
         $post->title = $request->title;
         $post->duree = $request->duree;
+        $post->adresse_stage = $request->adresse_stage;
         $post->nbr_place = $request->nbr_place;
-        $post->niveau_recqui= $request->niveau_recqui;
+        $post->niveau_recqui = $request->niveau_recqui;
         $post->expiration = $request->expiration;
-        $post->description = $request->description; 
+        $post->description = $request->description;
         $post->gratification = $request->gratification;
         $post->user_id = auth()->id();
-        $post->category_id = $request->category;
-
+        $post->categorie = $request->category;
         $post->save();
-        // return ($post->save());
-        // Post::create([
-
-        //     'title' => $request->title,
-        //     'duree' => $request->duree,
-        //     'expiration' => $request->expiration,
-        //     'description' => $request->description,
-        //     'user_id' => auth()->id(),
-        //     'category_id' => $request->category,
-        // ]);
-        return back()->with('success', 'Offre de stage créer avec succès');
+        if ($post->save()) {
+            return back()->with('success', 'Offre de stage créer avec succès');
+        } else {
+            return back()->with('error', "Une erreur s'est produite. Veillez à remplir tous les champs");
+        }
+        
+        // if (Post::create([
+        //     'title'=>$request->title,
+        //     'duree'=>$request->duree,
+        //     'adresse_stage'=>$request->adresse_stage,
+        //     'nbr_place'=>$request->nbr_place,
+        //     'niveau_recqui'=>$request->niveau_recqui,
+        //     'expiration'=>$request->expiration,
+        //     'descripition'=>$request->descripition,
+        //     'gratification'=>$request->gratification,
+        //     'user_id'=>auth()->id(),
+        //     'categorie'=>$request->category,
+        // ])) {
+        //     return back()->with('success', 'Offre de stage créer avec succès');
+        // } else {
+        //     return back()->with('error', "Une erreure s'est produite. Veillez à remplir tous les champs");
+        // }
     }
-    public function createDemande($id)
+    public function createDemande($id, Request $request)
     {
-        Demande::create([
-            'etudiant_id' => auth()->user()->id,
-            'entreprise_id' => $id,
+        // dd($request);
+        $request->validate([
+            'motivation' => ['required'],
+            'recommandation' => ['required'],
+
         ]);
-        return back()->with('message', 'Demande soumis avec succes');
+        $demande = new Demande();
+
+        $path = public_path() . '/uploads/pdf/';
+        $motivation = $request->motivation;
+        // dd($cv);
+        $motivationname = $motivation->getClientOriginalName();
+        // dd($cvname);
+        $motivation->move($path, $motivationname);
+
+        //for update in table
+        $demande->motivation_path = $motivationname;
+
+        $recommandation = $request->recommandation;
+        // dd($cv);
+        $recommandationname = $recommandation->getClientOriginalName();
+        // dd($cvname);
+        $recommandation->move($path, $recommandationname);
+
+        //for update in table
+        $demande->recommendation_path = $recommandationname;
+        // $user->update(['cv_path' => $cvname]);
+        $demande->etudiant_id = auth()->user()->id;
+        $demande->entreprise_id = $id;
+        $demande->save();
+        if (!$demande->save()) {
+
+            return back()->with('error', 'Certaines informations manquent. Veuillez recommencer');
+        } else {
+            return back()->with('message', 'Demande soumis avec succes');
+        }
+        // Demande::create([
+        //     'etudiant_id' => auth()->user()->id,
+        //     'entreprise_id' => $id,
+
+        // ]);
+
     }
     public function showEtuDemande()
     {
@@ -100,6 +139,21 @@ class PostController extends Controller
         $demandes = Demande::where('entreprise_id', auth()->user()->id)->get();
         // dd($demandes);
         return view('entreprise.entreprise-dashboard', ['demandes' => $demandes]);
+    }
+    public function changeDemandeStatus(Request $request)
+    {
+
+        if ($request->accepter) {
+            // dd($request->accepter);
+            $demandes = DB::table('demandes')->where('id', $request->id)->update(['statut' => 1]);
+            // dd($demandes);
+        } else {
+
+            $demandes = DB::table('demandes')->where('id', $request->id)->update(['statut' => 0]);
+            // dd($demandes);
+        }
+
+        return back();
     }
 
     /**

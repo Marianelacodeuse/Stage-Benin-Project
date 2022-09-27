@@ -9,7 +9,9 @@ class Demande extends Model
 {
     use HasFactory;
     protected $table = 'demandes';
-    protected $fillable = ['cv_path', 'motivation_path', 'recommendation_path', 'carte_etudiant_path', 'etudiant_id', 'entreprise_id'];
+    protected $fillable = ['cv_path', 'motivation_path', 'recommendation_path', 'carte_etudiant_path', 'etudiant_id', 'entreprise_id','statut'];
+
+
 
     public function etudiants()
     {
@@ -17,5 +19,12 @@ class Demande extends Model
     }
     public function entreprises(){
         return $this->belongsTo(User::class,'entreprise_id');
+    }
+    public function getStatusAttribute(){
+        if(is_null($this->statut)){
+            return -1;
+        }else{
+            return $this->statut;
+        }
     }
 }

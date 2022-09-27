@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('main')
 <!-- ========================================Hero 1=====================================  -->
-<div class="slide-wrapper owl-carousel owl-theme" id="hero-slider" style="background:linear-gradient(rgba(9, 32, 50, 0.048), rgba(9, 32, 50, 0.11)),url({{ asset('/assets/img/étudiante4.jpg') }});background-repeat: no-repeat;background-size: cover; background-position: center;background-attachment: fixed;">
+<div class="slide-wrapper owl-carousel owl-theme" id="hero-slider">
     <div class="slide1 pt-5 d-flex align-items-center">
         <div class="container">
             <div class="row">
@@ -9,34 +9,10 @@
                     <h1 class="display-2 my-3 text-white text-uppercase">StageBenin</h1>
                     <h6 class="text-white">Trouver votre lieu de stage avec StageBenin</h6>
                     <a href="{{route('candidat-dashboard')}}" class="btn btn-brand">Je suis un étudiant</a>
-                    <!-- <a href="" class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#modalEntreprise">Je suis un étudiant</a> -->
+
                     <a href="{{route('entreprise-dashboard')}}" class="btn btn-outline-light ms-md-3">Je suis une entreprise</a>
                 </div>
-                <!-- <form action="">
-                    <div class="col-12 text-center form-group pt-5">
-                        <input type="text" name="competences" size="30" placeholder="Mots-clé/Compétences" />
-                        <select>
-                            <option selected>Région</option>
-                            <option value="Calavi">Abomey-Calavi</option>
-                            <option value="Cotonou">Cotonou</option>
-                            <option value="Porto-Novo">Porto-Novo</option>
-                            <option value="Parakou">Parakou</option>
-                            <option value="Allada">Allada</option>
-                            <option value="Dassa">Dassa</option>
-                        </select>
-                        <select>
-                            <option selected>Domaines</option>
-                            <option value="Données">Analysse de données</option>
-                            <option value="Veb">Développement web</option>
-                            <option value="Reseau">Administration de base de données</option>
-                            <option value="Informatique">Sécurité de système d'information</option>
-                            <option value="Medecine">Médecine</option>
-                            <option value="Pharmacie">Auxilliaire de pharmacie</option>
-                            <option value="Graphisme">Graphisme</option>
-                        </select>
-                        <button type="submit" class="btn2 my-3">Rechercher un stage</button>
-                    </div>
-                </form> -->
+                
                 <form action="{{url('/candidat/search-stage')}}" method="POST">
                     @csrf
                     <div class="col-12 text-center form-group pt-5">
@@ -67,117 +43,6 @@
             </div>
         </div>
     </div>
-
-    <!-- <div class="slide2 pt-5 d-flex align-items-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 text-center">
-            <h1 class="display-2 my-3 text-white text-uppercase">StageBenin</h1>
-            <h6 class="text-white">Trouver votre lieu de stage avec StageBenin</h6>
-            <a href="" class="btn btn-brand">Je suis un étudiant</a>
-            <a href="" class="btn btn-outline-light ms-md-3">Je suis une entreprise</a>
-        </div>
-        <div class="col-12 text-center form-group pt-5">
-          <input type="text" name="competences"   size="30"  placeholder="Mots-clé/Compétences" />
-          <select>
-            <option selected>Région</option>
-            <option value="Calavi">Abomey-Calavi</option>
-            <option value="Cotonou">Cotonou</option>
-            <option value="Porto-Novo">Porto-Novo</option>
-            <option value="Parakou">Parakou</option>
-            <option value="Allada">Allada</option>
-            <option value="Dassa">Dassa</option>
-            </select>
-          <select  ">
-              <option selected>Domaines</option>
-              <option value="Données">Analysse de données</option>
-              <option value="Veb">Développement web</option>
-              <option value="Reseau">Administration de base de données</option>
-              <option value="Informatique">Sécurité de système d'information</option>
-              <option value="Medecine">Médecine</option>
-              <option value="Pharmacie">Auxilliaire de pharmacie</option>
-              <option value="Graphisme">Graphisme</option>
-           </select>
-           <button type="submit" class="btn2 my-3">Rechercher un stage</button>
-        </div>
-
-        </div>
-      </div>
-    </div> -->
-
-    <!-- <div class="slide3 pt-5 d-flex align-items-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 text-center">
-            <h1 class="display-2 my-3 text-white text-uppercase">StageBenin</h1>
-            <h6 class="text-white">Trouver votre lieu de stage avec StageBenin</h6>
-            <a href="" class="btn btn-brand">Je suis un étudiant</a>
-            <a href="" class="btn btn-outline-light ms-md-3">Je suis une entreprise</a>
-        </div>
-        <div class="col-12 text-center form-group pt-5">
-          <input type="text" name="competences"   size="30"  placeholder="Mots-clé/Compétences" />
-          <select>
-            <option selected>Région</option>
-            <option value="Calavi">Abomey-Calavi</option>
-            <option value="Cotonou">Cotonou</option>
-            <option value="Porto-Novo">Porto-Novo</option>
-            <option value="Parakou">Parakou</option>
-            <option value="Allada">Allada</option>
-            <option value="Dassa">Dassa</option>
-            </select>
-          <select  ">
-              <option selected>Domaines</option>
-              <option value="Données">Analysse de données</option>
-              <option value="Veb">Développement web</option>
-              <option value="Reseau">Administration de base de données</option>
-              <option value="Informatique">Sécurité de système d'information</option>
-              <option value="Medecine">Médecine</option>
-              <option value="Pharmacie">Auxilliaire de pharmacie</option>
-              <option value="Graphisme">Graphisme</option>
-           </select>
-           <button type="submit" class="btn2 my-3">Rechercher un stage</button>
-        </div>
-
-        </div>
-      </div>
-    </div> -->
-
-    <!-- <div class="slide4 pt-5 d-flex align-items-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 text-center">
-            <h1 class="display-2 my-3 text-white text-uppercase">StageBenin</h1>
-            <h6 class="text-white">Trouver votre lieu de stage avec StageBenin</h6>
-            <a href="" class="btn btn-brand">Je suis un étudiant</a>
-            <a href="" class="btn btn-outline-light ms-md-3">Je suis une entreprise</a>
-        </div>
-        <div class="col-12 text-center form-group pt-5">
-          <input type="text" name="competences"   size="30"  placeholder="Mots-clé/Compétences" />
-          <select>
-            <option selected>Région</option>
-            <option value="Calavi">Abomey-Calavi</option>
-            <option value="Cotonou">Cotonou</option>
-            <option value="Porto-Novo">Porto-Novo</option>
-            <option value="Parakou">Parakou</option>
-            <option value="Allada">Allada</option>
-            <option value="Dassa">Dassa</option>
-            </select>
-          <select  ">
-              <option selected>Domaines</option>
-              <option value="Données">Analysse de données</option>
-              <option value="Veb">Développement web</option>
-              <option value="Reseau">Administration de base de données</option>
-              <option value="Informatique">Sécurité de système d'information</option>
-              <option value="Medecine">Médecine</option>
-              <option value="Pharmacie">Auxilliaire de pharmacie</option>
-              <option value="Graphisme">Graphisme</option>
-           </select>
-           <button type="submit" class="btn2 my-3">Rechercher un stage</button>
-        </div>
-
-        </div>
-      </div>
-    </div> -->
 </div>
 <!-- =============================================Stages populaires========================= -->
 <section>
@@ -194,7 +59,7 @@
                     <div class="icon-box">
                         <i class="fa-solid fa-tower-cell"></i>
                     </div>
-                    <h5><a href="#">Télécommunications</a></h5>
+                    <h5><a href="{{route('ssg')}}">Télécommunications</a></h5>
                     <span>10 Stages</span>
                 </div>
             </div>
@@ -203,7 +68,7 @@
                     <div class="icon-box">
                         <i class="fa-solid fa-fill-drip"></i>
                     </div>
-                    <h5><a href="#">Graphisme</a></h5>
+                    <h5><a href="{{route('ssg')}}">Design & Graphisme</a></h5>
                     <span>15 Stages</span>
                 </div>
             </div>
@@ -212,7 +77,7 @@
                     <div class="icon-box">
                         <i class="fa-solid fa-desktop"></i>
                     </div>
-                    <h5><a href="#">Design & Multimédia</a></h5>
+                    <h5><a href="{{route('ssg')}}">Devellopement web</a></h5>
                     <span>08 Stages</span>
                 </div>
             </div>
@@ -221,7 +86,7 @@
                     <div class="icon-box">
                         <i class="fa-solid fa-scissors"></i>
                     </div>
-                    <h5><a href="#">Couture</a></h5>
+                    <h5><a href="{{route('ssg')}}">Banque & Assurance</a></h5>
                     <span>06 Stages</span>
                 </div>
             </div>
@@ -230,7 +95,7 @@
                     <div class="icon-box">
                         <i class="fa-solid fa-wifi"></i>
                     </div>
-                    <h5><a href="#">Réseau informatique</a></h5>
+                    <h5><a href="{{route('ssg')}}">Réseaux informatiques</a></h5>
                     <span>10 Stages</span>
                 </div>
             </div>
@@ -239,7 +104,7 @@
                     <div class="icon-box">
                         <i class="fa-solid fa-plate-wheat"></i>
                     </div>
-                    <h5><a href="#">Cuisine</a></h5>
+                    <h5><a href="{{route('ssg')}}">Commerce & Marketing</a></h5>
                     <span>04 Stages</span>
                 </div>
             </div>
@@ -256,8 +121,9 @@
                 <p class="mb-0">Offres disponibles</p>
             </div>
             <div class="col-lg-4">
+                <!-- <div class="display-4"> <i class="fa fa-add"></i> {{$totalEtudiants}}</div> -->
                 <div class="display-4">{{$totalEtudiants}}</div>
-                <p class="mb-0">Offres pourvues</p>
+                <p class="mb-0">Etudiants </p>
             </div>
             <div class="col-lg-4">
                 <div class="display-4">{{$totalEntreprises}}</div>
@@ -425,7 +291,7 @@
 </section>
 
 <!-- ================================================Avis internautes================================ -->
-<section id="avis" class="bg-cover">
+<!-- <section id="avis" class="bg-cover">
     <div class="container">
         <div class="row">
             <div class="col-12 intro-section">
@@ -517,7 +383,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 
 

@@ -4,7 +4,7 @@
 <!-- ============================================================== -->
 
 <!-- ======================= Start Banner ===================== -->
-<section class="page-title-banner" style="background-image:url(public/assets/img/des-6.jpg);">
+<section class="page-title-banner">
 	<div class="container">
 		<div class="row m-0 align-items-end detail-swap">
 			<div class="tr-list-wrap">
@@ -14,14 +14,14 @@
 					</div>
 					<div class="tr-list-info">
 						<h4 class="mb-1">{{$user->name}}</h4>
-						<p class="mb-1 text-warning">{{$user->specialite}}</p>
-						<p class="mb-1"><i class="ti-location-pin mr-2"></i>{{$user->ville}}</p>
+						<p class="mb-1 text-warning">{{$user->filiere_secteur}}</p>
+						<p class="mb-1"><i class="ti-location-pin mr-2"></i>{{$user->adresse}}</p>
 					</div>
 				</div>
 				<div class="listing-detail_right">
 					<div class="listing-detail-item">
 						<!-- <a href="#" class="btn btn-list full-width mb-2 text-warning"><i class="ti-check mr-2"></i> Shortlist Now</a><br> -->
-						<a href="#" class="btn btn-list full-width color--linkedin"><i class="ti-email mr-2"></i> Send A Message</a>
+						<!-- <a href="#" class="btn btn-list full-width color--linkedin"><i class="ti-email mr-2"></i> Send A Message</a> -->
 					</div>
 				</div>
 			</div>
@@ -43,7 +43,7 @@
 						<h4><i class="ti-info"></i>Aperçu du candidat</h4>
 					</div>
 					<div class="tr-single-body">
-						<p>{{strip_tags($user->description)}} {{Str::limit($user->description)}}</p>
+						<p>{!!$user->description!!}</p>
 					</div>
 				</div>
 
@@ -63,14 +63,14 @@
 			<!-- Sidebar Start -->
 			<div class="col-md-4 col-sm-12">
 
-				<div class="offer-btn-wrap mb-4">
+				<!-- <div class="offer-btn-wrap mb-4">
 					<a href="#" class="btn btn-info btn-md full-width"><i class="mr-2 ti-bookmark"></i>Dowanload Resume</a>
-				</div>
+				</div> -->
 
 				<!-- Candidate Detail -->
 				<div class="tr-single-box">
 					<div class="tr-single-header">
-						<h4><i class="ti-direction"></i> Candidate Detail</h4>
+						<h4><i class="ti-direction"></i> Détail du Candidat</h4>
 					</div>
 
 					<div class="tr-single-body">
@@ -118,7 +118,7 @@
 									</div>
 									<div class="icon-box-text">
 										<strong class="d-block">Filiere</strong>
-										{{$user->filiere}}
+										{{$user->filiere_secteur}}
 									</div>
 								</div>
 							</li>
@@ -130,7 +130,7 @@
 									</div>
 									<div class="icon-box-text">
 										<strong class="d-block">Niveau</strong>
-										{{$user->niveau}}
+										{{$user->niveau_taille}}
 									</div>
 								</div>
 							</li>
@@ -143,7 +143,7 @@
 				<!-- Candidate Address -->
 				<div class="tr-single-box">
 					<div class="tr-single-header">
-						<h4><i class="ti-direction"></i> Candidate Address</h4>
+						<h4><i class="ti-direction"></i> Adresse du Candidat</h4>
 					</div>
 
 					<div class="tr-single-body">
@@ -208,7 +208,7 @@
 				<!-- Social Links -->
 				<div class="tr-single-box">
 					<div class="tr-single-header">
-						<h4><i class="ti-share"></i> Social Profiles</h4>
+						<h4><i class="ti-share"></i> Comptes sociaux</h4>
 					</div>
 
 					<div class="tr-single-body">

@@ -6,7 +6,7 @@
 
 
 <!-- ============================ Search Form Start================================== -->
-<section class="light-search banncer-cent bg-theme" data-overlay="0">
+<!-- <section class="light-search banncer-cent bg-theme" data-overlay="0">
 	<div class="container">
 
 		<form class="search-big-form no-border search-shadow">
@@ -46,11 +46,46 @@
 		</form>
 
 	</div>
+</section> -->
+<section>
+	<div class="container">
+		<div class="row row-stage">
+		<form action="{{url('/candidat/search-entreprise')}}" method="POST">
+			@csrf
+			<div class="col-12 text-center form-group pt-3">
+				<input type="text" name="motcle" size="30" placeholder="Mots-clé" class="text" />
+				<select name="localite" class="text">
+					<option value="null" selected disable hidden>Region</option>
+					<option value="Calavi">Abomey-Calavi</option>
+					<option value="Cotonou">Cotonou</option>
+					<option value="Porto-Novo">Porto-Novo</option>
+					<option value="Parakou">Parakou</option>
+					<option value="Allada">Allada</option>
+					<option value="Dassa">Dassa</option>
+				</select>
+				<select name="categorie" class="text">
+					<option value="null" selected disable hidden>Secteur</option>
+					<option value="Informatique">Informatique </option>
+					<option value="Transport">Transport & Logistique</option>
+					<option value="Informatique">Devellopement web</option>
+					<option value="Informatique">Réseaux</option>
+					<option value="Marketing">Marketing</option>
+					<option value="Banque">Assurance </option>
+					<option value="Graphisme">Graphisme</option>
+				</select>
+
+				<button type="submit" class="btn2 my-3">Rechercher une entreprise</button>
+			</div>
+		</form>
+
+		</div>
+	</div>
+
 </section>
 <!-- ============================ Search Form End ================================== -->
 
 <!-- ============================ Breadcrums Start================================== -->
-<div class="container-fluid breadcrumbs breadcrumbs-light">
+<!-- <div class="container-fluid breadcrumbs breadcrumbs-light">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -66,7 +101,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 <div class="clearfix"></div>
 <!-- ============================ Breadcrums End ================================== -->
 
@@ -75,7 +110,97 @@
 	<div class="container">
 
 		<div class="row">
-			<div class="col-xl-12 col-lg-12">
+
+
+			<div class="col-xl-3 col-lg-4">
+
+				<div class="d-block d-none d-sm-block d-md-none mb-3">
+					<a href="javascript:void(0)" onclick="openNav()" class="btn btn-info full-width btn-md"><i class="ti-filter mrg-r-5"></i>Filter Search</a>
+				</div>
+
+				<div class="sidebar-container d-sm-none d-md-block d-none">
+
+					<!-- Category -->
+					<div class="sidebar-widget">
+						<div>
+							<h5 class="mb-2">Catégories</h5>
+							<div class="side-imbo">
+								<select class="text1">
+									<option selected>Domaines</option>
+									<option value="Données">Analysse de données</option>
+									<option value="Veb">Développement web</option>
+									<option value="Reseau">Administration de base de données</option>
+									<option value="Informatique">Sécurité de système d'information</option>
+									<option value="Medecine">Médecine</option>
+									<option value="Pharmacie">Auxilliaire de pharmacie</option>
+									<option value="Graphisme">Graphisme</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- Experince -->
+					<div class="sidebar-widget">
+						<div>
+							<h5 class="mb-2">Skills</h5>
+							<div class="side-imbo">
+								<select class="text1">
+									<option selected>Domaines</option>
+									<option value="Données">Analysse de données</option>
+									<option value="Veb">Développement web</option>
+									<option value="Reseau">Administration de base de données</option>
+									<option value="Informatique">Sécurité de système d'information</option>
+									<option value="Medecine">Médecine</option>
+									<option value="Pharmacie">Auxilliaire de pharmacie</option>
+									<option value="Graphisme">Graphisme</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- Experince -->
+					<div class="sidebar-widget">
+						<div>
+							<h5 class="mb-2">Experince</h5>
+							<div class="side-imbo">
+								<select class="text1">
+									<option selected>Domaines</option>
+									<option value="Données">Analysse de données</option>
+									<option value="Veb">Développement web</option>
+									<option value="Reseau">Administration de base de données</option>
+									<option value="Informatique">Sécurité de système d'information</option>
+									<option value="Medecine">Médecine</option>
+									<option value="Pharmacie">Auxilliaire de pharmacie</option>
+									<option value="Graphisme">Graphisme</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- Job Type -->
+					<div class="sidebar-widget">
+						<div>
+							<h5 class="mb-2">Job Type</h5>
+							<div class="side-imbo">
+								<select class="text1">
+									<option selected>Domaines</option>
+									<option value="Données">Analysse de données</option>
+									<option value="Veb">Développement web</option>
+									<option value="Reseau">Administration de base de données</option>
+									<option value="Informatique">Sécurité de système d'information</option>
+									<option value="Medecine">Médecine</option>
+									<option value="Pharmacie">Auxilliaire de pharmacie</option>
+									<option value="Graphisme">Graphisme</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<input type="submit" class="btn btn-info btn-md full-width" value="Envoyer">
+				</div>
+			</div>
+
+			<div class="col-xl-9 col-lg-8">
 
 				<!-- Row -->
 				<div class="row">
@@ -100,25 +225,25 @@
 
 					@foreach($users as $user)
 					<!-- Single Employer -->
-					<div class="col-lg-4 col-md-4 col-sm-6">
+					<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
 						<div class="employer-wrap small">
 
 							<div class="employer-cover-image" style="background-image: url(assets/img/des-2.jpg)">
 								<div class="employer-thumb">
-									<a href="#"><img alt="" src="assets/img/asana.png" class="avatar avatar-120 photo"></a>
+									<a href="#"><img alt="" src="{{asset('uploads/images/'.$user->logo_path)}}" class="avatar avatar-120 photo"></a>
 								</div>
 							</div>
 							<div class="employer-detail">
 								<div class="employer-detail-inner">
 									<h4 class="employer-title"><a class="theme-cl" href="{{url('entreprise/entreprise-detail/'.$user->id)}}">{{$user->name}}</a></h4>
-									<div class="employer-locations"><i class="ti-location-pin text-danger"></i><a href="#">London, UK</a></div>
-									<div class="employer-rating">
+									<div class="employer-locations"><i class="ti-location-pin text-danger"></i><a href="#">{{$user->adresse}}</a></div>
+									<!-- <div class="employer-rating">
 										<i class="ti-star filled"></i>
 										<i class="ti-star filled"></i>
 										<i class="ti-star filled"></i>
 										<i class="ti-star filled"></i>
 										<i class="ti-star"></i>
-									</div>
+									</div> -->
 									<a class="total-vacancy text-success" href="{{url('entreprise/entreprise-detail/'.$user->id)}}">Voir les details</a>
 								</div>
 							</div>

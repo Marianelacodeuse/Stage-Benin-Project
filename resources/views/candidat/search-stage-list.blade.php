@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('search-entreprise-list')
 <!-- ============================ Search Form Start================================== -->
-<section class="light-search banncer-cent bg-theme" data-overlay="0">
+<!-- <section class="light-search banncer-cent bg-theme" data-overlay="0">
 	<div class="container">
 
 		<form class="search-big-form no-border search-shadow">
@@ -41,10 +41,80 @@
 		</form>
 
 	</div>
+</section> -->
+<section>
+	<div class="container">
+		<div class="row row-stage">
+			<form action="{{url('/candidat/search-stage')}}" method="POST">
+				@csrf
+				<div class="col-12 text-center form-group pt-3">
+					<input type="text" name="motcle" size="30" placeholder="Mots-clé/Compétences" class="text" />
+					<select name="localite" class="text">
+						<option value="null" selected disable hidden>Region</option>
+						<option value="Calavi">Abomey-Calavi</option>
+						<option value="Cotonou">Cotonou</option>
+						<option value="Porto-Novo">Porto-Novo</option>
+						<option value="Parakou">Parakou</option>
+						<option value="Allada">Allada</option>
+						<option value="Dassa">Dassa</option>
+					</select>
+					<select name="categorie" class="text">
+						<option value="null" selected disable hidden>Domaines</option>
+						<option value="Informatique">Informatique </option>
+						<option value="Transport">Transport & Logistique</option>
+						<option value="Informatique">Devellopement web</option>
+						<option value="Informatique">Réseaux</option>
+						<option value="Marketing">Marketing</option>
+						<option value="Banque">Assurance </option>
+						<option value="Graphisme">Graphisme</option>
+					</select>
+
+					<button type="submit" class="btn2 my-3">Rechercher un stage</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+
 </section>
+
+<!-- <section class="light-search banncer-cent bg-theme" data-overlay="0">
+	<div class="container">
+
+		
+		<form action="{{url('/candidat/search-stage')}}" method="POST">
+			@csrf
+			<div class="col-12 text-center form-group pt-5">
+				<input type="text" name="motcle" size="30" placeholder="Mots-clé/Compétences" />
+				<select name="localite">
+					<option value="null" selected disable hidden>Region</option>
+					<option value="Calavi">Abomey-Calavi</option>
+					<option value="Cotonou">Cotonou</option>
+					<option value="Porto-Novo">Porto-Novo</option>
+					<option value="Parakou">Parakou</option>
+					<option value="Allada">Allada</option>
+					<option value="Dassa">Dassa</option>
+				</select>
+				<select name="categorie">
+					<option value="null" selected disable hidden>Domaines</option>
+					<option value="Informatique">Informatique </option>
+					<option value="Transport">Transport & Logistique</option>
+					<option value="Informatique">Devellopement web</option>
+					<option value="Informatique">Réseaux</option>
+					<option value="Marketing">Marketing</option>
+					<option value="Banque">Assurance </option>
+					<option value="Graphisme">Graphisme</option>
+				</select>
+
+				<button type="submit" class="btn2 my-3">Rechercher un stage</button>
+			</div>
+		</form>
+
+	</div>
+</section> -->
 <!-- ============================ Search Form End ================================== -->
 <!-- ============================ Breadcrums Start================================== -->
-<div class="container-fluid breadcrumbs breadcrumbs-light">
+<!-- <div class="container-fluid breadcrumbs breadcrumbs-light">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -60,7 +130,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 <div class="clearfix"></div>
 <!-- ============================ Breadcrums End ================================== -->
 
@@ -70,15 +140,93 @@
 
 		<div class="row">
 
-			
+			<div class="col-xl-3 col-lg-4">
 
-			<div class="col-xl-12 col-lg-12">
+				<div class="d-block d-none d-sm-block d-md-none mb-3">
+					<a href="javascript:void(0)" onclick="openNav()" class="btn btn-info full-width btn-md"><i class="ti-filter mrg-r-5"></i>Filter Search</a>
+				</div>
+
+				<div class="sidebar-container d-sm-none d-md-block d-none">
+					<form action="{{url('/candidat/search-stage')}}" method="POST">
+						@csrf
+						<!-- Category -->
+						<div class="sidebar-widget">
+							<div>
+								<h5 class="mb-2">Catégories</h5>
+								<div class="side-imbo">
+									<select class="text1" name="categorie">
+
+										<option value="" selected hidden disable>Selectionner une catégorie</option>
+										<option value="Informatique,Telecom,Internet">Informatique,Telecom,Internet</option>
+										<option value="Transport & Logistique">Transport & Logistique</option>
+										<option value="Banque,Assurance,Finance">Banque,Assurance,Finance</option>
+										<option value="Distibution,Commerce">Distibution,Commerce</option>
+										<option value="Fonction publique,Administration">Fonction publique,Administration</option>
+										<option value="Management">Management</option>
+
+									</select>
+								</div>
+							</div>
+						</div>
+						<!-- Régions -->
+						<div class="sidebar-widget" name="localite">
+							<div>
+								<h5 class="mb-2">Régions</h5>
+								<div class="side-imbo">
+									<select class="text1">
+										<option value="null" selected disable hidden>Sélectionner une région</option>
+										<option value="Calavi">Abomey-Calavi</option>
+										<option value="Cotonou">Cotonou</option>
+										<option value="Porto-Novo">Porto-Novo</option>
+										<option value="Parakou">Parakou</option>
+										<option value="Allada">Allada</option>
+										<option value="Dassa">Dassa</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<!-- Niveau -->
+						<div class="sidebar-widget">
+							<div>
+								<h5 class="mb-2">Niveau recqui</h5>
+								<div class="side-imbo">
+									<select class="text1">
+										<option value="" selected hidden disable>Selectionner le niveau recquis</option>
+										<option value="1ere année">1ere année</option>
+										<option value="2eme année">2eme année</option>
+										<option value="3eme année">3e année</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+
+						<!-- Experince -->
+						<div class="sidebar-widget">
+							<div>
+								<h5 class="mb-2">Durée</h5>
+								<div class="side-imbo">
+									<select class="text1">
+										<option value="" selected hidden disable>Selectionner une durée</option>
+										<option value="1">1 mois</option>
+										<option value="2">2 mois</option>
+										<option value="3">3 mois</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<input type="submit" class="btn  btn-md full-width" value="Envoyer" style="background-color: blue;">
+					</form>
+				</div>
+			</div>
+
+			<div class="col-xl-9 col-lg-8">
 
 				<div class="row">
 					<!-- layout Wrapper -->
 					<div class="col-md-12 mb-3">
 						<div class="layout-switcher-wrap">
-							<div class="layout-switcher-left"> Result Found</div>
+							<div class="layout-switcher-left">{{$nbrPosts}} Offres de stage trouvées</div>
 							<div class="layout-switcher">
 								<ul>
 									<li><a href="{{route('ssg')}}"><i class="ti-layout-grid3"></i></a></li>
@@ -91,51 +239,46 @@
 
 				<div class="row">
 					<div class="col-md-12">
-
 						<!-- Single Job List -->
-						
-	
-				
-
-						<!-- Single Job List -->
-						@foreach($posts as $post)
+						@forelse($posts as $post)
 						<div class="verticle-job-modern">
 
 							<div class="verticle-job-top-capt">
 								<div class="vjt-left-cmp">
 									<div class="vjt-cmp-thumb">
-										<a href="{{url('/post-show/'.$post->id)}}"><img src="assets/img/safari.png" alt="" /></a>
+										<a href="{{url('/post-show/'.$post->id)}}"><img src="{{asset('uploads/images/'.$post->logo_path)}}" alt="" /></a>
 									</div>
 									<div class="vjt-cmp-title">
 										<h4 class="jmg-title"><a href="{{url('/post-show/'.$post->id)}}">{{$post->title}}</a></h4>
-										<h6 class="vjt-company-title"><a href="{{url('/entreprise/entreprise-detail/'.$post->user->id)}}">{{$post->user->name}}</a></h6>
+										<h6 class="vjt-company-title"><a href="{{url('/entreprise/entreprise-detail/'.$post->id)}}">{{$post->name}}</a></h6>
 									</div>
 								</div>
 								<div class="vjt-right-cmp">
-									<h4 class="jmg-sallery">$1400 - $1500 PLN</h4>
+									<a class="btn btn-primary" href="{{url('/post-show/'.$post->id)}}">Consulter l'offre<i class="ti-arrow-right ml-1"></i></a>
 								</div>
 							</div>
 
 							<div class="verticle-job-bottom-capt">
-								<div class="vjt-skills">
-									<span class="skl">Web Design</span><span class="skl">PHP</span><span class="skl">3 more</span>
+								<div class="vjt-metainfo">
+
+									<span><i class="ti-location-pin"></i>{{$post->adresse_stage}}</span>
+									<!-- <span><i class="ti-briefcase"></i>Full Time</span> -->
+									<span><i class="ti-time"></i>{{$post->duree}} mois</span>
 								</div>
 								<div class="vjt-metainfo">
-									<span><i class="ti-location-pin"></i>England</span>
-									<span><i class="ti-briefcase"></i>Full Time</span>
-									<span><i class="ti-calendar"></i>Fab 22, 2020</span>
+
 								</div>
 							</div>
 
 						</div>
-						@endforeach
-						
-
+						@empty
+						<div class="alert alert-success">Aucune Offre de stage</div>
+						@endforelse
 					</div>
 				</div>
-				{{-- {{ $posts->links() }} --}}
+
 				<!-- Pagination -->
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<ul class="pagination mt-0">
 							<li class="page-item">
@@ -157,7 +300,7 @@
 							</li>
 						</ul>
 					</div>
-				</div>
+				</div> -->
 				<!-- Pagination -->
 
 			</div>
@@ -166,6 +309,7 @@
 
 	</div>
 </section>
+
 <div class="clearfix"></div>
 
 <!-- Filter Job Option -->

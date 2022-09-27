@@ -15,7 +15,8 @@
 
     <!-- Custom CSS -->
     <link href="{{asset('assets/css/styles.css')}}" rel="stylesheet">
-
+    <!-- <link href="{{asset('assets/css/style1.css')}}" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="{{asset('/assets/css/style1.css')}}"> -->
     <!-- Custom Color -->
     <link href="{{asset('assets/css/skin\default.css')}}" rel="stylesheet">
     <!-- include libraries(jQuery, bootstrap) -->
@@ -47,7 +48,7 @@
         <!-- ============================================================== -->
         <!-- Start Navigation -->
         <div class="header header-light">
-            <div class="container-fluid">
+            <div class="container">
                 <nav id="navigation" class="navigation navigation-landscape">
                     <div class="nav-header">
                         <a class="nav-brand" href="#">
@@ -58,56 +59,29 @@
                     <div class="nav-menus-wrapper" style="transition-property: none;">
                         <ul class="nav-menu">
 
-                            <li class="active"><a href="{{url('/')}}">Home<span class="submenu-indicator"></span></a>
+                            <li class="active"><a href="{{url('/')}}">Accueil<span class="submenu-indicator"></span></a>
 
                             </li>
 
-                            <li><a href="#">For Candidates<span class="submenu-indicator"></span></a>
+                            <li><a href="#">Etudiants<span class="submenu-indicator"></span></a>
                                 <ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
-                                    <!-- <li><a href="{{route('hmg')}}">Search job Option<span class="submenu-indicator"></span></a>
-										<ul class="nav-dropdown nav-submenu" style="display: none;">
-											<li><a href="search-full-width.html">Search Job Full Width</a></li>
-											<li><a href="search-with-sidebar.html">Search Job with Sidebar</a></li>
-											<li><a href="search-with-sidebar-2.html">Search job with Sidebar 2</a></li>
-											<li><a href="search-with-sidebar-3.html">Search Job with Sidebar 3</a></li>
-											<li><a href="search-with-detail-job.html">Search job With Detail</a></li>
-											<li><a href="search-with-sidebar-list.html">Search Jobs List</a></li>
-											<li><a href="search-with-sidebar-list-2.html">Search jobs List 2</a></li>
-											<li><a href="employers-list.html">Search Employers Sidebar</a></li>
-											<li><a href="freelancer-detail.html">Employers Detail</a></li>
-										</ul>
-									</li> -->
-                                    <li><a href="{{route('ssg')}}">Trouver un stage<span class="submenu-indicator"></span></a>
-                                        <!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
-											<li><a href="half-map-grid.html">Find Job On Map</a></li>
-											<li><a href="half-map-list.html">Fins Job On Map List</a></li>
-										</ul> -->
+
+                                    <li><a href="{{route('ssl')}}">Trouver un stage<span class="submenu-indicator"></span></a>
+
                                     </li>
-                                    <li><a href="{{route('seg')}}">Trouver une entreprise<span class="submenu-indicator"></span></a>
-                                        <!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
-											<li><a href="job-detail.html">Single Job 1</a></li>
-											<li><a href="job-detail-2.html">Single Job 2</a></li>
-											<li><a href="job-detail-3.html">Single Job 3</a></li>
-										</ul> -->
+                                    <li><a href="{{route('sel')}}">Trouver une entreprise<span class="submenu-indicator"></span></a>
+
                                     </li>
-                                    <li><a href="{{route('candidat-dashboard')}}">Candidate Dashboard</a></li>
+                                    <li><a href="{{route('candidat-dashboard')}}">Espace Etudiant</a></li>
                                 </ul>
                             </li>
 
-                            <li><a href="#">For Employers<span class="submenu-indicator"></span></a>
+                            <li><a href="#">Entreprise<span class="submenu-indicator"></span></a>
                                 <ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
                                     <li><a href="{{route('scg')}}">Trouver un candidat</a></li>
-                                    <!-- <li><a href="candidate-list.html">Browse Candidates List</a></li>
-									<li><a href="search-freelancers.html">Search Freelancers</a></li>
-									<li><a href="search-freelancers-list.html">Search Freelancers List</a></li>
-									<li><a href="freelancer-detail.html">Freelancer Detail</a></li> -->
-                                    <!-- <li><a href="#">Search with Map<span class="submenu-indicator"></span></a> -->
-                                    <!-- <ul class="nav-dropdown nav-submenu" style="display: none;">
-											<li><a href="browse-candidates-with-map-grid.html">Search Candidate Grid</a></li>
-											<li><a href="browse-candidates-with-map.html">Search Candidate List</a></li>
-										</ul> -->
+
                             </li>
-                            <li><a href="{{route('entreprise-dashboard')}}">Employer Dashboard</a></li>
+                            <li><a href="{{route('entreprise-dashboard')}}">Espace Entreprise</a></li>
                         </ul>
                         </li>
 
@@ -124,7 +98,7 @@
                             <li class="add-listing theme-bg">
                                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="ti-plus mr-1"></i>
-                                    {{ __('Logout') }}
+                                    {{ __('Deconnexion') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -159,7 +133,7 @@
         <!-- ============================ Hero Banner End ================================== -->
 
 
-        <!-- ============== Candidate Dashboard ====================== -->
+        <!-- ============== Employee Dashboard ====================== -->
         <section class="tr-single-detail gray-bg">
             <div class="container">
                 <div class="row">
@@ -179,34 +153,34 @@
                             <!-- Nav tabs -->
                             <ul class="nav dashboard-verticle-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#c-profile"><i class="ti-user"></i>Company Profile</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#c-profile"><i class="ti-user"></i>Profil Entreprise</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#manage-jobs"><i class="ti-file"></i>Manage jobs</a>
+                                    <a class="nav-link" data-toggle="tab" href="#manage-jobs"><i class="ti-file"></i>Gérer nos offres</a>
                                 </li>
                                 <!-- <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#transactions"><i class="lni-heart-filled"></i>Transactions</a>
                                 </li> -->
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#shortlisted"><i class="lni-briefcase"></i>Shortlisted</a>
+                                    <a class="nav-link" data-toggle="tab" href="#shortlisted"><i class="lni-briefcase"></i>Présélectionnés</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#candidatures"><i class="lni-heart-filled"></i>Candidatures</a>
+                                    <a class="nav-link" data-toggle="tab" href="#candidatures"><i class="lni-heart-filled"></i>Demandes</a>
                                 </li>
                                 <!-- <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#alert"><i class="lni-alarm"></i>Alert job</a>
                                 </li> -->
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#post-new-job"><i class="ti-plus"></i>Post New job</a>
+                                    <a class="nav-link" data-toggle="tab" href="#post-new-job"><i class="ti-plus"></i>Ajouter une offre</a>
                                 </li>
                                 <!-- <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#package"><i class="lni-tag"></i>Package</a>
                                 </li> -->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{url('/entreprise/entreprise-detail/'.auth()->user()->id)}}"><i class="lni-user"></i>View Profile</a>
+                                    <a class="nav-link" href="{{url('/entreprise/entreprise-detail/'.auth()->user()->id)}}"><i class="lni-user"></i>Voir le Profil</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#change-password"><i class="lni-lock"></i>Change Password</a>
+                                    <a class="nav-link" data-toggle="tab" href="#change-password"><i class="lni-lock"></i>Changer le Mot de passe</a>
                                 </li>
                                 <li class="nav-item">
                                     <!-- <a class="nav-link" href="{{route('delete')}}" onclick=" event.preventDefault();
@@ -219,7 +193,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="lni-exit"></i>
-                                        {{ __('Logout') }}
+                                        {{ __('Deconnexion') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -236,8 +210,15 @@
                         <!-- Tab panes -->
                         @if(Session::has('error'))
 
-                        <div class="alert alert-danger">{{Session::get('error')}}</div>
-
+                        <!-- <div class="alert alert-danger">{{Session::get('error')}}</div> -->
+                        <div class="alert alert-danger alert-white rounded">
+                            <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+                            <!-- <div class="icon">
+                                <i class="fa fa-check"></i>
+                            </div> -->
+                            <strong>Erreur!</strong>
+                            {{Session::get('error')}}
+                        </div>
                         @endif
                         @if(Session::has('success'))
                         <!-- <div class="col-sm-6 col-md-6">
@@ -270,7 +251,7 @@
                                     <!-- Company Information -->
                                     <div class="tr-single-box">
                                         <div class="tr-single-header">
-                                            <h4><i class="ti-home"></i> Company Information</h4>
+                                            <h4><i class="ti-home"></i> Informations sur l'entreprise</h4>
                                         </div>
 
                                         <div class="tr-single-body">
@@ -278,7 +259,7 @@
 
                                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                                     <div class="form-group">
-                                                        <label>Company Name</label>
+                                                        <label>Nom de l'entreprise</label>
                                                         <input class="form-control" type="text" value="{{auth()->user()->name}}" name="name" id="name">
                                                     </div>
                                                 </div>
@@ -319,7 +300,7 @@
                                     <!-- Contact Info -->
                                     <div class="tr-single-box">
                                         <div class="tr-single-header">
-                                            <h4><i class="ti-headphone"></i> Contact Info</h4>
+                                            <h4><i class="ti-headphone"></i> Informations de contact</h4>
                                         </div>
 
                                         <div class="tr-single-body">
@@ -327,7 +308,7 @@
 
                                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                                     <div class="form-group">
-                                                        <label class="social-nfo">Phone Number</label>
+                                                        <label class="social-nfo">Numéro de téléphone</label>
                                                         <input class="form-control" type="text" name="telephone" value="{{auth()->user()->telephone}}">
                                                     </div>
                                                 </div>
@@ -351,7 +332,7 @@
                                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label class="social-nfo">Localité</label>
-                                                        
+
                                                         <select name="ville" id="ville" class="form-control">
                                                             <option value="{{auth()->user()->ville}}" selected disable hidden>{{auth()->user()->ville}}</option>
                                                             <option value="Calavi">Abomey-Calavi</option>
@@ -367,7 +348,7 @@
 
                                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                                     <div class="form-group">
-                                                        <label class="social-nfo">Complete Address</label>
+                                                        <label class="social-nfo">Adresse Complète</label>
                                                         <input class="form-control" type="text" name="adresse" value="{{auth()->user()->adresse}}">
                                                     </div>
                                                 </div>
@@ -383,7 +364,7 @@
                                     <!-- Social Account -->
                                     <div class="tr-single-box">
                                         <div class="tr-single-header">
-                                            <h4><i class="ti-new-window"></i> Social Account</h4>
+                                            <h4><i class="ti-new-window"></i>Comptes sociaux</h4>
                                         </div>
 
                                         <div class="tr-single-body">
@@ -410,7 +391,7 @@
                                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label class="social-nfo"><i class="lni-instagram"></i>Instagram URL</label>
-                                                        <input class="form-control" type="text" name="instagrame_url" value="{{auth()->user()->instagram_url}}">
+                                                        <input class="form-control" type="text" name="instagrame_url" value="{{auth()->user()->instagrame_url}}">
                                                     </div>
                                                 </div>
 
@@ -472,7 +453,7 @@
 
                                     <input type="hidden" value="{{auth()->user()->id}}" name="id_user" id="id_user">
 
-                                    <button type="submit" class="btn btn-info btn-md full-width">Save & Update</button>
+                                    <button type="submit" class="btn btn-info btn-md full-width">Sauvegarder & Mettre à jour</button>
 
                                 </form>
                             </div>
@@ -501,7 +482,7 @@
                                                             <div class="mg-list-caption">
                                                                 <h4 class="mg-title"> <a href="{{url('/post-show/'.$post->id)}}"> {{$post->title}}</a></h4>
                                                                 <h5> {{$post->user->name}}</h5>
-                                                              
+
                                                                 <!-- <h6>{!!Str::words($post->description,'7','....')!!}</h6> -->
                                                                 <span><em>Creer le {{$post->created_at->format('D M Y')}} </em></span>
 
@@ -588,7 +569,7 @@
 
                                 <div class="tr-single-box">
                                     <div class="tr-single-header">
-                                        <h4><i class="ti-briefcase"></i> Shortlisted</h4>
+                                        <h4><i class="ti-briefcase"></i> Préselectionés</h4>
                                     </div>
 
                                     <div class="tr-single-body">
@@ -639,7 +620,7 @@
 
                                 <div class="tr-single-box">
                                     <div class="tr-single-header">
-                                        <h4><i class="ti-briefcase"></i> Candidatures</h4>
+                                        <h4><i class="ti-briefcase"></i> Demandes de Stage</h4>
                                     </div>
 
                                     <div class="tr-single-body">
@@ -674,12 +655,35 @@
                                                                 <a href="{{url('/download/'.$demande->etudiants->cv_path)}}">Download</a>
                                                             </div>
                                                         </div>
+
+
+                                                        @if($demande->status==-1)
                                                         <div class="btn-group ml-2">
-                                                            <a href="#" class="mg-valider"><span>Accepter</span> </a>
+                                                            <form action="{{route('accuseDemande')}}" method="POST">
+                                                                @csrf
+                                                                <input type="hidden" name="id" value="{{$demande->id}}">
+                                                                <input type="submit" name="accepter" class="mg-valider" value="Accepter">
+
+
+                                                                <input type="submit" name="refuser" class="mg-delete" value="Refuser">
+
+                                                            </form>
                                                         </div>
+                                                        @endif
+                                                        @if($demande->status==1)
                                                         <div class="btn-group ml-2">
-                                                            <a href="#" class="mg-delete"><span>Refuser</span> </a>
+                                                            <span class="mg-valider">Accepter</span>
                                                         </div>
+                                                        @endif
+                                                        @if($demande->status==0)
+                                                        <div class="btn-group ml-2">
+                                                            <span class="mg-delete">Refuser</span>
+                                                        </div>
+                                                        @endif
+
+
+
+
                                                     </div>
 
                                                 </div>
@@ -702,7 +706,7 @@
                                 <form action="{{route('create-post')}}" method="post">
                                     <div class="tr-single-box">
                                         <div class="tr-single-header">
-                                            <h4><i class="ti-plus"></i> Post A New jobs</h4>
+                                            <h4><i class="ti-plus"></i> Ajouter une offre de stage</h4>
                                         </div>
 
                                         <div class="tr-single-body">
@@ -710,30 +714,30 @@
 
                                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                                     <div class="form-group">
-                                                        <label>Job Title</label>
+                                                        <label>Titre de l'offre</label>
                                                         <input class="form-control" name="title" type="text" value="Web Designer">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                                     <div class="form-group">
-                                                        <label>Job Description</label>
+                                                        <label>Description de l'offre</label>
                                                         <textarea name="description" class="ckeditor" cols="30" rows="10"></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                                     <div class="form-group">
-                                                        <label>Durée</label>
-                                                        <input class="form-control"  type="number" name="duree" placeholder="Entrer la date de debut">
-                                                        
+                                                        <label>Durée du stage</label>
+                                                        <input class="form-control" type="number" min="1" name="duree" placeholder="Entrer la durée du stage">
+
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Date d'expiration</label>
-                                                        <input class="form-control" type="date" name="expiration" placeholder="Entrer la date de fin">
+                                                        <input class="form-control" type="date" name="expiration" placeholder="Entrer la date d'expiration de l'offre">
                                                     </div>
                                                 </div>
 
@@ -747,7 +751,7 @@
                                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Nombre de places disponible</label>
-                                                        <input class="form-control" type="number" name="nbr_place" placeholder="Entrez un nombre">
+                                                        <input class="form-control" type="number" min="1" name="nbr_place" placeholder="Entrez un nombre">
                                                     </div>
                                                 </div>
 
@@ -759,15 +763,15 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                                     <div class="form-group">
-                                                        <label>Categorie</label>
+                                                        <label>Catégorie</label>
                                                         <select id="category" name="category" class="form-control">
                                                             <option value="" selected hidden disable>Selectionner la categorie du stage</option>
-                                                            <option value="1">Informatique,Telecom,Internet</option>
-                                                            <option value="2">Transport & Logistique</option>
-                                                            <option value="3">Banking</option>
-                                                            <option value="4">SEO/SMO</option>
-                                                            <option value="5">Designing</option>
-                                                            <option value="6">Management</option>
+                                                            <option value="Informatique,Telecom,Internet">Informatique,Telecom,Internet</option>
+                                                            <option value="Transport & Logistique">Transport & Logistique</option>
+                                                            <option value="Banque,Assurance,Finance">Banque,Assurance,Finance</option>
+                                                            <option value="Distibution,Commerce">Distibution,Commerce</option>
+                                                            <option value="Fonction publique,Administration">Fonction publique,Administration</option>
+                                                            <option value="Management">Management</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -776,7 +780,8 @@
                                                     <div class="form-group">
                                                         <label>Niveau Recquis</label>
                                                         <select id="qualification" class="form-control" name="niveau_recqui">
-                                                            <option value="">&nbsp;</option>
+
+                                                            <option value="" selected hidden disable>Selectionner le niveau recquis</option>
                                                             <option value="1ere année">1ere année</option>
                                                             <option value="2eme année">2eme année</option>
                                                             <option value="3eme année">3e année</option>
@@ -793,11 +798,11 @@
 
                                     @csrf
 
-                                    <button type="submit" class="btn btn-info btn-md full-width">Save & Update</button>
+                                    <button type="submit" class="btn btn-info btn-md full-width">Sauvegarder</button>
                                 </form>
                                 <!-- /CV -->
 
-                               
+
 
                             </div>
 
@@ -807,22 +812,22 @@
                                     @csrf
                                     <div class="tr-single-box">
                                         <div class="tr-single-header">
-                                            <h4><i class="lni-lock"></i> Change Password</h4>
+                                            <h4><i class="lni-lock"></i> Changer le mot de passe</h4>
                                         </div>
 
 
                                         <div class="tr-single-body">
                                             <div class="form-group">
-                                                <label>Current Password</label>
+                                                <label>Mot de passe actuel</label>
                                                 <div class="input-with-gray">
-                                                    <input type="text" name="password" class="form-control">
+                                                    <input type="password" name="password" class="form-control">
                                                     <i class="ti-unlock"></i>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>New Password</label>
+                                                <label>Nouveau mot de passe</label>
                                                 <div class="input-with-gray">
-                                                    <input type="text" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('name') }}" placeholder="*******">
+                                                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('name') }}" placeholder="*******">
                                                     @error('password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -833,7 +838,7 @@
 
                                             </div>
                                             <div class="form-group">
-                                                <label>Confirm Password</label>
+                                                <label>Confirmer le mot de passe</label>
                                                 <div class="input-with-gray">
                                                     <input id="password-confirm" type="text" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="*******">
                                                     <i class="ti-unlock"></i>
@@ -844,13 +849,13 @@
                                     </div>
                                     <input type="hidden" value="{{auth()->user()->id}}" name="id_user" id="id_user">
 
-                                    <button type="submit" class="btn btn-info btn-md full-width">Save & Update</button>
+                                    <button type="submit" class="btn btn-info btn-md full-width">Sauvegarder et Mettre à jour</button>
 
 
 
                                 </form>
                             </div>
-                            
+
 
                         </div>
                     </div>
@@ -859,7 +864,7 @@
             </div>
         </section>
 
-        <!-- ============== Candidate Dashboard ====================== -->
+        <!-- ============== Employee Dashboard ====================== -->
 
         <!-- ============================ Newsletter Start ================================== -->
         <!-- <section class="alert-wrap pt-5 pb-5" style="background: #00a94f url(assets/img/bg2.png);">
@@ -887,91 +892,7 @@
 
         <!-- ============================ Footer Start ================================== -->
         <footer class="dark-footer skin-dark-footer">
-            <!-- <div>
-                <div class="container">
-                    <div class="row">
 
-                        <div class="col-lg-3 col-md-3">
-                            <div class="footer-widget">
-                                <img src="assets/img/logo-light.png" class="img-footer" alt="" />
-                                <div class="footer-add">
-                                    <p>Collins Street West, Victoria,</br> Australia (AU4578).</p>
-                                    <p><strong>Email:</strong></br><a href="#">hello@workstock.com</a></p>
-                                    <p><strong>Call:</strong></br>91 855 742 62548</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2">
-                            <div class="footer-widget">
-                                <h4 class="widget-title">Navigations</h4>
-                                <ul class="footer-menu">
-                                    <li><a href="#">New Home Design</a></li>
-                                    <li><a href="#">Browse Candidates</a></li>
-                                    <li><a href="#">Browse Employers</a></li>
-                                    <li><a href="#">Advance Search</a></li>
-                                    <li><a href="#">Job With Map</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-2 col-md-2">
-                            <div class="footer-widget">
-                                <h4 class="widget-title">The Highlights</h4>
-                                <ul class="footer-menu">
-                                    <li><a href="#">Home Page 2</a></li>
-                                    <li><a href="#">Home Page 3</a></li>
-                                    <li><a href="#">Home Page 4</a></li>
-                                    <li><a href="#">Home Page 5</a></li>
-                                    <li><a href="#">LogIn</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-2 col-md-2">
-                            <div class="footer-widget">
-                                <h4 class="widget-title">My Account</h4>
-                                <ul class="footer-menu">
-                                    <li><a href="#">Dashboard</a></li>
-                                    <li><a href="#">Applications</a></li>
-                                    <li><a href="#">Packages</a></li>
-                                    <li><a href="#">resume.html</a></li>
-                                    <li><a href="#">SignUp Page</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-3">
-                            <div class="footer-widget">
-                                <h4 class="widget-title">Download Apps</h4>
-                                <a href="#" class="other-store-link">
-                                    <div class="other-store-app">
-                                        <div class="os-app-icon">
-                                            <i class="ti-android theme-cl"></i>
-                                        </div>
-                                        <div class="os-app-caps">
-                                            Google Play
-                                            <span>Get It Now</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="other-store-link">
-                                    <div class="other-store-app">
-                                        <div class="os-app-icon">
-                                            <i class="ti-apple theme-cl"></i>
-                                        </div>
-                                        <div class="os-app-caps">
-                                            App Store
-                                            <span>Now it Available</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div> -->
 
             <div class="footer-bottom">
                 <div class="container">
@@ -981,21 +902,34 @@
                             <p class="mb-0">Copyright@2022. All rights reserved</p>
                         </div>
 
-                        <!-- <div class="col-lg-6 col-md-6 text-right">
-                            <ul class="footer-bottom-social">
-                                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                                <li><a href="#"><i class="ti-twitter"></i></a></li>
-                                <li><a href="#"><i class="ti-instagram"></i></a></li>
-                                <li><a href="#"><i class="ti-linkedin"></i></a></li>
-                            </ul>
-                        </div> -->
-
                     </div>
                 </div>
             </div>
         </footer>
+        <!-- <footer style="background: linear-gradient(rgba(9, 32, 50, 0.868), rgba(9, 32, 50, 0.868)), url({{ asset('/assets/img/entreprise.jpg')}})">
+			<div class="footer-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6 mx-auto">
+							<a href="#" class="navbar-brand">StageBenin</a>
+							<p>Contrairement à certaines plateformes de recherche de stage, StageBenin se focalise uniquement sur le bien-être
+								des étudiants. Il aide les étudiants à se trouver un lieu de stage afin d'améliorer leur connaissances et leur
+								garanti un lieu de stage. Avec cette plateforme, n'importe qui peut demander un stage à conditions d'être étudiant.
+								StageBenin accueil toute entreprise à la recherche de stagiaires et leur offre l'opportunité de poster leurs offres de stages
+								et de recruter les meilleurs ou les étudiants qui correspondent à leur profil.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<div class="container">
+					<p class="mb-0">Copyright@2022. All rights reserved</p>
+				</div>
+			</div>
+		</footer> -->
         <!-- ============================ Footer End ================================== -->
-       
+
         <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -1211,6 +1145,5 @@
 
 </body>
 
-<!-- Mirrored from themezhub.net/workstock-2/work-stocks/employer-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 17:43:12 GMT -->
 
 </html>
