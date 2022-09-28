@@ -70,7 +70,7 @@
 
 					</select>
 
-					<button type="submit" class="btn2 my-3">Rechercher un candidat</button>
+					<button type="submit" class="btn2 my-3">Rechercher un étudiant</button>
 				</div>
 			</form>
 
@@ -201,7 +201,7 @@
 					<!-- layout Wrapper -->
 					<div class="col-md-12 mb-1">
 						<div class="layout-switcher-wrap">
-							<div class="layout-switcher-left">{{$nbrUser}} Result Found</div>
+							<div class="layout-switcher-left">{{$nbrUser}} Résultats trouvés </div>
 							<div class="layout-switcher">
 								<ul>
 									<li><a href="{{route('scg')}}"><i class="ti-layout-grid3"></i></a></li>

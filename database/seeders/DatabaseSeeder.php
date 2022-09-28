@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory()->create([
             'name' => 'HOUNSOU Mariane',
+            'matricule'=>'15528740',
             'email' => 'mari@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'role' => 'candidat',
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Benin Terminale',
             'email' => 'Bt@gmail.com',
+            'matricule'=>'123456789369',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'role' => 'recruteur',
         ]);
@@ -43,11 +45,11 @@ class DatabaseSeeder extends Seeder
             'title' => 'Transport & Logistique',
             'description' => "Le secteur des transports et logistique est tres porteur au Benin aujourd'hui",
         ]);
-        \App\Models\Post::factory()->create([
-            'title' => 'Stage en Banque,Assurance,Finance',
-            'description' => "Le secteur financier est un secteur économique qui regroupe toutes les activités qui se rapportent à la finance. Il comprend principalement, le secteur bancaire et celui de l'assurance. Découvrez ci-dessous les métiers liés à la banque et à la finance",
-            'category_id' => '2',
-            'user_id' => '2',
-        ]);
+        // \App\Models\Post::factory()->create([
+        //     'title' => 'Stage en Banque,Assurance,Finance',
+        //     'description' => "Le secteur financier est un secteur économique qui regroupe toutes les activités qui se rapportent à la finance. Il comprend principalement, le secteur bancaire et celui de l'assurance. Découvrez ci-dessous les métiers liés à la banque et à la finance",
+            
+        //     'user_id' => '2',
+        // ]);
     }
 }

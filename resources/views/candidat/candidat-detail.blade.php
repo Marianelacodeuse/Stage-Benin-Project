@@ -40,7 +40,7 @@
 				<!-- Candidate Overview -->
 				<div class="tr-single-box">
 					<div class="tr-single-header">
-						<h4><i class="ti-info"></i>Aperçu du candidat</h4>
+						<h4><i class="ti-info"></i>Aperçu de l'étudiant</h4>
 					</div>
 					<div class="tr-single-body">
 						<p>{!!$user->description!!}</p>
@@ -70,7 +70,7 @@
 				<!-- Candidate Detail -->
 				<div class="tr-single-box">
 					<div class="tr-single-header">
-						<h4><i class="ti-direction"></i> Détail du Candidat</h4>
+						<h4><i class="ti-direction"></i> Détail de l'étudiant</h4>
 					</div>
 
 					<div class="tr-single-body">
@@ -117,7 +117,7 @@
 										<i class="lni-certificate"></i>
 									</div>
 									<div class="icon-box-text">
-										<strong class="d-block">Filiere</strong>
+										<strong class="d-block">Filière</strong>
 										{{$user->filiere_secteur}}
 									</div>
 								</div>
@@ -143,7 +143,7 @@
 				<!-- Candidate Address -->
 				<div class="tr-single-box">
 					<div class="tr-single-header">
-						<h4><i class="ti-direction"></i> Adresse du Candidat</h4>
+						<h4><i class="ti-direction"></i> Adresse de l'étudiant</h4>
 					</div>
 
 					<div class="tr-single-body">

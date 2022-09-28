@@ -598,7 +598,7 @@
 										<input type="hidden" value="{{auth()->user()->id}}" name="id_user" id="id_user">
 										<input type="hidden" value="{{auth()->user()->email}}" name="email" id="email">
 										<!-- <input type="submit" value="Envoyer"> -->
-										<button type="submit" class="btn btn-info btn-md full-width">Save & Update</button>
+										<button type="submit" class="btn btn-info btn-md full-width">Sauvegarder & Mettre à jour</button>
 										<a href="{{url('candidat/candidat-cv-display')}}" class="mt-5 btn btn-info btn-md full-width" target="_blank" rel="noopener noreferrer"> Voir le CV</a>
 
 									</form>
