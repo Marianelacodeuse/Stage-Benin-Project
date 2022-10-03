@@ -249,7 +249,7 @@
 							<ul class="nav-menu nav-menu-social align-to-right">
 
 								<li class="add-listing theme-bg mx-2">
-									<a href="#">
+									<a href="{{route('entreprise-dashboard')}}">
 										<i class="ti-plus"></i> Poster un stage
 									</a>
 								</li>

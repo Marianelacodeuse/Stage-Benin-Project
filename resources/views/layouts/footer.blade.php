@@ -1,31 +1,7 @@
 
 
 
-		<div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Suppression</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<p>Voulez-vous vraiment supprimer votre compte? Cette action est definitve</p>
-					</div>
-					<div class="modal-footer">
-						<!-- <a class="nav-link" href="{{route('delete')}}" onclick=" event.preventDefault();
-									document.getElementById('delete-form').submit();"><i class="lni-trash"></i>Supprimer le compte</a>
-									<form action="{{route('delete')}}" method="post" id="delete-form"> @csrf</form> -->
-						<button type="button" class="btn btn-danger"><a href="{{route('delete')}}" onclick=" event.preventDefault();
-									document.getElementById('delete-form').submit();"><i class="lni-trash"></i>Supprimer</a>
-							<form action="{{route('delete')}}" method="post" id="delete-form"> @csrf</form>
-						</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 		<!-- Log In Modal -->
 		<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="registermodal" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">

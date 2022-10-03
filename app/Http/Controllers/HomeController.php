@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
@@ -35,7 +36,7 @@ class HomeController extends Controller
         $totalEntreprises = $allEntreprises->count();
         $allEtudiants = User::where('role', 'candidat');
         $totalEtudiants = $allEtudiants->count();
-        $posts = DB::table('posts')->select('*')
+        $posts = DB::table('posts')->select('posts.id', 'posts.title', 'posts.duree', 'users.name', 'users.logo_path', 'posts.adresse_stage')
             ->join('users', 'users.id', '=', 'user_id')
             ->inRandomOrder()->limit(3)->get();
         // dd($posts);
@@ -55,8 +56,7 @@ class HomeController extends Controller
     {
         return view('blog.blog-detail');
     }
-
-
+    
     public function candidatDashboard()
     {
         return view('candidat.candidat-dashboard');
@@ -80,7 +80,7 @@ class HomeController extends Controller
         $nbrPosts = $posts->count();
         // dd($request->categorie);
         // if ($request->categorie) {
-            
+
         //     // $posts = DB::table('posts')->where('category_id',$request->categorie)->get();
         //     $posts = DB::table('posts')->select('*')
         //     ->join('users', 'posts.user_id', 'users.id')
@@ -89,7 +89,7 @@ class HomeController extends Controller
         //     $nbrPosts = $posts->count();
         //     // dd($posts);
         //     return view('candidat.search-stage-grid', ['posts' => $posts,'nbrPosts'=>$nbrPosts]);
-        
+
         // }
         if ($request->motcle) {
             // dd($request->motcle);
@@ -104,7 +104,7 @@ class HomeController extends Controller
         }
         //  dd($request->adresse_stage);
 
-        
+
         if ($request->localite) {
             // dd($request->adresse_stage);
             // $posts = DB::table('posts')->where('adresse_stage', 'LIKE', '%' . $request->localite . '%')->get();
@@ -116,7 +116,7 @@ class HomeController extends Controller
             // dd($posts);
             return view('candidat.search-stage-grid', ['posts' => $posts, 'nbrPosts' => $nbrPosts]);
         }
-       
+
         // dd($request);
         // if ($request->categorie) {
         //     dd($request->categorie);
@@ -134,10 +134,10 @@ class HomeController extends Controller
         // $posts = POST::all();
         // $nbrPosts = $posts->count();
         // return view('candidat.search-stage-list', ['posts' => $posts, 'nbrPosts' => $nbrPosts]);
-           // dd($request);
+        //    dd($request);
         // $posts = POST::all();
         $posts = DB::table('posts')
-            ->select('posts.id','posts.title','posts.duree','users.name','users.logo_path','posts.adresse_stage')
+            ->select('posts.id', 'posts.title', 'posts.duree', 'users.name', 'users.logo_path', 'posts.adresse_stage')
             ->join('users', 'posts.user_id', 'users.id')
             ->get();
         // dd($posts);
@@ -145,22 +145,9 @@ class HomeController extends Controller
         //     dd($post->user->logo_path);
         // }
         $nbrPosts = $posts->count();
-        // dd($request->categorie);
-        // if ($request->categorie) {
-            
-        //     // $posts = DB::table('posts')->where('category_id',$request->categorie)->get();
-        //     $posts = DB::table('posts')->select('*')
-        //     ->join('users', 'posts.user_id', 'users.id')
-        //     ->where('categorie','LIKE', '%' .$request->categorie.'%')
-        //     ->get();
-        //     $nbrPosts = $posts->count();
-        //     // dd($posts);
-        //     return view('candidat.search-stage-grid', ['posts' => $posts,'nbrPosts'=>$nbrPosts]);
-        
-        // }
+
+
         if ($request->motcle) {
-            // dd($request->motcle);
-            // $posts = DB::table('posts')->where('title', 'LIKE', '%' . $request->motcle . '%')->get();
             $posts = DB::table('posts')->select('*')
                 ->join('users', 'posts.user_id', 'users.id')
                 ->where('title', 'LIKE', '%' . $request->motcle . '%')
@@ -168,12 +155,13 @@ class HomeController extends Controller
             $nbrPosts = $posts->count();
             // dd($posts);
             return view('candidat.search-stage-list', ['posts' => $posts, 'nbrPosts' => $nbrPosts]);
+            // return Redirect::route('ssl')->with(['posts' => $posts,'nbrPosts'=>$nbrPosts]);
         }
         //  dd($request->adresse_stage);
 
-        
+
         if ($request->localite) {
-            // dd($request->adresse_stage);
+            // dd($request->localite);
             // $posts = DB::table('posts')->where('adresse_stage', 'LIKE', '%' . $request->localite . '%')->get();
             $posts = DB::table('posts')->select('*')
                 ->join('users', 'posts.user_id', 'users.id')
@@ -182,8 +170,24 @@ class HomeController extends Controller
             $nbrPosts = $posts->count();
             // dd($posts);
             return view('candidat.search-stage-list', ['posts' => $posts, 'nbrPosts' => $nbrPosts]);
+            // return Redirect::route('ssl')->with(['posts' => $posts,'nbrPosts'=>$nbrPosts]);
         }
-       
+        if ($request->categorie) {
+            // dd($request->categorie);
+            // $posts = DB::table('posts')->where('category_id',$request->categorie)->get();
+            $posts = DB::table('posts')->select('*')
+                ->join('users', 'posts.user_id', 'users.id')
+                ->where('categorie', 'LIKE', '%' . $request->categorie . '%')
+                ->get();
+            // dd($posts);
+            $nbrPosts = $posts->count();
+            // dd($posts);
+            return view('candidat.search-stage-list', ['posts' => $posts, 'nbrPosts' => $nbrPosts]);
+            // return Redirect::route('ssl')->with(['posts' => $posts,'nbrPosts'=>$nbrPosts]);
+            // return redirect()->back()->with(['posts' => $posts,'nbrPosts'=>$nbrPosts]);
+
+        }
+
         // dd($request);
         // if ($request->categorie) {
         //     dd($request->categorie);
@@ -195,6 +199,7 @@ class HomeController extends Controller
         // dd($request->motcle);
         // dd($posts->count());
         return view('candidat.search-stage-list', ['posts' => $posts, 'nbrPosts' => $nbrPosts]);
+        // return Redirect::route('ssl')->with(['posts' => $posts,'nbrPosts'=>$nbrPosts]);
     }
     public function seg()
     {
