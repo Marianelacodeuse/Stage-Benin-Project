@@ -37,18 +37,16 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
-        
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'duree' => 'required',
-            'niveau_reqcui' => 'required',
-            'categorie' => 'required',
-            'adresse_stage' => 'required',
-
-        ]);
-
         // dd($request->all());
+        // $request->validate([
+        //     'title' => 'required',
+        //     'description' => 'required',
+        //     'duree' => 'required',
+        //     'niveau_reqcui' => 'required',
+        //     'categorie' => 'required',
+        //     'adresse_stage' => 'required',
+
+        // ]);
         $post = new Post();
         $post->title = $request->title;
         $post->duree = $request->duree;

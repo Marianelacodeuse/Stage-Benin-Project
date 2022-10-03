@@ -947,7 +947,7 @@
 									document.getElementById('delete-form').submit();"><i class="lni-trash"></i>Supprimer le compte</a>
 									<form action="{{route('delete')}}" method="post" id="delete-form"> @csrf</form> -->
                         <button type="button" class="btn btn-danger"><a href="{{route('delete')}}" onclick=" event.preventDefault();
-									document.getElementById('delete-form').submit();"><i class="lni-trash"></i>Supprimer</a>
+									document.getElementById('delete-form').submit();" style="color:white"><i class="lni-trash"></i>Supprimer</a>
                             <form action="{{route('delete')}}" method="post" id="delete-form"> @csrf</form>
                         </button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>

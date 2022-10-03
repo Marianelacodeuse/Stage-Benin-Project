@@ -232,13 +232,13 @@
 
 						<!-- <div class="alert alert-success">{{Session::get('success')}}</div> -->
 						<div class="alert alert-success alert-white rounded">
-                            <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
-                            <!-- <div class="icon">
+							<button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+							<!-- <div class="icon">
                                 <i class="fa fa-check"></i>
                             </div> -->
-                            <strong>Success!</strong>
-                            {{Session::get('success')}}
-                        </div>
+							<strong>Success!</strong>
+							{{Session::get('success')}}
+						</div>
 						@endif
 						<div class="tab-content">
 
@@ -647,7 +647,7 @@
 
 											</div>
 											<div class="form-group">
-												<label>CConfimer mot de passe</label>
+												<label>Confimer le mot de passe</label>
 												<div class="input-with-gray">
 													<input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="*******">
 													<i class="ti-unlock"></i>
@@ -673,7 +673,31 @@
 		</section>
 		<!-- ============== Candidate Dashboard ====================== -->
 
-		@include('layouts.footer')
+		<div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Suppression</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>Voulez-vous vraiment supprimer votre compte? Cette action est definitve</p>
+					</div>
+					<div class="modal-footer">
+						<!-- <a class="nav-link" href="{{route('delete')}}" onclick=" event.preventDefault();
+									document.getElementById('delete-form').submit();"><i class="lni-trash"></i>Supprimer le compte</a>
+									<form action="{{route('delete')}}" method="post" id="delete-form"> @csrf</form> -->
+						<button type="button" class="btn btn-danger"><a href="{{route('delete')}}" onclick=" event.preventDefault();
+									document.getElementById('delete-form').submit();" style="color:white"><i class="lni-trash"></i>Supprimer</a>
+							<form action="{{route('delete')}}" method="post" id="delete-form"> @csrf</form>
+						</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</div>
 	<!-- ============================================================== -->
